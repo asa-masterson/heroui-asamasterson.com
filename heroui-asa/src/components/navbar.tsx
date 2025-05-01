@@ -16,6 +16,7 @@ import { Image } from "@heroui/image";
 import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
+import NotionFace from "../images/my-notion-face-transparent.png";
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
   TwitterIcon,
@@ -58,7 +59,7 @@ export const Navbar = () => {
           >
             <Image
               alt="Asa Masterson"
-              src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/my-notion-face-transparent.png"
+              src={NotionFace}
               width={32}
             />
             <p className="font-bold text-inherit">ASA</p>

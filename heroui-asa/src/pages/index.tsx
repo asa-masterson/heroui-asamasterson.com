@@ -1,7 +1,9 @@
 import { Link } from "@heroui/link";
 import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import {Card, CardFooter, Image, Button, CardHeader} from "@heroui/react";
+import PinkLogoUrl from "../images/openmoji-pig.svg";
+import PinkScreenshotUrl from "../images/pink-screenshot.png";
+import {Card, CardFooter, Image, Button} from "@heroui/react";
+import { ElfsightWidget } from 'react-elfsight-widget';
 import { button as buttonStyles } from "@heroui/theme";
 
 import { siteConfig } from "@/config/site";
@@ -60,15 +62,15 @@ export default function IndexPage() {
 
       </section>
 
-        <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-          <div className="inline-block max-w-lg text-center justify-center">
-            <span className={title()}>About&nbsp;</span>
-            <span className={title({ color: "pink" })}>Me.&nbsp;</span>
-            <br />
-            <div className={subtitle({ class: "mt-4" })}>
-              Want to learn more... Why not check out an article?
-            </div>
+      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+        <div className="inline-block max-w-lg text-center justify-center">
+          <span className={title()}>About&nbsp;</span>
+          <span className={title({color: "pink"})}>Me.&nbsp;</span>
+          <br/>
+          <div className={subtitle({class: "mt-4"})}>
+            Want to learn more... Why not check out an article?
           </div>
+        </div>
 
         <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
           <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-7">
@@ -78,7 +80,8 @@ export default function IndexPage() {
                 className="z-0 w-full h-full object-cover"
                 src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/GITHUB-1.png"
             />
-            <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+            <CardFooter
+                className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
               <div className="flex flex-grow gap-2 items-center">
                 <Image
                     alt="Github Logo"
@@ -134,13 +137,14 @@ export default function IndexPage() {
                 removeWrapper
                 alt="Relaxing app background"
                 className="z-0 w-full h-full object-cover"
-                src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/pink-screenshot.png"
+                src={PinkScreenshotUrl}
             />
-            <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+            <CardFooter
+                className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
               <div className="flex flex-grow gap-2 items-center">
                 <Image
                     alt="Asa Masterson"
-                    src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/openmoji-pig.svg"
+                    src={PinkLogoUrl}
                     width={32}
                 />
                 <div className="flex flex-col">
@@ -154,6 +158,8 @@ export default function IndexPage() {
             </CardFooter>
           </Card>
         </div>
+
+        <ElfsightWidget lazy widgetId={'494e72b7-a521-489a-9e98-ae4581b36dde'} />
       </section>
 
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
