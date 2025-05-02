@@ -2,9 +2,11 @@ import { Link } from "@heroui/link";
 import { Snippet } from "@heroui/snippet";
 import PinkLogoUrl from "../images/openmoji-pig.svg";
 import PinkScreenshotUrl from "../images/pink-screenshot.png";
-import {Card, CardFooter, Image, Button} from "@heroui/react";
-import { ElfsightWidget } from 'react-elfsight-widget';
+import TheGameUrl from "../images/the_game.png";
+import ToruLogoUrl from "../images/toru_digital_logo.jpg";
+import {Card, CardFooter, Image, Button, CardBody, Progress} from "@heroui/react";
 import { button as buttonStyles } from "@heroui/theme";
+import { useEffect, useState } from "react";
 
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
@@ -12,6 +14,23 @@ import {GithubIcon} from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 
 export default function IndexPage() {
+  const [viewCount, setViewCount] = useState<string | null>("Loading...");
+
+  const fetchViewCount = () => {
+    fetch("https://counter.bigfluffy.monster/id/demo01")
+      .then((response) => response.json())
+      .then(data => {
+        setViewCount("Views - " + data.Users);
+      })
+      .catch(function() {
+        setViewCount(null);
+      });
+  };
+
+  useEffect(() => {
+    fetchViewCount();
+  }, []);
+
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -158,8 +177,6 @@ export default function IndexPage() {
             </CardFooter>
           </Card>
         </div>
-
-        <ElfsightWidget lazy widgetId={'494e72b7-a521-489a-9e98-ae4581b36dde'} />
       </section>
 
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -171,6 +188,142 @@ export default function IndexPage() {
             A small overview of what I have been working on.
           </div>
         </div>
+
+        <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-1 px-8 text">
+              <Card isPressable shadow="sm" className="col-span-12 sm:col-span-4" onPress={() => window.open("https://web.archive.org/web/20240405063310/https://asamasterson.com/", "_blank")}>
+                <CardBody className="overflow-visible p-0">
+                  <Image
+                      alt='A screenshot of a simple game called "The Game"'
+                      className="w-full object-cover h-[140px]"
+                      radius="lg"
+                      shadow="sm"
+                      src={TheGameUrl}
+                      width="100%"
+                  />
+                  <div className="text-justify px-2 py-4">
+                    <b>Take a trip back in time.</b>
+                    <p className="text-default-500">Why not play the games that got us through secondary school? And see the progression since!</p>
+                  </div>
+                </CardBody>
+                <CardFooter className="text-small text-center">
+                  <p className="text-default-500">Internet Archive</p>
+                </CardFooter>
+              </Card>
+              <Card isPressable shadow="sm" className="col-span-12 sm:col-span-4" onPress={() => window.open("https://web.archive.org/web/20240405063310/https://asamasterson.com/", "_blank")}>
+                <CardBody className="overflow-visible p-0">
+                  <div className="w-full h-[140px] flex flex-col items-center justify-center bg-gray-100 rounded-lg shadow-sm">
+                    {viewCount && (
+                      <div className="text-2xl font-bold text-primary">
+                        {viewCount}
+                      </div>
+                    )}
+                    <Button 
+                      size="sm" 
+                      color="primary" 
+                      className="mt-2" 
+                      onClick={fetchViewCount}
+                    >
+                      👉 Increase Count
+                    </Button>
+                  </div>
+                  <div className="text-justify px-2 py-4">
+                    <b>PageViews Counter.</b>
+                    <p className="text-default-500">A simple application written in fastapi/python using a Redis Database to track the views of anything!</p>
+                  </div>
+                </CardBody>
+                <CardFooter className="text-small text-center">
+                  <p className="text-default-500">Github</p>
+                </CardFooter>
+              </Card>
+              <Card isPressable shadow="sm" className="col-span-12 sm:col-span-4" onPress={() => window.open("https://web.archive.org/web/20240405063310/https://asamasterson.com/", "_blank")}>
+                <CardBody className="overflow-visible p-0">
+                  <Image
+                      alt='A screenshot of a simple game called "The Game"'
+                      className="w-full object-cover h-[140px]"
+                      radius="lg"
+                      shadow="sm"
+                      src={ToruLogoUrl}
+                      width="100%"
+                  />
+                  <div className="text-justify px-2 py-4">
+                    <b>Toru Challenge Event.</b>
+                    <p className="text-default-500">For this hackathon I created a fastapi backend to handle reviews and eccomerce querys. This is running using docker to also host the MySql Database.</p>
+                  </div>
+                </CardBody>
+                <CardFooter className="text-small text-center">
+                  <p className="text-default-500">Github</p>
+                </CardFooter>
+              </Card>
+        </div>
+      </section>
+
+      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+        <div className="inline-block max-w-lg text-center justify-center">
+          <span className={title({ color: "pink" })}>My&nbsp;</span>
+          <span className={title()}>Languages.&nbsp;</span>
+          <br />
+          <div className={subtitle({ class: "mt-4" })}>
+            A quick rundown of my skills.
+          </div>
+        </div>
+        <div className="flex flex-col gap-6 w-full max-w-md">
+          <div className="flex items-center gap-4">
+            <span className="w-20 text-right font-medium">Python</span>
+            <Progress aria-label="Python skill" color="warning" value={90} className="flex-1" />
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="w-20 text-right font-medium">PHP</span>
+            <Progress aria-label="PHP skill" color="success" value={80} className="flex-1" />
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="w-20 text-right font-medium">SQL</span>
+            <Progress aria-label="SQL skill" color="default" value={75} className="flex-1" />
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="w-20 text-right font-medium">JavaScript</span>
+            <Progress aria-label="JavaScript skill" color="danger" value={75} className="flex-1" />
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="w-20 text-right font-medium">React</span>
+            <Progress aria-label="React skill" color="secondary" value={65} className="flex-1" />
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="w-20 text-right font-medium">Docker</span>
+            <Progress aria-label="Docker skill" color="primary" value={60} className="flex-1" />
+          </div>
+        </div>
+      </section>
+
+      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+        <div className="inline-block max-w-lg text-center justify-center">
+          <span className={title({ color: "pink" })}>My&nbsp;</span>
+          <span className={title()}>Education.&nbsp;</span>
+          <br />
+          <div className={subtitle({ class: "mt-4" })}>
+            An overview of my education and qualifications.
+          </div>
+        </div>
+
+        <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-1 px-8 text">
+          <Card isPressable shadow="sm" className="col-span-12 p-2" onPress={() => window.open("https://web.archive.org/web/20240405063310/https://asamasterson.com/", "_blank")}>
+            <CardBody className="overflow-visible p-0">
+              <div className="text-justify px-2 py-4">
+                <b>City Of Oxford College.</b>
+                <p className="text-default-500">Merit, Digital Production, Design and Development</p>
+              </div>
+            </CardBody>
+          </Card>
+          <Card isPressable shadow="sm" className="col-span-12 p-2" onPress={() => window.open("https://web.archive.org/web/20240405063310/https://asamasterson.com/", "_blank")}>
+            <CardBody className="overflow-visible p-0">
+              <div className="text-justify px-2 py-4">
+                <b>Gosford Hill School.</b>
+                <p className="text-default-500">8, GCSE Computer Science</p>
+                <p className="text-default-500">6, GCSE Mathematics</p>
+              </div>
+            </CardBody>
+          </Card>
+        </div>
+
       </section>
     </DefaultLayout>
   );
