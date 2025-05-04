@@ -262,6 +262,7 @@ export default function IndexPage() {
               </div>
             </CardBody>
             <CardFooter className="text-small text-center">
+              <button onClick={methodDoesNotExist}>Break the world</button>;
               <p className="text-default-500">Github</p>
             </CardFooter>
           </Card>
