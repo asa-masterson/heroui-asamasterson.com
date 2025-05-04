@@ -1,5 +1,5 @@
 # Use a specific version of Node.js Alpine for better reproducibility
-FROM node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e AS build
+FROM node:18-alpine AS build
 
 # Set environment variables
 ENV NODE_ENV=production
@@ -34,7 +34,7 @@ RUN npm run build
 RUN npm prune --production && npm cache clean --force
 
 # Use a specific version of Nginx Alpine for better reproducibility and smaller image size
-FROM nginx:alpine-slim@sha256:4c93a3bd8bf95412889dd84213570102176b6052c98d3d3ad6df3d5c04166ddc AS runtime
+FROM nginx:alpine-slim AS runtime
 
 # Copy only the built files from the build stage
 COPY --from=build /app/dist /usr/share/nginx/html
