@@ -7,12 +7,11 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 # Copy package files first to leverage Docker cache
-COPY package.json package-lock.json ./
+COPY package.json ./
 
-# Use npm ci for faster, more reliable builds (we need dev dependencies for the build)
-# --no-audit flag speeds up the installation by skipping the vulnerability audit
-# Fall back to npm install if npm ci fails (e.g., if package-lock.json is not compatible)
-RUN npm ci --no-audit || npm install --no-audit
+# Use npm install with --no-audit flag to speed up the installation by skipping the vulnerability audit
+# We're not using npm ci since it requires a package-lock.json file which might not be available
+RUN npm install --no-audit
 
 # Copy only the necessary files for the build
 COPY public/ ./public/
