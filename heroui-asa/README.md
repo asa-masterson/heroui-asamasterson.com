@@ -12,6 +12,19 @@ This is a template for creating applications using Vite and HeroUI (v2).
 - [Tailwind Variants](https://tailwind-variants.org)
 - [TypeScript](https://www.typescriptlang.org)
 - [Framer Motion](https://www.framer.com/motion)
+- [Sentry/GlitchTip](https://glitchtip.com/) - Error tracking and monitoring
+
+## Error Tracking with GlitchTip
+
+This project uses Sentry/GlitchTip for error tracking and monitoring. To set up GlitchTip:
+
+1. Create a `.env` file in the root directory (you can copy from `.env.example`)
+2. Add your GlitchTip DSN to the `.env` file:
+   ```
+   VITE_GLITCHTIP_DSN=your-glitchtip-dsn-here
+   ```
+
+The Sentry SDK is initialized in `src/main.tsx` and will automatically capture errors and exceptions in your application.
 
 ## How to Use
 
