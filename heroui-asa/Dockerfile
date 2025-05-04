@@ -3,15 +3,20 @@ FROM node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9b
 
 # Set environment variables
 ENV NODE_ENV=production
+ENV NPM_CONFIG_LOGLEVEL=error
+ENV NPM_CONFIG_FUND=false
+ENV NPM_CONFIG_AUDIT=false
 
 WORKDIR /app
 
 # Copy package files first to leverage Docker cache
 COPY package.json ./
 
-# Use npm install with --no-audit flag to speed up the installation by skipping the vulnerability audit
-# We're not using npm ci since it requires a package-lock.json file which might not be available
-RUN npm install --no-audit
+# Install only production dependencies first to leverage caching
+RUN npm install --only=production --no-audit --no-fund --prefer-offline --progress=false
+
+# Install dev dependencies needed for build
+RUN npm install --only=dev --no-audit --no-fund --prefer-offline --progress=false
 
 # Copy only the necessary files for the build
 COPY public/ ./public/
@@ -22,14 +27,14 @@ COPY vite.config.ts ./
 COPY tailwind.config.js ./
 COPY postcss.config.js ./
 
-# Build the application
+# Build the application with reduced memory usage
 RUN npm run build
 
-# Prune development dependencies to reduce image size
-RUN npm prune --production
+# Clean up to reduce image size
+RUN npm prune --production && npm cache clean --force
 
-# Use a specific version of Nginx Alpine for better reproducibility
-FROM nginx:alpine@sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10 AS runtime
+# Use a specific version of Nginx Alpine for better reproducibility and smaller image size
+FROM nginx:alpine-slim@sha256:4c93a3bd8bf95412889dd84213570102176b6052c98d3d3ad6df3d5c04166ddc AS runtime
 
 # Copy only the built files from the build stage
 COPY --from=build /app/dist /usr/share/nginx/html
@@ -37,8 +42,11 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Add health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+# Remove default nginx config to save space
+RUN rm -rf /etc/nginx/conf.d/default.conf.default
+
+# Add health check with reduced frequency to save resources
+HEALTHCHECK --interval=60s --timeout=3s --start-period=10s --retries=2 \
   CMD wget --quiet --tries=1 --spider http://localhost:80/ || exit 1
 
 # Start Nginx
