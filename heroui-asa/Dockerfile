@@ -2,7 +2,7 @@
 FROM node:18-alpine AS build
 
 # Set environment variables
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 ENV NPM_CONFIG_LOGLEVEL=error
 ENV NPM_CONFIG_FUND=false
 ENV NPM_CONFIG_AUDIT=false
@@ -12,11 +12,8 @@ WORKDIR /app
 # Copy package files first to leverage Docker cache
 COPY package.json ./
 
-# Install only production dependencies first to leverage caching
-RUN npm install --only=production --no-audit --no-fund --prefer-offline --progress=false
-
-# Install dev dependencies needed for build
-RUN npm install --only=dev --no-audit --no-fund --prefer-offline --progress=false
+# Install all dependencies (including dev dependencies needed for build)
+RUN npm install --no-audit --no-fund --prefer-offline --progress=false
 
 # Copy only the necessary files for the build
 COPY public/ ./public/
@@ -28,7 +25,8 @@ COPY tailwind.config.js ./
 COPY postcss.config.js ./
 
 # Build the application with reduced memory usage
-RUN npm run build
+ENV NODE_ENV=production
+RUN NODE_OPTIONS="--max-old-space-size=2048" npm run build
 
 # Clean up to reduce image size
 RUN npm prune --production && npm cache clean --force
