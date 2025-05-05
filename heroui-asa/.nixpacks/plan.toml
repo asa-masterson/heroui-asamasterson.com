@@ -2,7 +2,6 @@
 
 # Explicitly specify the providers
 providers = ["node"]
-buildImage = "ghcr.io/railwayapp/nixpacks:ubuntu-1741046653"
 
 # Specify exact Node.js version
 [phases.setup]
