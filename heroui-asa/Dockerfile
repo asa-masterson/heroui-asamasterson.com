@@ -9,7 +9,7 @@ COPY package.json ./
 
 # Install dependencies
 ENV NODE_ENV=development
-RUN npm install --no-fund --no-audit --production=false
+RUN npm install --no-fund --no-audit --production=false --verbose
 
 # Copy project files
 COPY . .
