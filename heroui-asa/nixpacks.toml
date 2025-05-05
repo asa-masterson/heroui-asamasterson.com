@@ -1,12 +1,12 @@
 providers = ["node"]
 
 [phases.setup]
-nixPkgs = ["nodejs"]
+nixPkgs = ["nodejs", "yarn"]
 
 [phases.install]
-cmds = ["npm install --no-fund --no-audit --production=false --verbose"]
+cmds = ["yarn install"]
 env = { NODE_ENV = "development" }
 
 [phases.build]
-cmds = ["npm run build"]
+cmds = ["yarn build"]
 env = { NODE_ENV = "production" }
