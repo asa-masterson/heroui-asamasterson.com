@@ -4,7 +4,7 @@ providers = ["node"]
 nixPkgs = ["nodejs"]
 
 [phases.install]
-cmds = ["npm install --no-fund --no-audit --omit=dev --verbose"]
+cmds = ["npm install --no-fund --no-audit --production=false --verbose"]
 env = { NODE_ENV = "development" }
 
 [phases.build]
