@@ -7,8 +7,7 @@ buildImage = "ghcr.io/railwayapp/nixpacks:ubuntu-1741046653"
 # Specify exact Node.js version
 [phases.setup]
 nixPkgs = [
-  { pkg = "nodejs", version = "18" },
-  { pkg = "nginx" }
+  { pkg = "nodejs", version = "18" }
 ]
 
 # Environment variables for the entire build process
@@ -19,12 +18,7 @@ NODE_ENV = "development"
 [phases.build.variables]
 NODE_ENV = "production"
 
-# Add custom setup commands
-[phases.setup.cmds]
-"create-nginx-dirs" = "mkdir -p /etc/nginx/conf.d"
-
-# Add custom cleanup commands
+# Add custom build commands
 [phases.build.cmds]
 "build-app" = "npm run build"
-"copy-nginx-conf" = "cp nginx.conf /etc/nginx/conf.d/default.conf"
 "cleanup" = "npm cache clean --force"

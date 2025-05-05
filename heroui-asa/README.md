@@ -34,6 +34,10 @@ To clone the project, run the following command:
 git clone https://github.com/frontio-ai/vite-template.git
 ```
 
+## Static Build
+
+This project is configured to build as a static site. For more information about the static build process, see [README.static-build.md](README.static-build.md).
+
 ### Install dependencies
 
 You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:

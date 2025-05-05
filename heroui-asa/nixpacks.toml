@@ -2,19 +2,11 @@ providers = ["node"]
 buildImage = "ghcr.io/railwayapp/nixpacks:ubuntu-1741046653"
 
 [phases.setup]
-nixPkgs = ["nodejs", "nginx"]
-cmds = ["mkdir -p /etc/nginx/conf.d"]
+nixPkgs = ["nodejs"]
 
 [phases.install]
 cmds = ["npm install"]
 
 [phases.build]
-cmds = ["npm run build", "cp nginx.conf /etc/nginx/conf.d/default.conf"]
-env = { NODE_ENV = "production", NODE_OPTIONS = "--max-old-space-size=2048" }
-
-[start]
-cmd = "nginx -g 'daemon off;'"
-
-[nginx]
-root = "dist"
-includes = []
+cmds = ["npm run build"]
+env = { NODE_ENV = "production" }
