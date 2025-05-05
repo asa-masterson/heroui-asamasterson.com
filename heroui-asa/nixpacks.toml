@@ -1,3 +1,6 @@
+providers = ["node"]
+buildImage = "ghcr.io/railwayapp/nixpacks:ubuntu-1741046653"
+
 [phases.setup]
 nixPkgs = ["nodejs", "nginx"]
 cmds = ["mkdir -p /etc/nginx/conf.d"]
