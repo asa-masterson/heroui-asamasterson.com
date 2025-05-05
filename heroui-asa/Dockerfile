@@ -9,7 +9,7 @@ COPY package.json ./
 
 # Install dependencies
 ENV NODE_ENV=development
-RUN npm install
+RUN npm install --no-fund --no-audit --production=false
 
 # Copy project files
 COPY . .
@@ -29,4 +29,3 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
-
