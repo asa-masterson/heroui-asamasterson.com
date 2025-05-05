@@ -1,7 +1,8 @@
 providers = ["node"]
 
 [phases.setup]
-nixPkgs = ["nodejs"]
+nixPkgs = [{ pkg = "nodejs", version = "20" }]
+cmds = ["npm install -g npm@latest"]
 
 [phases.install]
 cmds = ["npm install --no-fund --no-audit --production=false --verbose"]

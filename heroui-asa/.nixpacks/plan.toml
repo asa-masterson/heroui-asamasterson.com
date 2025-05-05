@@ -6,8 +6,9 @@ providers = ["node"]
 # Specify exact Node.js version
 [phases.setup]
 nixPkgs = [
-  { pkg = "nodejs", version = "18" }
+  { pkg = "nodejs", version = "20" }
 ]
+cmds = ["npm install -g npm@latest"]
 
 # Environment variables for the entire build process
 [variables]
