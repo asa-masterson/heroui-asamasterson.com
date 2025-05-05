@@ -3,10 +3,11 @@
 # Explicitly specify the providers
 providers = ["node"]
 
-# Specify exact Node.js version
+# Specify exact Node.js version and yarn
 [phases.setup]
 nixPkgs = [
-  { pkg = "nodejs", version = "20" }
+  { pkg = "nodejs", version = "20" },
+  { pkg = "yarn" }
 ]
 
 # Environment variables for the entire build process
@@ -19,5 +20,5 @@ NODE_ENV = "production"
 
 # Add custom build commands
 [phases.build.cmds]
-"build-app" = "npm run build"
-"cleanup" = "npm cache clean --force"
+"build-app" = "yarn build"
+"cleanup" = "yarn cache clean"
