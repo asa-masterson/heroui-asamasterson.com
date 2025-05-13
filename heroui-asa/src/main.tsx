@@ -9,7 +9,7 @@ import "@/styles/globals.css";
 
 // Initialize Sentry as early as possible
 Sentry.init({ 
-  dsn: import.meta.env.VITE_GLITCHTIP_DSN || "https://b66682d72de64d18bec41ac0dcf04c5f@glitchtip-g4ckg4ks488csk4ssw4kw8wc.bigfluffy.monster/2" 
+  dsn: import.meta.env.VITE_GLITCHTIP_DSN
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
