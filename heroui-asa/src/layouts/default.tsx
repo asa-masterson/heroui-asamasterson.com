@@ -11,7 +11,7 @@ export default function DefaultLayout({
   const [viewCount, setViewCount] = useState<string | null>("Loading...");
 
   useEffect(() => {
-    fetch("https://counter.bigfluffy.monster/id/asamastersoncom")
+    fetch("https://a.bigfluffy.monster/counter/id/asamastersoncom")
       .then((response) => response.json())
       .then(data => {
         setViewCount("Views - " + data.Users);
