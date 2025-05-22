@@ -25,7 +25,7 @@ export default function IndexPage() {
   const [viewCount, setViewCount] = useState<string | null>("Loading...");
 
   const fetchViewCount = () => {
-    fetch("https://a.bigfluffy.monster/counter/id/demo01")
+    fetch("https://a.bigfluffy.monster/counter/id/demo01?ttl=3600")
       .then((response) => response.json())
       .then((data) => {
         setViewCount("Views - " + data.Users);
