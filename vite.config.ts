@@ -10,7 +10,7 @@ export default defineConfig({
     tsconfigPaths(),
     codecovVitePlugin({
       enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
-      bundleName: "asa-masterson/heroui-asamasterson.com",
+      bundleName: "heroui-asamasterson.com",
       uploadToken: process.env.CODECOV_TOKEN,
     })
   ],
