@@ -1,7 +1,4 @@
-import { Button } from "@heroui/button";
-import { Kbd } from "@heroui/kbd";
 import { Link } from "@heroui/link";
-import { Input } from "@heroui/input";
 import {
   Navbar as HeroUINavbar,
   NavbarBrand,
@@ -12,138 +9,114 @@ import {
   NavbarMenuItem,
 } from "@heroui/navbar";
 import { link as linkStyles } from "@heroui/theme";
-import { Image } from "@heroui/image";
 import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
-import NotionFace from "../images/my-notion-face-transparent.png";
 import { ThemeSwitch } from "@/components/theme-switch";
-import {
-  TwitterIcon,
-  GithubIcon,
-  DiscordIcon,
-  HeartFilledIcon,
-  SearchIcon,
-} from "@/components/icons";
+import { GithubIcon } from "@/components/icons";
+import PigSvg from "../images/openmoji-pig.svg";
+
+const navbarStyles = `
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+  .nav-brand-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .nav-brand-last { color: #ff54ff; }
+`;
+
+// All icons accept className so currentColor / text-default-500 flows through
+const LinkedInIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" height="22" viewBox="0 0 24 24" width="22">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" fill="currentColor" />
+    <rect fill="currentColor" height="12" width="4" x="2" y="9" />
+    <circle cx="4" cy="4" fill="currentColor" r="2" />
+  </svg>
+);
+
+const InstagramIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" height="22" viewBox="0 0 24 24" width="22">
+    <rect height="18" rx="5" ry="5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" width="18" x="3" y="3" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+    <line stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
 
 export const Navbar = () => {
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      classNames={{
-        inputWrapper: "bg-default-100",
-        input: "text-sm",
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-      }
-      type="search"
-    />
-  );
-
   return (
-    <HeroUINavbar maxWidth="xl" position="sticky">
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand className="gap-3 max-w-fit">
-          <Link
-            className="flex justify-start items-center gap-1"
-            color="foreground"
-            href="/"
-          >
-            <Image
-              alt="Asa Masterson"
-              src={NotionFace}
-              width={32}
-            />
-            <p className="font-bold text-inherit">ASA</p>
-          </Link>
-        </NavbarBrand>
-        <div className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <Link
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            </NavbarItem>
-          ))}
-        </div>
-      </NavbarContent>
+    <>
+      <style>{navbarStyles}</style>
+      <HeroUINavbar maxWidth="xl" position="sticky">
 
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
-        <NavbarItem className="hidden sm:flex gap-2">
-          <Link isExternal href={siteConfig.links.twitter} title="Twitter">
-            <TwitterIcon className="text-default-500" />
-          </Link>
-          <Link isExternal href={siteConfig.links.discord} title="Discord">
-            <DiscordIcon className="text-default-500" />
-          </Link>
-          <Link isExternal href={siteConfig.links.github} title="GitHub">
+        {/* ── Brand + nav links ── */}
+        <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+          <NavbarBrand className="gap-2 max-w-fit">
+            <Link className="flex justify-start items-center gap-2" color="foreground" href="/">
+              <img alt="pig mascot" src={PigSvg} style={{ width: 28, height: 28 }} />
+              <span className="nav-brand-name">
+                Asa <span className="nav-brand-last">Masterson</span>
+              </span>
+            </Link>
+          </NavbarBrand>
+
+          <div className="hidden lg:flex gap-4 justify-start ml-4">
+            {siteConfig.navItems.map((item) => (
+              <NavbarItem key={item.href}>
+                <Link
+                  className={clsx(
+                    linkStyles({ color: "foreground" }),
+                    "data-[active=true]:text-primary data-[active=true]:font-medium text-sm",
+                  )}
+                  color="foreground"
+                  href={item.href}
+                >
+                  {item.label}
+                </Link>
+              </NavbarItem>
+            ))}
+          </div>
+        </NavbarContent>
+
+        {/* ── Social icons (desktop) ── */}
+        <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
+          <NavbarItem className="hidden sm:flex gap-3 items-center">
+            <Link isExternal aria-label="Instagram" href={siteConfig.links.instagram}>
+              <InstagramIcon className="text-default-500 hover:text-default-800 transition-colors" />
+            </Link>
+            <Link isExternal aria-label="LinkedIn" href={siteConfig.links.linkedin}>
+              <LinkedInIcon className="text-default-500 hover:text-default-800 transition-colors" />
+            </Link>
+            <Link isExternal aria-label="GitHub" href={siteConfig.links.github}>
+              <GithubIcon className="text-default-500 hover:text-default-800 transition-colors" />
+            </Link>
+            <ThemeSwitch />
+          </NavbarItem>
+        </NavbarContent>
+
+        {/* ── Mobile ── */}
+        <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+          <Link isExternal href={siteConfig.links.github}>
             <GithubIcon className="text-default-500" />
           </Link>
           <ThemeSwitch />
-        </NavbarItem>
-        <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <Button
-            isExternal
-            as={Link}
-            className="text-sm font-normal text-default-600 bg-default-100"
-            href={siteConfig.links.sponsor}
-            startContent={<HeartFilledIcon className="text-danger" />}
-            variant="flat"
-          >
-            Sponsor
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
+          <NavbarMenuToggle />
+        </NavbarContent>
 
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal href={siteConfig.links.github}>
-          <GithubIcon className="text-default-500" />
-        </Link>
-        <ThemeSwitch />
-        <NavbarMenuToggle />
-      </NavbarContent>
+        <NavbarMenu>
+          <div className="mx-4 mt-2 flex flex-col gap-2">
+            {siteConfig.navMenuItems.map((item, index) => (
+              <NavbarMenuItem key={`${item.label}-${index}`}>
+                <Link color="foreground" href={item.href} size="lg">
+                  {item.label}
+                </Link>
+              </NavbarMenuItem>
+            ))}
+          </div>
+        </NavbarMenu>
 
-      <NavbarMenu>
-        {searchInput}
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </div>
-      </NavbarMenu>
-    </HeroUINavbar>
+      </HeroUINavbar>
+    </>
   );
 };
