@@ -731,12 +731,12 @@ export default function IndexPage() {
             <img alt="pigsare.pink" className="proj-card-img" src={PinkScreenshotUrl} />
             <div className="proj-card-body">
               <p className="proj-card-title">pigsare.pink</p>
-              <p className="proj-card-desc">Personality-first portfolio built with vanilla HTML, CSS &amp; JS — hosted on Cloudflare Pages.</p>
+              <p className="proj-card-desc">Personality-first portfolio built with vanilla HTML, CSS &amp; JS — self-hosted on Coolify.</p>
             </div>
             <div className="proj-card-footer">
               <span className="proj-card-tag">HTML</span>
               <span className="proj-card-tag">CSS</span>
-              <span className="proj-card-tag">Cloudflare</span>
+              <span className="proj-card-tag">Coolify</span>
             </div>
           </div>
 
