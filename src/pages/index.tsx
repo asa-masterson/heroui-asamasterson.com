@@ -565,12 +565,12 @@ export default function IndexPage() {
   useEffect(() => { fetchViewCount(); }, []);
 
   const skills = [
-    { label: "Python",     pct: 90 },
-    { label: "PHP",        pct: 80 },
-    { label: "SQL",        pct: 75 },
-    { label: "JavaScript", pct: 75 },
-    { label: "React",      pct: 65 },
-    { label: "Docker",     pct: 60 },
+    { label: "Python",     pct: 80 },
+    { label: "PHP",        pct: 70 },
+    { label: "SQL",        pct: 65 },
+    { label: "JavaScript", pct: 65 },
+    { label: "React",      pct: 55 },
+    { label: "Docker",     pct: 50 },
   ];
 
   return (
