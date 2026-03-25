@@ -2,18 +2,17 @@ import { Link } from "@heroui/link";
 import { useEffect, useState } from "react";
 import { button as buttonStyles } from "@heroui/theme";
 
-import PinkLogoUrl from "../images/openmoji-pig.svg";
+import PinkLogoUrl from "../images/nathan-pig.svg";
 import PinkScreenshotUrl from "../images/pink-screenshot.png";
 import ToruLogoUrl from "../images/toru_digital_logo.jpg";
 
 import { GithubIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 
-// ─── All page styles in one block ─────────────────────────────────────────────
+// ─── All page styles ───────────────────────────────────────────────────────────
 const pageStyles = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
 
-  /* ── Shared tokens ── */
   :root {
     --brand:        #ff54ff;
     --stroke-color: #111111;
@@ -29,10 +28,6 @@ const pageStyles = `
     --card-bg:      rgba(255,255,255,0.03);
     --tag-bg:       rgba(255,84,255,0.12);
   }
-
-  /* ── Fonts ── */
-  .serif   { font-family: 'DM Serif Display', serif; }
-  .mono    { font-family: 'DM Mono', monospace; }
 
   /* ════════════════════════════════════════════════
      HERO
@@ -81,7 +76,6 @@ const pageStyles = `
     padding-top: 6rem;
     padding-bottom: 4rem;
   }
-
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
@@ -92,7 +86,6 @@ const pageStyles = `
     opacity: 0;
     animation: fadeUp 0.6s 0.1s forwards;
   }
-
   .hero-name {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(3.5rem, 10vw, 8rem);
@@ -102,7 +95,6 @@ const pageStyles = `
     opacity: 0;
     animation: fadeUp 0.7s 0.25s forwards;
   }
-  /* FIX: stroke must reference --stroke-color, NOT currentColor, because color is transparent */
   .hero-name-line1 {
     display: block;
     -webkit-text-stroke: 2px var(--stroke-color);
@@ -112,7 +104,6 @@ const pageStyles = `
     display: block;
     color: var(--brand);
   }
-
   .hero-descriptor {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(1.1rem, 3vw, 1.6rem);
@@ -122,7 +113,6 @@ const pageStyles = `
     opacity: 0;
     animation: fadeUp 0.7s 0.45s forwards;
   }
-
   .hero-meta {
     display: flex;
     align-items: center;
@@ -146,7 +136,6 @@ const pageStyles = `
     color: var(--brand);
     font-size: 0.5rem;
   }
-
   .hero-actions {
     display: flex;
     gap: 1rem;
@@ -155,7 +144,6 @@ const pageStyles = `
     opacity: 0;
     animation: fadeUp 0.7s 0.75s forwards;
   }
-
   .hero-divider {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -163,7 +151,6 @@ const pageStyles = `
     background: linear-gradient(90deg, transparent, rgba(255,84,255,.4), transparent);
     z-index: 1;
   }
-
   .hero-pig {
     position: absolute;
     right: 6vw;
@@ -180,14 +167,13 @@ const pageStyles = `
     0%,100% { transform: translateY(-50%) rotate(-4deg); }
     50%     { transform: translateY(calc(-50% - 14px)) rotate(4deg); }
   }
-
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
   /* ════════════════════════════════════════════════
-     SECTIONS — shared editorial style
+     SHARED SECTION STRUCTURE
   ════════════════════════════════════════════════ */
   .section-wrap {
     max-width: 900px;
@@ -195,10 +181,7 @@ const pageStyles = `
     width: 100%;
     padding: 5rem 2rem;
   }
-
-  .section-header {
-    margin-bottom: 3rem;
-  }
+  .section-header { margin-bottom: 3rem; }
   .section-eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 0.7rem;
@@ -218,9 +201,7 @@ const pageStyles = `
     -webkit-text-stroke: 1.5px var(--stroke-color);
     color: transparent;
   }
-  .section-title-solid {
-    color: var(--brand);
-  }
+  .section-title-solid { color: var(--brand); }
   .section-sub {
     font-family: 'DM Serif Display', serif;
     font-style: italic;
@@ -228,8 +209,6 @@ const pageStyles = `
     color: var(--muted);
     margin-top: 0.75rem;
   }
-
-  /* ── Divider between sections ── */
   .section-divider {
     width: 100%;
     height: 1px;
@@ -239,16 +218,15 @@ const pageStyles = `
   }
 
   /* ════════════════════════════════════════════════
-     ABOUT CARDS (image + footer cards)
+     ABOUT CARDS
   ════════════════════════════════════════════════ */
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
-  @media (max-width: 640px) {
-    .about-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+
   .about-card-wide { grid-column: span 2; }
   @media (max-width: 640px) { .about-card-wide { grid-column: span 1; } }
 
@@ -267,7 +245,6 @@ const pageStyles = `
     transition: transform 0.4s ease;
   }
   .about-card:hover img.about-card-img { transform: scale(1.04); }
-
   .about-card-footer {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -310,6 +287,73 @@ const pageStyles = `
   .about-card-btn:hover { opacity: 0.85; }
 
   /* ════════════════════════════════════════════════
+     ABOUT ME CTA BANNER
+  ════════════════════════════════════════════════ */
+  .about-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    background: var(--tag-bg);
+    border: 1px solid rgba(255,84,255,0.2);
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    margin-top: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .about-cta:hover {
+    border-color: var(--brand);
+    transform: translateY(-2px);
+  }
+  .about-cta-left {}
+  .about-cta-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 0.4rem;
+  }
+  .about-cta-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .about-cta-heading-outline {
+    -webkit-text-stroke: 1.5px var(--stroke-color);
+    color: transparent;
+  }
+  .about-cta-heading-solid { color: var(--brand); }
+  .about-cta-sub {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .about-cta-arrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brand);
+    background: rgba(255,84,255,0.12);
+    border: 1px solid rgba(255,84,255,0.3);
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+  }
+  .about-cta:hover .about-cta-arrow {
+    background: var(--brand);
+    color: white;
+  }
+
+  /* ════════════════════════════════════════════════
      PROJECT CARDS
   ════════════════════════════════════════════════ */
   .projects-grid {
@@ -332,14 +376,12 @@ const pageStyles = `
     transform: translateY(-3px);
   }
   .proj-card-img {
-    width: 100%;
-    height: 140px;
+    width: 100%; height: 140px;
     object-fit: cover;
     display: block;
   }
   .proj-card-counter {
-    width: 100%;
-    height: 140px;
+    width: 100%; height: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -372,23 +414,14 @@ const pageStyles = `
     cursor: pointer;
     transition: background 0.2s, color 0.2s;
   }
-  .proj-card-counter-btn:hover {
-    background: var(--brand);
-    color: white;
-  }
-  .proj-card-body {
-    padding: 1rem;
-  }
+  .proj-card-counter-btn:hover { background: var(--brand); color: white; }
+  .proj-card-body { padding: 1rem; }
   .proj-card-title {
     font-family: 'DM Serif Display', serif;
     font-size: 1.05rem;
     margin-bottom: 0.35rem;
   }
-  .proj-card-desc {
-    font-size: 0.8rem;
-    color: var(--muted);
-    line-height: 1.5;
-  }
+  .proj-card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
   .proj-card-footer {
     padding: 0.6rem 1rem;
     border-top: 1px solid var(--card-border);
@@ -410,12 +443,7 @@ const pageStyles = `
   /* ════════════════════════════════════════════════
      SKILLS
   ════════════════════════════════════════════════ */
-  .skills-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    max-width: 560px;
-  }
+  .skills-grid { display: flex; flex-direction: column; gap: 1.25rem; max-width: 560px; }
   .skill-row {
     display: grid;
     grid-template-columns: 6rem 1fr 2.5rem;
@@ -441,7 +469,6 @@ const pageStyles = `
     left: 0; top: 0; bottom: 0;
     background: var(--brand);
     border-radius: 2px;
-    transition: width 1s cubic-bezier(.4,0,.2,1);
   }
   .skill-pct {
     font-family: 'DM Mono', monospace;
@@ -471,25 +498,16 @@ const pageStyles = `
     transition: border-color 0.2s;
   }
   .work-card:hover { border-color: var(--brand); }
-
   .work-logo {
-    width: 48px;
-    height: 48px;
+    width: 48px; height: 48px;
     border-radius: 10px;
     object-fit: contain;
     flex-shrink: 0;
     background: var(--tag-bg);
     padding: 4px;
   }
-  .work-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1rem;
-    margin-bottom: 0.2rem;
-  }
-  .work-role {
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
+  .work-title { font-family: 'DM Serif Display', serif; font-size: 1rem; margin-bottom: 0.2rem; }
+  .work-role { font-size: 0.82rem; color: var(--muted); }
   .work-period {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
@@ -502,11 +520,7 @@ const pageStyles = `
   /* ════════════════════════════════════════════════
      EDUCATION
   ════════════════════════════════════════════════ */
-  .edu-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  .edu-list { display: flex; flex-direction: column; }
   .edu-item {
     display: flex;
     justify-content: space-between;
@@ -516,15 +530,8 @@ const pageStyles = `
     gap: 2rem;
   }
   .edu-item:first-child { border-top: 1px solid var(--card-border); }
-  .edu-institution {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.05rem;
-    margin-bottom: 0.2rem;
-  }
-  .edu-detail {
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
+  .edu-institution { font-family: 'DM Serif Display', serif; font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .edu-detail { font-size: 0.82rem; color: var(--muted); }
   .edu-period {
     font-family: 'DM Mono', monospace;
     font-size: 0.68rem;
@@ -537,7 +544,6 @@ const pageStyles = `
   }
 `;
 
-// ─── SVG icons ────────────────────────────────────────────────────────────────
 const LinkedInIcon = ({ size = 18 }: { size?: number }) => (
   <svg fill="none" height={size} viewBox="0 0 24 24" width={size}>
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" fill="currentColor" />
@@ -571,28 +577,22 @@ export default function IndexPage() {
     <DefaultLayout>
       <style>{pageStyles}</style>
 
-      {/* ══════════════════════════════════════════
-          HERO
-      ══════════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════ HERO */}
       <section className="hero-root">
         <div className="hero-inner">
           <p className="hero-eyebrow">Portfolio · asamasterson.com</p>
-
           <h1 className="hero-name">
             <span className="hero-name-line1">Asa</span>
             <span className="hero-name-line2">Masterson.</span>
           </h1>
-
           <p className="hero-descriptor">
             University student &amp; aspiring software developer.
           </p>
-
           <div className="hero-meta">
             <span className="hero-meta-item">Oxford, UK</span>
             <span className="hero-meta-item">BSc Business Computing</span>
             <span className="hero-meta-item">University of Northampton</span>
           </div>
-
           <div className="hero-actions">
             <Link
               isExternal
@@ -617,14 +617,11 @@ export default function IndexPage() {
             </Link>
           </div>
         </div>
-
         <img alt="Pig mascot" className="hero-pig" src={PinkLogoUrl} />
         <div className="hero-divider" />
       </section>
 
-      {/* ══════════════════════════════════════════
-          ABOUT
-      ══════════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════ ABOUT ME */}
       <div className="section-divider" />
       <div className="section-wrap">
         <div className="section-header">
@@ -636,78 +633,75 @@ export default function IndexPage() {
           <p className="section-sub">A few things I've written — check one out.</p>
         </div>
 
+        {/*
+          Card order: articles (NN1 + Medium) first — they're the
+          primary "written" content. GitHub wide card sits below as
+          a secondary call-to-action for code.
+        */}
         <div className="about-grid">
-          {/* Wide card — GitHub */}
-          <div
-            className="about-card about-card-wide"
-            role="button"
-            tabIndex={0}
-            onClick={() => window.open("https://github.com/asa-masterson", "_blank")}
-            onKeyDown={(e) => e.key === "Enter" && window.open("https://github.com/asa-masterson", "_blank")}
-          >
-            <img
-              alt="GitHub profile"
-              className="about-card-img"
-              src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/GITHUB-1.png"
-            />
-            <div className="about-card-footer">
-              <div>
-                <p className="about-card-label">Github.com</p>
-                <p className="about-card-text">View all of my recent projects.</p>
-              </div>
-              <button className="about-card-btn">View →</button>
-            </div>
-          </div>
 
           {/* NN1 interview */}
           <div
             className="about-card"
             role="button"
             tabIndex={0}
-            onClick={() => window.open("https://nn1.dev", "_blank")}
-            onKeyDown={(e) => e.key === "Enter" && window.open("https://nn1.dev", "_blank")}
+            onClick={() => window.open("https://nn1.dev/spotlight/asa-masterson/", "_blank")}
+            onKeyDown={(e) => e.key === "Enter" && window.open("https://nn1.dev/spotlight/asa-masterson/", "_blank")}
           >
             <img
-              alt="Asa in Turkey"
+              alt="Asa Masterson in Turkey"
               className="about-card-img"
               src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/mobileasaturkey.jpg"
             />
             <div className="about-card-footer">
               <div>
-                <p className="about-card-label">NN1.dev</p>
+                <p className="about-card-label">NN1.dev · Spotlight</p>
                 <p className="about-card-text">A short interview about me &amp; tech.</p>
               </div>
               <button className="about-card-btn">Read →</button>
             </div>
           </div>
 
-          {/* Medium */}
+          {/* Medium article */}
           <div
             className="about-card"
             role="button"
             tabIndex={0}
-            onClick={() => window.open("https://medium.com", "_blank")}
-            onKeyDown={(e) => e.key === "Enter" && window.open("https://medium.com", "_blank")}
+            onClick={() => window.open("https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee", "_blank")}
+            onKeyDown={(e) => e.key === "Enter" && window.open("https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee", "_blank")}
           >
             <img
-              alt="Asa at college"
+              alt="Asa Masterson outside City of Oxford College"
               className="about-card-img"
               src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-flannel-college.webp"
             />
             <div className="about-card-footer">
               <div>
                 <p className="about-card-label">Medium.com</p>
-                <p className="about-card-text">A post about my T-Levels experience.</p>
+                <p className="about-card-text">What are T-Levels? From a student.</p>
               </div>
               <button className="about-card-btn">Read →</button>
             </div>
           </div>
         </div>
+
+        {/* ── About page CTA ── makes it obvious /about exists ── */}
+        <a className="about-cta" href="/about">
+          <div className="about-cta-left">
+            <p className="about-cta-eyebrow">There's more ↓</p>
+            <p className="about-cta-heading">
+              <span className="about-cta-heading-outline">About </span>
+              <span className="about-cta-heading-solid">Asa.</span>
+            </p>
+            <p className="about-cta-sub">
+              Hackathons, work philosophy, the Met Police × AWS challenge in London, and more.
+            </p>
+          </div>
+          <span className="about-cta-arrow">Read about me →</span>
+        </a>
       </div>
 
-      {/* ══════════════════════════════════════════
-          PROJECTS
-      ══════════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════ PROJECTS */}
       <div className="section-divider" />
       <div className="section-wrap">
         <div className="section-header">
@@ -720,7 +714,6 @@ export default function IndexPage() {
         </div>
 
         <div className="projects-grid">
-          {/* pigsare.pink */}
           <div
             className="proj-card"
             role="button"
@@ -740,12 +733,20 @@ export default function IndexPage() {
             </div>
           </div>
 
-          {/* PageViews Counter */}
-          <div className="proj-card" role="button" tabIndex={0} onClick={fetchViewCount} onKeyDown={(e) => e.key === "Enter" && fetchViewCount()}>
+          <div
+            className="proj-card"
+            role="button"
+            tabIndex={0}
+            onClick={fetchViewCount}
+            onKeyDown={(e) => e.key === "Enter" && fetchViewCount()}
+          >
             <div className="proj-card-counter">
               <span className="proj-card-counter-num">{viewCount ?? "—"}</span>
               <span className="proj-card-counter-label">page views</span>
-              <button className="proj-card-counter-btn" onClick={(e) => { e.stopPropagation(); fetchViewCount(); }}>
+              <button
+                className="proj-card-counter-btn"
+                onClick={(e) => { e.stopPropagation(); fetchViewCount(); }}
+              >
                 + Increment
               </button>
             </div>
@@ -760,7 +761,6 @@ export default function IndexPage() {
             </div>
           </div>
 
-          {/* Toru */}
           <div
             className="proj-card"
             role="button"
@@ -782,9 +782,7 @@ export default function IndexPage() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════
-          SKILLS
-      ══════════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════ SKILLS */}
       <div className="section-divider" />
       <div className="section-wrap">
         <div className="section-header">
@@ -795,7 +793,6 @@ export default function IndexPage() {
           </h2>
           <p className="section-sub">A quick rundown.</p>
         </div>
-
         <div className="skills-grid">
           {skills.map(({ label, pct }) => (
             <div key={label} className="skill-row">
@@ -809,9 +806,7 @@ export default function IndexPage() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════
-          WORK EXPERIENCE
-      ══════════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════ WORK EXPERIENCE */}
       <div className="section-divider" />
       <div className="section-wrap">
         <div className="section-header">
@@ -822,7 +817,6 @@ export default function IndexPage() {
           </h2>
           <p className="section-sub">Where I've been in the real world.</p>
         </div>
-
         <div className="work-grid">
           <div className="work-card">
             <img
@@ -836,7 +830,6 @@ export default function IndexPage() {
               <p className="work-period">Apr '22 – Jun '23</p>
             </div>
           </div>
-
           <div className="work-card">
             <img
               alt="Vue Cinemas"
@@ -852,9 +845,7 @@ export default function IndexPage() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════
-          EDUCATION
-      ══════════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════ EDUCATION */}
       <div className="section-divider" />
       <div className="section-wrap">
         <div className="section-header">
@@ -864,7 +855,6 @@ export default function IndexPage() {
             <span className="section-title-solid">Education.</span>
           </h2>
         </div>
-
         <div className="edu-list">
           {[
             { institution: "University of Northampton", detail: "BSc Business Computing · Current", period: "2023 – Present" },

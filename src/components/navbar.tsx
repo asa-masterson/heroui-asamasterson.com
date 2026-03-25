@@ -14,7 +14,7 @@ import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon } from "@/components/icons";
-import PigSvg from "../images/openmoji-pig.svg";
+import PigSvg from "../images/nathan-pig.svg";
 
 const navbarStyles = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');

@@ -470,7 +470,7 @@ export default function AboutPage() {
           <div className="hack-card">
             <div className="hack-card-header">
               <div className="hack-card-logo-placeholder">⚡</div>
-              <span className="hack-card-badge">University · Northampton</span>
+              <span className="hack-card-badge">University · Milton Keynes</span>
             </div>
             <div>
               <p className="hack-card-org">Triad</p>
