@@ -379,23 +379,25 @@ export default function AboutPage() {
             </h1>
 
             <p className="about-body">
-              I'm a <strong>BSc Business Computing student</strong> at the University of Northampton
-              and a self-taught full-stack developer with a particular interest in
-              <strong> self-hosted infrastructure</strong>, systems programming in Rust, and
-              building things that are actually useful.
+              I'm a <strong>BSc Business Computing student</strong> at the University of
+              Northampton and a developer with a particular interest in{" "}
+              <strong>self-hosted infrastructure</strong>, writing Python, and building
+              things that are actually useful.
             </p>
             <p className="about-body">
-              I grew up in Oxford and started writing code seriously during my
-              <strong> T-Level in Digital Production, Design and Development</strong> at City of
-              Oxford College, where I achieved a <strong>Merit</strong>. The course suited me
-              because it was graded through real projects rather than paper exams — I learn by
-              building, not by reading.
+              I grew up in Oxford and started messing around with Python and Linux in
+              secondary school — that's when I built my first website, asamasterson.com,
+              off a Raspberry Pi. I went on to study a{" "}
+              <strong>T-Level in Digital Production, Design and Development</strong> at
+              the City of Oxford College (Merit), completing an industry placement at{" "}
+              <strong>Oxfordshire County Council</strong> as a Customer Support Engineer.
             </p>
             <p className="about-body">
               Outside of university I run my own server stack on{" "}
-              <strong>bigfluffy.monster</strong> — hosting services like Coolify, MinIO S3, and
-              databases — and I'm active in the <strong>NN1 Dev community</strong> in Northampton.
+              <strong>bigfluffy.monster</strong> — Coolify, MinIO S3, databases — and
+              I'm active in the <strong>NN1 Dev community</strong> in Northampton.
             </p>
+
 
             <div className="pull-quote">
               <p className="pull-quote-text">
@@ -454,9 +456,11 @@ export default function AboutPage() {
               <p className="hack-card-title">Toru Challenge Hackathon</p>
             </div>
             <p className="hack-card-desc">
-              Built a FastAPI backend during this industry-run challenge event at the University of
-              Northampton, handling product reviews and e-commerce queries. The backend was
-              containerised with Docker and ran a self-hosted MySQL database.
+              Took part in a two-day industry challenge at the University of Northampton set by Toru 
+              Digital, tasked with designing and developing an e-commerce solution for a 
+              high-end jewellery company with a focus on improving the online customer 
+              journey. I built the FastAPI backend, handling product reviews and e-commerce 
+              queries, containerised with Docker and running a self-hosted MySQL database.
             </p>
             <div className="hack-card-tags">
               <span className="hack-card-tag">FastAPI</span>
@@ -477,14 +481,18 @@ export default function AboutPage() {
               <p className="hack-card-title">Triad Hackathon</p>
             </div>
             <p className="hack-card-desc">
-              Participated in the Triad hackathon at the University of Northampton — a
-              time-pressured team challenge focused on rapid prototyping and collaborative
-              problem solving under real competition conditions.
+              Took part in a two-day industry challenge event at Triad's offices in Milton 
+              Keynes, tasked with designing and prototyping an AI-powered Discovery Plan 
+              tool aligned to Government digital standards. Working under real industry 
+              expectations, teams integrated OpenAI models, considered security, governance 
+              and ethical AI constraints, and delivered commercially focused presentations 
+              to Triad's senior leadership.
             </p>
             <div className="hack-card-tags">
-              <span className="hack-card-tag">Team challenge</span>
-              <span className="hack-card-tag">Rapid prototyping</span>
-              <span className="hack-card-tag">UoN</span>
+              <span className="hack-card-tag">AI</span>
+              <span className="hack-card-tag">Python</span>
+              <span className="hack-card-tag">OpenAi</span>
+              <span className="hack-card-tag">Gov digital standards</span>
             </div>
           </div>
 
@@ -495,19 +503,20 @@ export default function AboutPage() {
                 <div className="hack-card-logo-placeholder" title="Metropolitan Police">🚔</div>
                 <div className="hack-card-logo-placeholder" title="Amazon Web Services">☁️</div>
               </div>
-              <span className="hack-card-badge">College · Experience Haus, London</span>
+              <span className="hack-card-badge">College · Shoreditch, London</span>
             </div>
             <div className="hack-card-inner">
               <div>
                 <p className="hack-card-org">Metropolitan Police &amp; AWS</p>
                 <p className="hack-card-title">Met Police × AWS Innovation Challenge</p>
                 <p className="hack-card-desc">
-                  Took part in a challenge event hosted at <strong
-                    style={{ color: "var(--stroke-color)", fontStyle: "normal" }}>Experience Haus
-                  </strong> in London, co-run by the Metropolitan Police and Amazon Web Services
-                  during college. The brief involved using AWS tooling to tackle a real-world
-                  problem posed by the Met — an early introduction to cloud infrastructure and
-                  working with a live industry brief under time pressure.
+                  Took part in a workshop event at Experience Haus in London bringing together
+                  young people, designers, and police officers for an honest open discussion on
+                  improving public-police relationships. Rather than a coding challenge, the day
+                  was about co-designing real solutions — working with designers and mentors from
+                  employers, charities, and government to tackle difficult societal problems.
+                  Sponsored by Amazon Web Services.
+
                 </p>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -556,10 +565,9 @@ export default function AboutPage() {
                   }}>Metropolitan Police · Amazon Web Services</p>
                 </div>
                 <div className="hack-card-tags" style={{ marginTop: 0 }}>
-                  <span className="hack-card-tag">AWS</span>
-                  <span className="hack-card-tag">Cloud</span>
-                  <span className="hack-card-tag">Industry brief</span>
-                  <span className="hack-card-tag">London</span>
+                  <span className="hack-card-tag">Design thinking</span>
+                  <span className="hack-card-tag">Community</span>
+                  <span className="hack-card-tag">Problem solving</span>
                 </div>
               </div>
             </div>
@@ -585,25 +593,30 @@ export default function AboutPage() {
             <span className="value-icon">🏗️</span>
             <p className="value-title">Build to learn</p>
             <p className="value-desc">
-              I learn fastest by shipping something real. Every side project — from a view counter
-              to a full Django e-commerce site — teaches me more than any tutorial.
+              I learn fastest by shipping something real. Side projects — from a
+              view counter to a full Django e-commerce site — teach me more than
+              any tutorial ever has.
             </p>
           </div>
+
           <div className="value-card">
             <span className="value-icon">🐷</span>
             <p className="value-title">Own your stack</p>
             <p className="value-desc">
-              I self-host wherever it makes sense. Running Coolify, MinIO, and databases on my own
-              VPS means I understand every layer — not just the part I wrote.
+              I self-host my websites, APIs, and databases on my own VPS using
+              Coolify, with MinIO handling object storage — including assets for
+              this site. Running it all means I understand every layer — not just
+              the part I wrote.
             </p>
           </div>
+
           <div className="value-card">
             <span className="value-icon">🤝</span>
             <p className="value-title">Community first</p>
             <p className="value-desc">
-              The NN1 Dev community in Northampton showed me how much you learn from other
-              developers. Hackathons, meetups, and Slack threads are just as valuable as
-              documentation.
+              I'm a regular at NN1 Dev Club in Northampton — monthly talks
+              covering everything from compiler internals to async workflows,
+              followed by drinks where the best conversations happen.
             </p>
           </div>
         </div>

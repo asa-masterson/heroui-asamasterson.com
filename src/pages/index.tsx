@@ -565,12 +565,13 @@ export default function IndexPage() {
   useEffect(() => { fetchViewCount(); }, []);
 
   const skills = [
-    { label: "Python",     pct: 80 },
-    { label: "PHP",        pct: 70 },
+    { label: "Python",     pct: 85 },
+    { label: "HTML / CSS",        pct: 80 },
+    { label: "JavaScript", pct: 70 },
+    { label: "PHP",        pct: 65 },
     { label: "SQL",        pct: 65 },
-    { label: "JavaScript", pct: 65 },
+    { label: "Docker",     pct: 60 },
     { label: "React",      pct: 55 },
-    { label: "Docker",     pct: 50 },
   ];
 
   return (
@@ -737,8 +738,8 @@ export default function IndexPage() {
             className="proj-card"
             role="button"
             tabIndex={0}
-            onClick={fetchViewCount}
-            onKeyDown={(e) => e.key === "Enter" && fetchViewCount()}
+            onClick={() => window.open("https://github.com/asa-masterson/fastapi-redis-counter/tree/master", "_blank")}
+            onKeyDown={(e) => e.key === "Enter" && window.open("https://github.com/asa-masterson/fastapi-redis-counter/tree/master", "_blank")}
           >
             <div className="proj-card-counter">
               <span className="proj-card-counter-num">{viewCount ?? "—"}</span>
@@ -765,8 +766,8 @@ export default function IndexPage() {
             className="proj-card"
             role="button"
             tabIndex={0}
-            onClick={() => window.open("https://github.com/asa-masterson", "_blank")}
-            onKeyDown={(e) => e.key === "Enter" && window.open("https://github.com/asa-masterson", "_blank")}
+            onClick={() => window.open("https://github.com/asa-masterson/toru-backend", "_blank")}
+            onKeyDown={(e) => e.key === "Enter" && window.open("https://github.com/asa-masterson/toru-backend", "_blank")}
           >
             <img alt="Toru Challenge" className="proj-card-img" src={ToruLogoUrl} />
             <div className="proj-card-body">
