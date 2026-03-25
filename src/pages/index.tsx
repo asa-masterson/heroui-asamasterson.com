@@ -556,7 +556,7 @@ export default function IndexPage() {
   const [viewCount, setViewCount] = useState<string | null>(null);
 
   const fetchViewCount = () => {
-    fetch("https://a.bigfluffy.monster/counter/id/demo01?ttl=3600")
+    fetch("https://a.bigfluffy.monster/counter/id/asamastersoncom-button?ttl=3600")
       .then((r) => r.json())
       .then((d) => setViewCount("" + d.Users))
       .catch(() => setViewCount(null));
@@ -859,7 +859,7 @@ export default function IndexPage() {
         <div className="edu-list">
           {[
             { institution: "University of Northampton", detail: "BSc Business Computing · Current", period: "2023 – Present" },
-            { institution: "City of Oxford College",    detail: "Merit · T-Level Digital Production, Design and Development", period: "2021 – 2023" },
+            { institution: "City of Oxford College (Activate Learning)",    detail: "Merit · T-Level in Digital Production, Design and Development", period: "2021 – 2023" },
             { institution: "Gosford Hill School",       detail: "8 · GCSE Computer Science   ·   6 · GCSE Mathematics", period: "2016 – 2021" },
           ].map(({ institution, detail, period }) => (
             <div key={institution} className="edu-item">

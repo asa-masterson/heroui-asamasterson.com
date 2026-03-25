@@ -491,7 +491,7 @@ export default function AboutPage() {
             <div className="hack-card-tags">
               <span className="hack-card-tag">AI</span>
               <span className="hack-card-tag">Python</span>
-              <span className="hack-card-tag">OpenAi</span>
+              <span className="hack-card-tag">OpenAI</span>
               <span className="hack-card-tag">Gov digital standards</span>
             </div>
           </div>
