@@ -42,7 +42,7 @@ export default function DefaultLayout({
           <p className="text-primary" style={{ fontSize: "0.8rem" }}>Asa Masterson</p>
         </Link>
         <div className="text-sm text-default-400" style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.08em" }}>
-          © {new Date().getFullYear()}
+          © {new Date().getFullYear()} Asa Masterson
         </div>
       </footer>
     </div>
