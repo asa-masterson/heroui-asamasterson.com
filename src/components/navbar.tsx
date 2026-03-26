@@ -67,7 +67,7 @@ export const Navbar = () => {
             </Link>
           </NavbarBrand>
 
-          <div className="hidden lg:flex gap-4 justify-start ml-4">
+          <div className="hidden sm:flex gap-4 justify-start ml-4">
             {siteConfig.navItems.map((item) => (
               <NavbarItem key={item.href}>
                 <Link
