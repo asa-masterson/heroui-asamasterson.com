@@ -553,7 +553,7 @@ export default function IndexPage() {
             <span className="hero-name-line2">Masterson.</span>
           </h1>
           <p className="hero-descriptor">
-            University student &amp; aspiring software developer.
+            University student &amp; full-stack software developer.
           </p>
           <div className="hero-meta">
             <span className="hero-meta-item">Oxford, UK</span>
