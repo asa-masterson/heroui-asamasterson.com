@@ -9,26 +9,10 @@ import ToruLogoUrl from "../images/toru_digital_logo.jpg";
 import { GithubIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 
-// ─── All page styles ───────────────────────────────────────────────────────────
+// ─── Page-specific styles only.
+//     Design tokens, .section-*, .section-divider live in globals.css
+// ──────────────────────────────────────────────────────────────────────────────
 const pageStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
-
-  :root {
-    --brand:        #ff54ff;
-    --stroke-color: #111111;
-    --muted:        #6b7280;
-    --card-border:  rgba(0,0,0,0.08);
-    --card-bg:      #ffffff;
-    --tag-bg:       rgba(255,84,255,0.08);
-  }
-  .dark {
-    --stroke-color: #f0f0f0;
-    --muted:        #9ca3af;
-    --card-border:  rgba(255,255,255,0.08);
-    --card-bg:      rgba(255,255,255,0.03);
-    --tag-bg:       rgba(255,84,255,0.12);
-  }
-
   /* ════════════════════════════════════════════════
      HERO
   ════════════════════════════════════════════════ */
@@ -40,8 +24,10 @@ const pageStyles = `
     justify-content: center;
     overflow: hidden;
     padding: 0 1.5rem;
-    margin-top: -4rem;
+    margin-top: -4rem; /* bleed under sticky navbar */
   }
+
+  /* pink grid overlay */
   .hero-root::before {
     content: '';
     position: absolute;
@@ -52,6 +38,8 @@ const pageStyles = `
     background-size: 48px 48px;
     z-index: 0;
   }
+
+  /* glow blob */
   .hero-root::after {
     content: '';
     position: absolute;
@@ -76,6 +64,7 @@ const pageStyles = `
     padding-top: 6rem;
     padding-bottom: 4rem;
   }
+
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
@@ -86,15 +75,19 @@ const pageStyles = `
     opacity: 0;
     animation: fadeUp 0.6s 0.1s forwards;
   }
+
   .hero-name {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(3.5rem, 10vw, 8rem);
+    /* clamp min is 2.4rem so "Masterson." doesn't overflow on 320px screens */
+    font-size: clamp(2.4rem, 10vw, 8rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
     margin: 0;
     opacity: 0;
     animation: fadeUp 0.7s 0.25s forwards;
   }
+
+  /* stroke uses --stroke-color, NOT currentColor — color is transparent */
   .hero-name-line1 {
     display: block;
     -webkit-text-stroke: 2px var(--stroke-color);
@@ -104,27 +97,29 @@ const pageStyles = `
     display: block;
     color: var(--brand);
   }
+
   .hero-descriptor {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-size: clamp(1rem, 3vw, 1.6rem);
     font-style: italic;
     margin-top: 1.5rem;
     color: var(--muted);
     opacity: 0;
     animation: fadeUp 0.7s 0.45s forwards;
   }
+
   .hero-meta {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    margin-top: 2.5rem;
+    gap: 1.5rem;
+    margin-top: 2rem;
     flex-wrap: wrap;
     opacity: 0;
     animation: fadeUp 0.7s 0.6s forwards;
   }
   .hero-meta-item {
     font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     letter-spacing: 0.08em;
     display: flex;
     align-items: center;
@@ -134,16 +129,18 @@ const pageStyles = `
   .hero-meta-item::before {
     content: '◆';
     color: var(--brand);
-    font-size: 0.5rem;
+    font-size: 0.45rem;
   }
+
   .hero-actions {
     display: flex;
-    gap: 1rem;
-    margin-top: 3rem;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
     flex-wrap: wrap;
     opacity: 0;
     animation: fadeUp 0.7s 0.75s forwards;
   }
+
   .hero-divider {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -151,18 +148,20 @@ const pageStyles = `
     background: linear-gradient(90deg, transparent, rgba(255,84,255,.4), transparent);
     z-index: 1;
   }
+
   .hero-pig {
     position: absolute;
     right: 6vw;
     top: 50%;
     transform: translateY(-50%);
-    width: clamp(100px, 16vw, 200px);
+    width: clamp(80px, 16vw, 200px);
     opacity: 0;
     animation: fadeUp 0.9s 0.9s forwards, pigBob 4s 1.8s ease-in-out infinite;
     z-index: 1;
     filter: drop-shadow(0 0 40px rgba(255,84,255,.35));
   }
   @media (max-width: 700px) { .hero-pig { display: none; } }
+
   @keyframes pigBob {
     0%,100% { transform: translateY(-50%) rotate(-4deg); }
     50%     { transform: translateY(calc(-50% - 14px)) rotate(4deg); }
@@ -170,51 +169,6 @@ const pageStyles = `
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ════════════════════════════════════════════════
-     SHARED SECTION STRUCTURE
-  ════════════════════════════════════════════════ */
-  .section-wrap {
-    max-width: 900px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 5rem 2rem;
-  }
-  .section-header { margin-bottom: 3rem; }
-  .section-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--brand);
-    margin-bottom: 0.6rem;
-  }
-  .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.2rem, 6vw, 4rem);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin: 0;
-  }
-  .section-title-outline {
-    -webkit-text-stroke: 1.5px var(--stroke-color);
-    color: transparent;
-  }
-  .section-title-solid { color: var(--brand); }
-  .section-sub {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--muted);
-    margin-top: 0.75rem;
-  }
-  .section-divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,84,255,.25), transparent);
-    margin: 0 auto;
-    max-width: 900px;
   }
 
   /* ════════════════════════════════════════════════
@@ -227,14 +181,11 @@ const pageStyles = `
   }
   @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
 
-  .about-card-wide { grid-column: span 2; }
-  @media (max-width: 640px) { .about-card-wide { grid-column: span 1; } }
-
   .about-card {
     position: relative;
     border-radius: 16px;
     overflow: hidden;
-    height: 280px;
+    height: 260px;
     border: 1px solid var(--card-border);
     cursor: pointer;
   }
@@ -245,6 +196,7 @@ const pageStyles = `
     transition: transform 0.4s ease;
   }
   .about-card:hover img.about-card-img { transform: scale(1.04); }
+
   .about-card-footer {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -287,28 +239,28 @@ const pageStyles = `
   .about-card-btn:hover { opacity: 0.85; }
 
   /* ════════════════════════════════════════════════
-     ABOUT ME CTA BANNER
+     ABOUT PAGE CTA BANNER
   ════════════════════════════════════════════════ */
   .about-cta {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
     background: var(--tag-bg);
     border: 1px solid rgba(255,84,255,0.2);
     border-radius: 20px;
-    padding: 2rem 2.5rem;
+    padding: 1.75rem 2rem;
     margin-top: 1rem;
     transition: border-color 0.2s, transform 0.2s;
     cursor: pointer;
     text-decoration: none;
+    color: inherit;
   }
   .about-cta:hover {
     border-color: var(--brand);
     transform: translateY(-2px);
   }
-  .about-cta-left {}
   .about-cta-eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
@@ -319,9 +271,9 @@ const pageStyles = `
   }
   .about-cta-heading {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
     line-height: 1.1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
   .about-cta-heading-outline {
     -webkit-text-stroke: 1.5px var(--stroke-color);
@@ -331,12 +283,12 @@ const pageStyles = `
   .about-cta-sub {
     font-family: 'DM Serif Display', serif;
     font-style: italic;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--muted);
   }
   .about-cta-arrow {
     font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--brand);
@@ -362,6 +314,9 @@ const pageStyles = `
     gap: 1rem;
   }
   @media (max-width: 640px) { .projects-grid { grid-template-columns: 1fr; } }
+  @media (min-width: 641px) and (max-width: 800px) {
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+  }
 
   .proj-card {
     background: var(--card-bg);
@@ -370,16 +325,14 @@ const pageStyles = `
     overflow: hidden;
     cursor: pointer;
     transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
   }
   .proj-card:hover {
     border-color: var(--brand);
     transform: translateY(-3px);
   }
-  .proj-card-img {
-    width: 100%; height: 140px;
-    object-fit: cover;
-    display: block;
-  }
+  .proj-card-img { width: 100%; height: 140px; object-fit: cover; display: block; }
   .proj-card-counter {
     width: 100%; height: 140px;
     display: flex;
@@ -415,7 +368,7 @@ const pageStyles = `
     transition: background 0.2s, color 0.2s;
   }
   .proj-card-counter-btn:hover { background: var(--brand); color: white; }
-  .proj-card-body { padding: 1rem; }
+  .proj-card-body { padding: 1rem; flex: 1; }
   .proj-card-title {
     font-family: 'DM Serif Display', serif;
     font-size: 1.05rem;
@@ -427,6 +380,7 @@ const pageStyles = `
     border-top: 1px solid var(--card-border);
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.4rem;
   }
   .proj-card-tag {
@@ -446,14 +400,17 @@ const pageStyles = `
   .skills-grid { display: flex; flex-direction: column; gap: 1.25rem; max-width: 560px; }
   .skill-row {
     display: grid;
-    grid-template-columns: 6rem 1fr 2.5rem;
+    grid-template-columns: 7rem 1fr 2.5rem;
     align-items: center;
     gap: 1rem;
   }
+  @media (max-width: 400px) {
+    .skill-row { grid-template-columns: 5.5rem 1fr 2rem; gap: 0.6rem; }
+  }
   .skill-label {
     font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
     text-align: right;
     color: var(--muted);
   }
@@ -472,7 +429,7 @@ const pageStyles = `
   }
   .skill-pct {
     font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--brand);
     text-align: right;
   }
@@ -527,20 +484,26 @@ const pageStyles = `
     align-items: flex-start;
     padding: 1.25rem 0;
     border-bottom: 1px solid var(--card-border);
-    gap: 2rem;
+    gap: 1rem;
   }
   .edu-item:first-child { border-top: 1px solid var(--card-border); }
   .edu-institution { font-family: 'DM Serif Display', serif; font-size: 1.05rem; margin-bottom: 0.2rem; }
   .edu-detail { font-size: 0.82rem; color: var(--muted); }
   .edu-period {
     font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--brand);
     white-space: nowrap;
     flex-shrink: 0;
     padding-top: 4px;
+    text-align: right;
+  }
+  /* On very small screens, stack edu-item vertically */
+  @media (max-width: 480px) {
+    .edu-item { flex-direction: column; gap: 0.4rem; }
+    .edu-period { text-align: left; }
   }
 `;
 
@@ -562,11 +525,14 @@ export default function IndexPage() {
       .catch(() => setViewCount(null));
   };
 
-  useEffect(() => { fetchViewCount(); }, []);
+  useEffect(() => {
+    document.title = "Asa Masterson — Software Developer";
+    fetchViewCount();
+  }, []);
 
   const skills = [
     { label: "Python",     pct: 85 },
-    { label: "HTML / CSS",        pct: 80 },
+    { label: "HTML / CSS", pct: 80 },
     { label: "JavaScript", pct: 70 },
     { label: "PHP",        pct: 65 },
     { label: "SQL",        pct: 65 },
@@ -634,14 +600,7 @@ export default function IndexPage() {
           <p className="section-sub">A few things I've written — check one out.</p>
         </div>
 
-        {/*
-          Card order: articles (NN1 + Medium) first — they're the
-          primary "written" content. GitHub wide card sits below as
-          a secondary call-to-action for code.
-        */}
         <div className="about-grid">
-
-          {/* NN1 interview */}
           <div
             className="about-card"
             role="button"
@@ -649,11 +608,7 @@ export default function IndexPage() {
             onClick={() => window.open("https://nn1.dev/spotlight/asa-masterson/", "_blank")}
             onKeyDown={(e) => e.key === "Enter" && window.open("https://nn1.dev/spotlight/asa-masterson/", "_blank")}
           >
-            <img
-              alt="Asa Masterson in Turkey"
-              className="about-card-img"
-              src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/mobileasaturkey.jpg"
-            />
+            <img alt="Asa Masterson" className="about-card-img" src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/mobileasaturkey.jpg" />
             <div className="about-card-footer">
               <div>
                 <p className="about-card-label">NN1.dev · Spotlight</p>
@@ -663,7 +618,6 @@ export default function IndexPage() {
             </div>
           </div>
 
-          {/* Medium article */}
           <div
             className="about-card"
             role="button"
@@ -671,11 +625,7 @@ export default function IndexPage() {
             onClick={() => window.open("https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee", "_blank")}
             onKeyDown={(e) => e.key === "Enter" && window.open("https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee", "_blank")}
           >
-            <img
-              alt="Asa Masterson outside City of Oxford College"
-              className="about-card-img"
-              src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-flannel-college.webp"
-            />
+            <img alt="Asa Masterson outside college" className="about-card-img" src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-flannel-college.webp" />
             <div className="about-card-footer">
               <div>
                 <p className="about-card-label">Medium.com</p>
@@ -686,9 +636,8 @@ export default function IndexPage() {
           </div>
         </div>
 
-        {/* ── About page CTA ── makes it obvious /about exists ── */}
         <a className="about-cta" href="/about">
-          <div className="about-cta-left">
+          <div>
             <p className="about-cta-eyebrow">There's more ↓</p>
             <p className="about-cta-heading">
               <span className="about-cta-heading-outline">About </span>
@@ -713,12 +662,8 @@ export default function IndexPage() {
           </h2>
           <p className="section-sub">A small overview of what I've been working on.</p>
         </div>
-
         <div className="projects-grid">
-          <div
-            className="proj-card"
-            role="button"
-            tabIndex={0}
+          <div className="proj-card" role="button" tabIndex={0}
             onClick={() => window.open("https://pigsare.pink", "_blank")}
             onKeyDown={(e) => e.key === "Enter" && window.open("https://pigsare.pink", "_blank")}
           >
@@ -734,20 +679,14 @@ export default function IndexPage() {
             </div>
           </div>
 
-          <div
-            className="proj-card"
-            role="button"
-            tabIndex={0}
+          <div className="proj-card" role="button" tabIndex={0}
             onClick={() => window.open("https://github.com/asa-masterson/fastapi-redis-counter/tree/master", "_blank")}
             onKeyDown={(e) => e.key === "Enter" && window.open("https://github.com/asa-masterson/fastapi-redis-counter/tree/master", "_blank")}
           >
             <div className="proj-card-counter">
               <span className="proj-card-counter-num">{viewCount ?? "—"}</span>
               <span className="proj-card-counter-label">page views</span>
-              <button
-                className="proj-card-counter-btn"
-                onClick={(e) => { e.stopPropagation(); fetchViewCount(); }}
-              >
+              <button className="proj-card-counter-btn" onClick={(e) => { e.stopPropagation(); fetchViewCount(); }}>
                 + Increment
               </button>
             </div>
@@ -762,10 +701,7 @@ export default function IndexPage() {
             </div>
           </div>
 
-          <div
-            className="proj-card"
-            role="button"
-            tabIndex={0}
+          <div className="proj-card" role="button" tabIndex={0}
             onClick={() => window.open("https://github.com/asa-masterson/toru-backend", "_blank")}
             onKeyDown={(e) => e.key === "Enter" && window.open("https://github.com/asa-masterson/toru-backend", "_blank")}
           >
@@ -807,7 +743,7 @@ export default function IndexPage() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════ WORK EXPERIENCE */}
+      {/* ══════════════════════════════════════════ WORK */}
       <div className="section-divider" />
       <div className="section-wrap">
         <div className="section-header">
@@ -820,9 +756,7 @@ export default function IndexPage() {
         </div>
         <div className="work-grid">
           <div className="work-card">
-            <img
-              alt="Oxfordshire County Council"
-              className="work-logo"
+            <img alt="Oxfordshire County Council" className="work-logo"
               src="https://imgproxy.bigfluffy.monster/YnX3ViM9fY-kT0p9Z9GKmWx0UBW8LAjnFCnPzKq05Wo/rs:fill:400:400/g:sm/q:85/f:webp/strip_metadata:1/aHR0cHM6Ly9taW5pby1zMy5iaWdmbHVmZnkubW9uc3Rlci9waWdzYXJlLXBpbmsvYXNzZXRzL09DQy53ZWJw"
             />
             <div>
@@ -832,9 +766,7 @@ export default function IndexPage() {
             </div>
           </div>
           <div className="work-card">
-            <img
-              alt="Vue Cinemas"
-              className="work-logo"
+            <img alt="Vue Cinemas" className="work-logo"
               src="https://imgproxy.bigfluffy.monster/nrbtdj0y7Ansq-H2N_bHCKtKw69hO1iDUr2nsiaKsY0/rs:fill:400:400/g:sm/q:85/f:webp/strip_metadata:1/aHR0cHM6Ly9taW5pby1zMy5iaWdmbHVmZnkubW9uc3Rlci9waWdzYXJlLXBpbmsvYXNzZXRzL1ZVRS53ZWJw"
             />
             <div>
@@ -855,12 +787,13 @@ export default function IndexPage() {
             <span className="section-title-outline">My </span>
             <span className="section-title-solid">Education.</span>
           </h2>
+          <p className="section-sub">The academic side of things.</p>
         </div>
         <div className="edu-list">
           {[
             { institution: "University of Northampton", detail: "BSc Business Computing · Current", period: "2023 – Present" },
-            { institution: "City of Oxford College (Activate Learning)",    detail: "Merit · T-Level in Digital Production, Design and Development", period: "2021 – 2023" },
-            { institution: "Gosford Hill School",       detail: "8 · GCSE Computer Science   ·   6 · GCSE Mathematics", period: "2016 – 2021" },
+            { institution: "City of Oxford College (Activate Learning)", detail: "Merit · T-Level in Digital Production, Design and Development", period: "2021 – 2023" },
+            { institution: "Gosford Hill School", detail: "8 · GCSE Computer Science   ·   6 · GCSE Mathematics", period: "2016 – 2021" },
           ].map(({ institution, detail, period }) => (
             <div key={institution} className="edu-item">
               <div>

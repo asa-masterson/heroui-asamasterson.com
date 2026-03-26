@@ -16,16 +16,15 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
+.idea/*
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-.idea/*
 
-
+# Lock files — yarn.lock MUST be committed.
 pnpm-lock.yaml
-yarn.lock
 package-lock.json
 bun.lockb

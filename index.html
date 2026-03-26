@@ -7,8 +7,18 @@
     <title>Asa Masterson — Software Developer</title>
     <meta name="description" content="Asa Masterson is a BSc Business Computing student at the University of Northampton and a full-stack software developer based in the UK. Experienced in Python, React, Docker, and self-hosted infrastructure.">
 
-    <!-- Favicon — pig SVG -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts — preconnect first so the DNS/TLS handshake
+         happens in parallel, then fetch the stylesheet.
+         Much faster than @import inside a CSS file. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type"        content="website">
@@ -27,9 +37,7 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://asamasterson.com" />
 
-    <!-- ── Schema.org ─────────────────────────────────────────────────── -->
-
-    <!-- Person -->
+    <!-- ── Schema.org ──────────────────────────────────────────────── -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -52,29 +60,11 @@
         "addressCountry": "GB"
       },
       "alumniOf": [
-        {
-          "@type": "EducationalOrganization",
-          "name": "University of Northampton",
-          "url": "https://www.northampton.ac.uk"
-        },
-        {
-          "@type": "EducationalOrganization",
-          "name": "City of Oxford College",
-          "url": "https://oxford.activatelearning.ac.uk"
-        },
-        {
-          "@type": "EducationalOrganization",
-          "name": "Activate Learning",
-          "url": "https://www.activatelearning.ac.uk"
-        }
+        { "@type": "EducationalOrganization", "name": "University of Northampton", "url": "https://www.northampton.ac.uk" },
+        { "@type": "EducationalOrganization", "name": "City of Oxford College", "url": "https://oxford.activatelearning.ac.uk" },
+        { "@type": "EducationalOrganization", "name": "Activate Learning", "url": "https://www.activatelearning.ac.uk" }
       ],
-      "knowsAbout": [
-        "Python", "Django", "JavaScript", "React", "TypeScript",
-        "Docker", "SQL", "PHP", "Rust", "FastAPI",
-        "Full-stack web development", "Self-hosted infrastructure",
-        "Coolify", "Tailwind CSS", "Digital Production",
-        "Design and Development", "T-Levels"
-      ],
+      "knowsAbout": ["Python","Django","JavaScript","React","TypeScript","Docker","SQL","PHP","Rust","FastAPI","Full-stack web development","Self-hosted infrastructure","Coolify","Tailwind CSS","Digital Production","Design and Development","T-Levels"],
       "sameAs": [
         "https://asamasterson.com",
         "https://pigsare.pink",
@@ -90,7 +80,6 @@
     }
     </script>
 
-    <!-- WebSite -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -98,15 +87,10 @@
       "name": "Asa Masterson",
       "url": "https://asamasterson.com",
       "description": "Personal portfolio and homepage of Asa Masterson, software developer and BSc Business Computing student.",
-      "author": {
-        "@type": "Person",
-        "name": "Asa Masterson",
-        "url": "https://asamasterson.com"
-      }
+      "author": { "@type": "Person", "name": "Asa Masterson", "url": "https://asamasterson.com" }
     }
     </script>
 
-    <!-- Published works / third-party references -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -114,12 +98,10 @@
       "name": "Published references to Asa Masterson",
       "itemListElement": [
         {
-          "@type": "ListItem",
-          "position": 1,
+          "@type": "ListItem", "position": 1,
           "item": {
             "@type": "Article",
             "headline": "What are T-Levels | From a Student",
-            "description": "Asa Masterson writes about his experience as a T-Level student at Activate Learning.",
             "url": "https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee",
             "datePublished": "2023-05-11",
             "author": { "@type": "Person", "name": "Asa Masterson", "url": "https://asamasterson.com" },
@@ -127,8 +109,7 @@
           }
         },
         {
-          "@type": "ListItem",
-          "position": 2,
+          "@type": "ListItem", "position": 2,
           "item": {
             "@type": "Article",
             "headline": "Asa Masterson in the Spotlight | NN1 Dev Club",
@@ -138,8 +119,7 @@
           }
         },
         {
-          "@type": "ListItem",
-          "position": 3,
+          "@type": "ListItem", "position": 3,
           "item": {
             "@type": "Article",
             "headline": "Asa — Digital Production, Design and Development T-Level Student",
@@ -148,8 +128,7 @@
           }
         },
         {
-          "@type": "ListItem",
-          "position": 4,
+          "@type": "ListItem", "position": 4,
           "item": {
             "@type": "Article",
             "headline": "Activate Learning Celebrates T Levels Celebration Week 2023",
@@ -161,7 +140,7 @@
       ]
     }
     </script>
-    <!-- ── End Schema.org ──────────────────────────────────────────────── -->
+    <!-- ── End Schema.org ────────────────────────────────────────────── -->
   </head>
   <body>
     <div id="root"></div>
