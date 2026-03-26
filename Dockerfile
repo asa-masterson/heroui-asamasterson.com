@@ -1,17 +1,13 @@
 # Build stage
 FROM node:18-alpine AS build
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json
 COPY package.json ./
 
-# Install dependencies
-ENV NODE_ENV=development
-RUN yarn install
+# Install ALL deps (including devDeps needed for build) but signal production intent
+RUN yarn install --frozen-lockfile
 
-# Copy project files
 COPY . .
 
 # Build the app
@@ -21,11 +17,7 @@ RUN NODE_OPTIONS="--max-old-space-size=2048" yarn build
 # Runtime stage
 FROM nginx:alpine AS runtime
 
-# Copy built files
 COPY --from=build /app/dist /usr/share/nginx/html
-
-# Copy nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
