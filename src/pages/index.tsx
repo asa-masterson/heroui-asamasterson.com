@@ -65,24 +65,6 @@ const pageStyles = `
     padding-bottom: 3rem;
   }
 
-  /* CV download button */
-  .hero-cv-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    letter-spacing: 0.06em;
-    color: white;
-    background: #22c55e;
-    padding: 0.55rem 1.25rem;
-    border-radius: 999px;
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.15s;
-    white-space: nowrap;
-  }
-  .hero-cv-btn:hover { opacity: 0.85; transform: translateY(-1px); }
-
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
@@ -593,15 +575,13 @@ export default function IndexPage() {
             >
               <LinkedInIcon size={18} /> LinkedIn
             </Link>
-            {/* ↓ swap the href for your actual S3 PDF path once uploaded */}
-            <a
-              className="hero-cv-btn"
+            <Link
+              isExternal
+              className={buttonStyles({ color: "success", radius: "full", variant: "shadow", size: "md" })}
               href="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-masterson-cv.pdf"
-              rel="noreferrer"
-              target="_blank"
             >
               📄 Download CV
-            </a>
+            </Link>
           </div>
         </div>
         <img alt="Pig mascot" className="hero-pig" src={PinkLogoUrl} />
