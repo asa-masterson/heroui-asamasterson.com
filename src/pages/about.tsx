@@ -469,7 +469,7 @@ export default function AboutPage() {
                 <div className="hack-card-logo-placeholder" title="Metropolitan Police">🚔</div>
                 <div className="hack-card-logo-placeholder" title="Amazon Web Services">☁️</div>
               </div>
-              <span className="hack-card-badge">Met Police × AWS · London</span>
+              <span className="hack-card-badge">Experience Haus · London</span>
             </div>
             <div className="hack-card-inner">
               <div style={{ display: "flex", flexDirection: "column", gap: "0.9rem" }}>
