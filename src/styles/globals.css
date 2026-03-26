@@ -84,6 +84,13 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
-   SMOOTH SCROLL
+   SMOOTH SCROLL & Fix white flash on load
    ═══════════════════════════════════════════════════════════ */
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background-color: #000000;
+}
+
+body {
+  background-color: inherit;
+}
