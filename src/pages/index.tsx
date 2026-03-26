@@ -61,9 +61,27 @@ const pageStyles = `
     max-width: 900px;
     margin: 0 auto;
     width: 100%;
-    padding-top: 6rem;
-    padding-bottom: 4rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
+
+  /* CV download button */
+  .hero-cv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: white;
+    background: #22c55e;
+    padding: 0.55rem 1.25rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .hero-cv-btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
@@ -397,42 +415,29 @@ const pageStyles = `
   /* ════════════════════════════════════════════════
      SKILLS
   ════════════════════════════════════════════════ */
-  .skills-grid { display: flex; flex-direction: column; gap: 1.25rem; max-width: 560px; }
-  .skill-row {
-    display: grid;
-    grid-template-columns: 7rem 1fr 2.5rem;
-    align-items: center;
-    gap: 1rem;
+  .skills-cats { display: flex; flex-direction: column; gap: 1.75rem; }
+  .skills-cat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 0.75rem;
   }
-  @media (max-width: 400px) {
-    .skill-row { grid-template-columns: 5.5rem 1fr 2rem; gap: 0.6rem; }
-  }
-  .skill-label {
+  .skills-chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skills-chip {
     font-family: 'DM Mono', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.05em;
-    text-align: right;
-    color: var(--muted);
+    color: var(--stroke-color);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 0.38rem 0.9rem;
+    border-radius: 6px;
+    transition: border-color 0.2s, color 0.2s;
+    cursor: default;
   }
-  .skill-track {
-    height: 4px;
-    border-radius: 2px;
-    background: var(--card-border);
-    position: relative;
-    overflow: hidden;
-  }
-  .skill-fill {
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    background: var(--brand);
-    border-radius: 2px;
-  }
-  .skill-pct {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--brand);
-    text-align: right;
-  }
+  .skills-chip:hover { border-color: var(--brand); color: var(--brand); }
 
   /* ════════════════════════════════════════════════
      WORK EXPERIENCE
@@ -530,14 +535,19 @@ export default function IndexPage() {
     fetchViewCount();
   }, []);
 
-  const skills = [
-    { label: "Python",     pct: 85 },
-    { label: "HTML / CSS", pct: 80 },
-    { label: "JavaScript", pct: 70 },
-    { label: "PHP",        pct: 65 },
-    { label: "SQL",        pct: 65 },
-    { label: "Docker",     pct: 60 },
-    { label: "React",      pct: 55 },
+  const skillGroups = [
+    {
+      label: "Languages",
+      skills: ["Python", "HTML / CSS", "JavaScript", "PHP", "Rust", "SQL"],
+    },
+    {
+      label: "Frameworks & Libraries",
+      skills: ["Django", "React", "FastAPI", "Tailwind CSS", "Flutter"],
+    },
+    {
+      label: "Infrastructure & Tools",
+      skills: ["Docker", "Coolify", "Linux", "Git", "MinIO S3", "Neo4j"],
+    },
   ];
 
   return (
@@ -547,6 +557,7 @@ export default function IndexPage() {
       {/* ══════════════════════════════════════════ HERO */}
       <section className="hero-root">
         <div className="hero-inner">
+
           <p className="hero-eyebrow">Portfolio · asamasterson.com</p>
           <h1 className="hero-name">
             <span className="hero-name-line1">Asa</span>
@@ -582,6 +593,15 @@ export default function IndexPage() {
             >
               <LinkedInIcon size={18} /> LinkedIn
             </Link>
+            {/* ↓ swap the href for your actual S3 PDF path once uploaded */}
+            <a
+              className="hero-cv-btn"
+              href="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-masterson-cv.pdf"
+              rel="noreferrer"
+              target="_blank"
+            >
+              📄 Download CV
+            </a>
           </div>
         </div>
         <img alt="Pig mascot" className="hero-pig" src={PinkLogoUrl} />
@@ -730,14 +750,15 @@ export default function IndexPage() {
           </h2>
           <p className="section-sub">A quick rundown.</p>
         </div>
-        <div className="skills-grid">
-          {skills.map(({ label, pct }) => (
-            <div key={label} className="skill-row">
-              <span className="skill-label">{label}</span>
-              <div className="skill-track">
-                <div className="skill-fill" style={{ width: `${pct}%` }} />
+        <div className="skills-cats">
+          {skillGroups.map(({ label, skills }) => (
+            <div key={label}>
+              <p className="skills-cat-label">{label}</p>
+              <div className="skills-chip-row">
+                {skills.map((s) => (
+                  <span key={s} className="skills-chip">{s}</span>
+                ))}
               </div>
-              <span className="skill-pct">{pct}</span>
             </div>
           ))}
         </div>
