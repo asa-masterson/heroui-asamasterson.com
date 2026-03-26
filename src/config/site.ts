@@ -12,6 +12,7 @@ export const siteConfig = {
     { label: "About", href: "/about" },
   ],
   links: {
+    email:       "mailto:contact@asamasterson.com",
     github:      "https://github.com/asa-masterson",
     twitter:     "https://twitter.com/pigsarepinkk",
     linkedin:    "https://www.linkedin.com/in/asa-masterson/",
