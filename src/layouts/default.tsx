@@ -23,7 +23,7 @@ export default function DefaultLayout({
 
   return (
     // min-h-screen (not h-screen) — h-screen squishes long pages into the viewport
-    <div className="relative flex flex-col min-h-screen">
+    <div className="relative flex flex-col min-h-screen bg-background">
       <Navbar />
       <main className="container mx-auto max-w-7xl px-6 flex-grow pt-16">
         {children}
