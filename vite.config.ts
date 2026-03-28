@@ -6,12 +6,15 @@ import { codecovVitePlugin } from "@codecov/vite-plugin";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-      react(),
+    react(),
     tsconfigPaths(),
     codecovVitePlugin({
       enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
       bundleName: "heroui-asamasterson.com",
       uploadToken: process.env.CODECOV_TOKEN,
-    })
+    }),
   ],
+  ssgOptions: {
+    dirStyle: "nested",
+  },
 })

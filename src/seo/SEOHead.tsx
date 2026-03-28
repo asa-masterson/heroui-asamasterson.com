@@ -1,5 +1,4 @@
-import { Helmet } from "react-helmet-async";
-
+import { Head } from "vite-react-ssg";
 import type { PageMeta } from "@/seo/meta";
 
 type SEOHeadProps = {
@@ -18,7 +17,7 @@ export default function SEOHead({ meta }: SEOHeadProps) {
   } = meta;
 
   return (
-    <Helmet>
+    <Head>
       <title>{title}</title>
       <meta content={description} name="description" />
       <link href={canonical} rel="canonical" />
@@ -33,6 +32,6 @@ export default function SEOHead({ meta }: SEOHeadProps) {
       <meta content={ogTitle ?? title} name="twitter:title" />
       <meta content={ogDescription ?? description} name="twitter:description" />
       {ogImage ? <meta content={ogImage} name="twitter:image" /> : null}
-    </Helmet>
+    </Head>
   );
 }

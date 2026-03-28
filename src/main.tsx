@@ -1,29 +1,28 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import * as Sentry from "@sentry/browser";
-import * as Swetrix from "swetrix";
+import { ViteReactSSG } from "vite-react-ssg";
 
-import App from "./App.tsx";
-import { Provider } from "./provider.tsx";
+import { routes } from "./App.tsx";
 import "@/styles/globals.css";
 
-// Initialize Sentry as early as possible
-Sentry.init({
-  dsn: import.meta.env.VITE_GLITCHTIP_DSN,
-});
+export const createRoot = ViteReactSSG(
+  {
+    routes,
+    basename: import.meta.env.BASE_URL,
+  },
+  async ({ isClient }) => {
+    if (!isClient) return;
 
-Swetrix.init("sjFU3ryURYdB", {
-  apiURL: "https://swetrix.bigfluffy.monster/backend/v1/log",
-});
-Swetrix.trackViews();
+    const [Sentry, Swetrix] = await Promise.all([
+      import("@sentry/browser"),
+      import("swetrix"),
+    ]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
+    Sentry.init({
+      dsn: import.meta.env.VITE_GLITCHTIP_DSN,
+    });
+
+    Swetrix.init("sjFU3ryURYdB", {
+      apiURL: "https://swetrix.bigfluffy.monster/backend/v1/log",
+    });
+    Swetrix.trackViews();
+  },
 );

@@ -17,6 +17,16 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
 }) => {
   const [isMounted, setIsMounted] = useState(false);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Avoid reading localStorage-backed theme state during server rendering.
+  if (typeof window === "undefined") return <div className="w-6 h-6" />;
+
+  // Prevent hydration mismatch before theme is available on client.
+  if (!isMounted) return <div className="w-6 h-6" />;
+
   const { theme, setTheme } = useTheme();
 
   const {
@@ -30,13 +40,6 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
     isSelected: theme === "light",
     onChange: () => setTheme(theme === "light" ? "dark" : "light"),
   });
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, [isMounted]);
-
-  // Prevent Hydration Mismatch
-  if (!isMounted) return <div className="w-6 h-6" />;
 
   return (
     <Component

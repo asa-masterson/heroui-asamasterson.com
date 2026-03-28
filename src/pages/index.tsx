@@ -694,7 +694,7 @@ export default function IndexPage() {
 
         <a
           className="about-cta"
-          href="/about"
+          href="/about/"
           onClick={() => {
             trackCustomEvent("about_cta_link_click", { location: "home_about_section" });
           }}

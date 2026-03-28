@@ -19,7 +19,6 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon } from "@/components/icons";
 
 const navbarStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
   .nav-brand-name {
     font-family: 'DM Serif Display', serif;
     font-size: 1.15rem;
@@ -134,7 +133,7 @@ export const Navbar = () => {
                   color="foreground"
                   href={item.href}
                   onClick={() => {
-                    if (item.href === "/about") {
+                    if (item.href === "/about/") {
                       trackCustomEvent("about_link_click", { location: "header_desktop" });
                     }
                   }}

@@ -39,7 +39,7 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "About Asa Masterson — Background & Skills",
     description:
       "Learn more about Asa Masterson: his education at the University of Northampton, T-Level studies at Activate Learning, work history, and technical skills as a full-stack developer based in Oxford, UK.",
-    canonical: `${BASE_URL}/about`,
+    canonical: `${BASE_URL}/about/`,
     ogTitle: "About Asa Masterson — Background & Skills",
     ogDescription:
       "Education, work experience, and technical skills of Asa Masterson — full-stack developer and BSc Business Computing student.",
