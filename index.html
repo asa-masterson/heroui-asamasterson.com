@@ -4,15 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!--
+      Per-page <title>, <meta name="description">, canonical, OG, and Twitter
+      tags are injected at runtime by react-helmet-async (SEOHead component)
+      and baked into static HTML at build time by vite-plugin-ssg.
+
+      The fallback title below is shown only if JS fails entirely.
+    -->
     <title>Asa Masterson — Software Developer</title>
-    <meta name="description" content="Asa Masterson is a BSc Business Computing student at the University of Northampton and a full-stack software developer based in the UK. Experienced in Python, React, Docker, and self-hosted infrastructure.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Google Fonts — preconnect first so the DNS/TLS handshake
-         happens in parallel, then fetch the stylesheet.
-         Much faster than @import inside a CSS file. -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,24 +24,12 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap"
     />
 
-    <!-- Open Graph -->
-    <meta property="og:type"        content="website">
-    <meta property="og:url"         content="https://asamasterson.com">
-    <meta property="og:title"       content="Asa Masterson — Software Developer">
-    <meta property="og:description" content="BSc Business Computing student and full-stack developer. Python, React, Docker, self-hosted infrastructure.">
-    <meta property="og:image"       content="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/og-image.png">
-
-    <!-- Twitter -->
-    <meta name="twitter:card"        content="summary_large_image">
-    <meta name="twitter:url"         content="https://asamasterson.com">
-    <meta name="twitter:title"       content="Asa Masterson — Software Developer">
-    <meta name="twitter:description" content="BSc Business Computing student and full-stack developer. Python, React, Docker, self-hosted infrastructure.">
-    <meta name="twitter:image"       content="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/og-image.png">
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://asamasterson.com" />
-
     <!-- ── Schema.org ──────────────────────────────────────────────── -->
+    <!--
+      asamasterson.com is the PRIMARY ENTITY HOME for Asa Masterson.
+      pigsare.pink is listed as a sameAs alias, NOT as url.
+      This tells Google’s Knowledge Graph which domain is canonical.
+    -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -45,7 +37,7 @@
       "name": "Asa Masterson",
       "alternateName": "Asa Joshie Masterson",
       "description": "Software developer and BSc Business Computing student at the University of Northampton. Studied Digital Production, Design and Development (T-Level, Merit) at City of Oxford College / Activate Learning. Former Customer Support Engineer at Oxfordshire County Council.",
-      "url": "https://asamasterson.com",
+      "url": "https://asamasterson.com/",
       "image": {
         "@type": "ImageObject",
         "url": "https://minio-s3.bigfluffy.monster/pigsare-pink/assets/my-notion-face-transparent.png",
@@ -55,7 +47,7 @@
       "gender": "Male",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Oxford",
+        "addressLocality": "Northampton",
         "addressRegion": "England",
         "addressCountry": "GB"
       },
@@ -66,8 +58,8 @@
       ],
       "knowsAbout": ["Python","Django","JavaScript","React","TypeScript","Docker","SQL","PHP","Rust","FastAPI","Full-stack web development","Self-hosted infrastructure","Coolify","Tailwind CSS","Digital Production","Design and Development","T-Levels"],
       "sameAs": [
-        "https://asamasterson.com",
-        "https://pigsare.pink",
+        "https://asamasterson.com/",
+        "https://pigsare.pink/",
         "https://www.linkedin.com/in/asa-masterson/",
         "https://github.com/asa-masterson",
         "https://twitter.com/pigsarepinkk",
@@ -85,9 +77,9 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Asa Masterson",
-      "url": "https://asamasterson.com",
+      "url": "https://asamasterson.com/",
       "description": "Personal portfolio and homepage of Asa Masterson, software developer and BSc Business Computing student.",
-      "author": { "@type": "Person", "name": "Asa Masterson", "url": "https://asamasterson.com" }
+      "author": { "@type": "Person", "name": "Asa Masterson", "url": "https://asamasterson.com/" }
     }
     </script>
 
@@ -104,7 +96,7 @@
             "headline": "What are T-Levels | From a Student",
             "url": "https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee",
             "datePublished": "2023-05-11",
-            "author": { "@type": "Person", "name": "Asa Masterson", "url": "https://asamasterson.com" },
+            "author": { "@type": "Person", "name": "Asa Masterson", "url": "https://asamasterson.com/" },
             "publisher": { "@type": "Organization", "name": "Medium", "url": "https://medium.com" }
           }
         },
@@ -114,7 +106,7 @@
             "@type": "Article",
             "headline": "Asa Masterson in the Spotlight | NN1 Dev Club",
             "url": "https://nn1.dev/spotlight/asa-masterson/",
-            "author": { "@type": "Person", "name": "Asa Masterson", "url": "https://asamasterson.com" },
+            "author": { "@type": "Person", "name": "Asa Masterson", "url": "https://asamasterson.com/" },
             "publisher": { "@type": "Organization", "name": "NN1 Dev Club", "url": "https://nn1.dev" }
           }
         },
