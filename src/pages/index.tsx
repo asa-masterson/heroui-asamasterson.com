@@ -9,6 +9,8 @@ import ToruLogoUrl from "../images/toru_digital_logo.jpg";
 import { GithubIcon } from "@/components/icons";
 import { trackCustomEvent, useTrackPageReadBottom } from "@/lib/analytics";
 import DefaultLayout from "@/layouts/default";
+import SEOHead from "@/seo/SEOHead";
+import { pageMeta } from "@/seo/meta";
 
 // ─── Page-specific styles only.
 //     Design tokens, .section-*, .section-divider live in globals.css
@@ -79,7 +81,6 @@ const pageStyles = `
 
   .hero-name {
     font-family: 'DM Serif Display', serif;
-    /* clamp min is 2.4rem so "Masterson." doesn't overflow on 320px screens */
     font-size: clamp(2.4rem, 10vw, 8rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
@@ -88,7 +89,6 @@ const pageStyles = `
     animation: fadeUp 0.7s 0.25s forwards;
   }
 
-  /* stroke uses --stroke-color, NOT currentColor — color is transparent */
   .hero-name-line1 {
     display: block;
     -webkit-text-stroke: 2px var(--stroke-color);
@@ -182,6 +182,7 @@ const pageStyles = `
   }
   @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
 
+  /* display:block + text-decoration reset so <a> renders like the old <div> */
   .about-card {
     position: relative;
     border-radius: 16px;
@@ -189,6 +190,9 @@ const pageStyles = `
     height: 260px;
     border: 1px solid var(--card-border);
     cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: inherit;
   }
   .about-card img.about-card-img {
     width: 100%; height: 100%;
@@ -222,6 +226,7 @@ const pageStyles = `
     color: rgba(255,255,255,0.8);
     margin-top: 2px;
   }
+  /* span replacing button — entire card is already the link */
   .about-card-btn {
     font-family: 'DM Mono', monospace;
     font-size: 0.7rem;
@@ -229,15 +234,13 @@ const pageStyles = `
     text-transform: uppercase;
     background: var(--brand);
     color: white;
-    border: none;
     padding: 0.4rem 0.9rem;
     border-radius: 999px;
-    cursor: pointer;
     white-space: nowrap;
-    transition: opacity 0.2s;
     flex-shrink: 0;
+    transition: opacity 0.2s;
   }
-  .about-card-btn:hover { opacity: 0.85; }
+  .about-card:hover .about-card-btn { opacity: 0.85; }
 
   /* ════════════════════════════════════════════════
      ABOUT PAGE CTA BANNER
@@ -319,6 +322,7 @@ const pageStyles = `
     .projects-grid { grid-template-columns: 1fr 1fr; }
   }
 
+  /* text-decoration + color reset so <a> renders like the old <div> */
   .proj-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -328,6 +332,8 @@ const pageStyles = `
     transition: border-color 0.2s, transform 0.2s;
     display: flex;
     flex-direction: column;
+    text-decoration: none;
+    color: inherit;
   }
   .proj-card:hover {
     border-color: var(--brand);
@@ -488,7 +494,6 @@ const pageStyles = `
     padding-top: 4px;
     text-align: right;
   }
-  /* On very small screens, stack edu-item vertically */
   @media (max-width: 480px) {
     .edu-item { flex-direction: column; gap: 0.4rem; }
     .edu-period { text-align: left; }
@@ -521,7 +526,6 @@ export default function IndexPage() {
   };
 
   useEffect(() => {
-    document.title = "Asa Masterson — Software Developer";
     fetchViewCount();
   }, []);
 
@@ -542,6 +546,7 @@ export default function IndexPage() {
 
   return (
     <DefaultLayout>
+      <SEOHead meta={pageMeta.home} />
       <style>{pageStyles}</style>
 
       {/* ══════════════════════════════════════════ HERO */}
@@ -569,7 +574,7 @@ export default function IndexPage() {
                 variant: "shadow",
                 size: "md",
               })}
-              href="https://pigsare.pink"
+              href="https://pigsare.pink/"
               onClick={() => {
                 trackCustomEvent("pigsarepink_link_click", { location: "hero_button" });
               }}
@@ -634,16 +639,14 @@ export default function IndexPage() {
         </div>
 
         <div className="about-grid">
-          <div
+          {/* Real <a href> — crawlable backlink to NN1 Dev spotlight */}
+          
             className="about-card"
-            role="button"
-            tabIndex={0}
+            href="https://nn1.dev/spotlight/asa-masterson/"
+            rel="noopener noreferrer"
+            target="_blank"
             onClick={() =>
-              window.open("https://nn1.dev/spotlight/asa-masterson/", "_blank")
-            }
-            onKeyDown={(e) =>
-              e.key === "Enter" &&
-              window.open("https://nn1.dev/spotlight/asa-masterson/", "_blank")
+              trackCustomEvent("nn1_link_click", { location: "about_card" })
             }
           >
             <img
@@ -658,26 +661,18 @@ export default function IndexPage() {
                   A short interview about me &amp; tech.
                 </p>
               </div>
-              <button className="about-card-btn">Read →</button>
+              <span className="about-card-btn">Read →</span>
             </div>
-          </div>
+          </a>
 
-          <div
+          {/* Real <a href> — crawlable link to Medium article */}
+          
             className="about-card"
-            role="button"
-            tabIndex={0}
+            href="https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee"
+            rel="noopener noreferrer"
+            target="_blank"
             onClick={() =>
-              window.open(
-                "https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee",
-                "_blank",
-              )
-            }
-            onKeyDown={(e) =>
-              e.key === "Enter" &&
-              window.open(
-                "https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee",
-                "_blank",
-              )
+              trackCustomEvent("medium_link_click", { location: "about_card" })
             }
           >
             <img
@@ -692,12 +687,12 @@ export default function IndexPage() {
                   What are T-Levels? From a student.
                 </p>
               </div>
-              <button className="about-card-btn">Read →</button>
+              <span className="about-card-btn">Read →</span>
             </div>
-          </div>
+          </a>
         </div>
 
-        <a
+        
           className="about-cta"
           href="/about"
           onClick={() => {
@@ -733,20 +728,14 @@ export default function IndexPage() {
           </p>
         </div>
         <div className="projects-grid">
-          <div
+          
             className="proj-card"
-            role="button"
-            tabIndex={0}
-            onClick={() => {
-              trackCustomEvent("pigsarepink_link_click", { location: "project_card" });
-              window.open("https://pigsare.pink", "_blank");
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                trackCustomEvent("pigsarepink_link_click", { location: "project_card" });
-                window.open("https://pigsare.pink", "_blank");
-              }
-            }}
+            href="https://pigsare.pink/"
+            rel="noopener noreferrer"
+            target="_blank"
+            onClick={() =>
+              trackCustomEvent("pigsarepink_link_click", { location: "project_card" })
+            }
           >
             <img
               alt="pigsare.pink"
@@ -765,25 +754,13 @@ export default function IndexPage() {
               <span className="proj-card-tag">CSS</span>
               <span className="proj-card-tag">Coolify</span>
             </div>
-          </div>
+          </a>
 
-          <div
+          
             className="proj-card"
-            role="button"
-            tabIndex={0}
-            onClick={() =>
-              window.open(
-                "https://github.com/asa-masterson/fastapi-redis-counter/tree/master",
-                "_blank",
-              )
-            }
-            onKeyDown={(e) =>
-              e.key === "Enter" &&
-              window.open(
-                "https://github.com/asa-masterson/fastapi-redis-counter/tree/master",
-                "_blank",
-              )
-            }
+            href="https://github.com/asa-masterson/fastapi-redis-counter/tree/master"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             <div className="proj-card-counter">
               <span className="proj-card-counter-num">{viewCount ?? "—"}</span>
@@ -791,6 +768,7 @@ export default function IndexPage() {
               <button
                 className="proj-card-counter-btn"
                 onClick={(e) => {
+                  e.preventDefault();
                   e.stopPropagation();
                   fetchViewCount();
                 }}
@@ -810,25 +788,13 @@ export default function IndexPage() {
               <span className="proj-card-tag">FastAPI</span>
               <span className="proj-card-tag">Redis</span>
             </div>
-          </div>
+          </a>
 
-          <div
+          
             className="proj-card"
-            role="button"
-            tabIndex={0}
-            onClick={() =>
-              window.open(
-                "https://github.com/asa-masterson/toru-backend",
-                "_blank",
-              )
-            }
-            onKeyDown={(e) =>
-              e.key === "Enter" &&
-              window.open(
-                "https://github.com/asa-masterson/toru-backend",
-                "_blank",
-              )
-            }
+            href="https://github.com/asa-masterson/toru-backend"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             <img
               alt="Toru Challenge"
@@ -847,7 +813,7 @@ export default function IndexPage() {
               <span className="proj-card-tag">Docker</span>
               <span className="proj-card-tag">MySQL</span>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 

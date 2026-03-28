@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-
 import ToruLogoUrl from "../images/toru_digital_logo.jpg";
 
+import SEOHead from "@/seo/SEOHead";
+import { pageMeta } from "@/seo/meta";
 import { useTrackPageReadBottom } from "@/lib/analytics";
 import DefaultLayout from "@/layouts/default";
 
@@ -247,7 +247,6 @@ const pageStyles = `
     gap: 0.4rem;
     margin-top: auto;
   }
-  /* Use --tag-bg so tags are visible in dark mode (was --card-border which is near-invisible dark) */
   .hack-card-tag {
     font-family: 'DM Mono', monospace;
     font-size: 0.62rem;
@@ -330,12 +329,9 @@ const pageStyles = `
 export default function AboutPage() {
   useTrackPageReadBottom("about");
 
-  useEffect(() => {
-    document.title = "About — Asa Masterson";
-  }, []);
-
   return (
     <DefaultLayout>
+      <SEOHead meta={pageMeta.about} />
       <style>{pageStyles}</style>
 
       {/* ══════════════════════════════════════════ INTRO */}
