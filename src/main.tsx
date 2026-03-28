@@ -9,7 +9,7 @@ import { Provider } from "./provider.tsx";
 import "@/styles/globals.css";
 
 // Initialize Sentry as early as possible
-Sentry.init({ 
+Sentry.init({
   dsn: import.meta.env.VITE_GLITCHTIP_DSN
 });
 
