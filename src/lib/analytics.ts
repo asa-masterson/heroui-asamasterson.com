@@ -29,7 +29,6 @@ export function useTrackPageReadBottom(page: string) {
       }
     };
 
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
