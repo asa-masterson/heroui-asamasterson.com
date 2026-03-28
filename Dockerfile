@@ -6,7 +6,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Prefer deterministic install when lockfile exists; fallback keeps build working.
-RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+# Also limit npm memory to prevent OOM kills on smaller servers
+RUN NODE_OPTIONS="--max-old-space-size=1024" npm ci --legacy-peer-deps 2>/dev/null || NODE_OPTIONS="--max-old-space-size=1024" npm install --legacy-peer-deps
 
 COPY . .
 
