@@ -640,7 +640,7 @@ export default function IndexPage() {
 
         <div className="about-grid">
           {/* Real <a href> — crawlable backlink to NN1 Dev spotlight */}
-          
+          <a
             className="about-card"
             href="https://nn1.dev/spotlight/asa-masterson/"
             rel="noopener noreferrer"
@@ -666,7 +666,7 @@ export default function IndexPage() {
           </a>
 
           {/* Real <a href> — crawlable link to Medium article */}
-          
+          <a
             className="about-card"
             href="https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee"
             rel="noopener noreferrer"
@@ -692,7 +692,7 @@ export default function IndexPage() {
           </a>
         </div>
 
-        
+        <a
           className="about-cta"
           href="/about"
           onClick={() => {
@@ -728,7 +728,7 @@ export default function IndexPage() {
           </p>
         </div>
         <div className="projects-grid">
-          
+          <a
             className="proj-card"
             href="https://pigsare.pink/"
             rel="noopener noreferrer"
@@ -756,7 +756,7 @@ export default function IndexPage() {
             </div>
           </a>
 
-          
+          <a
             className="proj-card"
             href="https://github.com/asa-masterson/fastapi-redis-counter/tree/master"
             rel="noopener noreferrer"
@@ -790,7 +790,7 @@ export default function IndexPage() {
             </div>
           </a>
 
-          
+          <a
             className="proj-card"
             href="https://github.com/asa-masterson/toru-backend"
             rel="noopener noreferrer"
