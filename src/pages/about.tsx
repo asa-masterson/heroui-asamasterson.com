@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 import DefaultLayout from "@/layouts/default";
 import ToruLogoUrl from "../images/toru_digital_logo.jpg";
@@ -326,12 +326,17 @@ const pageStyles = `
 `;
 
 export default function AboutPage() {
-  useEffect(() => {
-    document.title = "About — Asa Masterson";
-  }, []);
-
   return (
     <DefaultLayout>
+      <Helmet>
+        <title>About — Asa Masterson</title>
+        <meta
+          name="description"
+          content="Learn about Asa Masterson — a full-stack developer and BSc Business Computing student at the University of Northampton, with a background in self-hosted infrastructure, Python, React, and Docker."
+        />
+        <link rel="canonical" href="https://asamasterson.com/about" />
+      </Helmet>
+
       <style>{pageStyles}</style>
 
       {/* ══════════════════════════════════════════ INTRO */}
