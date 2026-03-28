@@ -1,6 +1,14 @@
 import { Link } from "@heroui/link";
 import { useEffect, useState } from "react";
 import { button as buttonStyles } from "@heroui/theme";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@heroui/react";
 
 import PinkLogoUrl from "../images/nathan-pig.svg";
 import PinkScreenshotUrl from "../images/pink-screenshot.png";
@@ -8,6 +16,18 @@ import ToruLogoUrl from "../images/toru_digital_logo.jpg";
 
 import { GithubIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
+
+const CV_URL =
+  "https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-masterson-cv.pdf";
+
+/** True when the user is on a real mobile device OR a narrow viewport. */
+function detectMobile(): boolean {
+  const isMobileUA = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(
+    navigator.userAgent
+  );
+  const isNarrow = window.innerWidth < 768;
+  return isMobileUA || isNarrow;
+}
 
 // ─── Page-specific styles only.
 //     Design tokens, .section-*, .section-divider live in globals.css
@@ -169,6 +189,14 @@ const pageStyles = `
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CV modal iframe */
+  .cv-iframe {
+    width: 100%;
+    height: 75vh;
+    border: none;
+    border-radius: 8px;
   }
 
   /* ════════════════════════════════════════════════
@@ -504,6 +532,7 @@ const LinkedInIcon = ({ size = 18 }: { size?: number }) => (
 
 export default function IndexPage() {
   const [viewCount, setViewCount] = useState<string | null>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const fetchViewCount = () => {
     fetch("https://a.bigfluffy.monster/counter/id/asamastersoncom-button?ttl=3600")
@@ -516,6 +545,19 @@ export default function IndexPage() {
     document.title = "Asa Masterson — Software Developer";
     fetchViewCount();
   }, []);
+
+  const handleCvClick = () => {
+    if (detectMobile()) {
+      // Mobile: trigger direct download
+      const a = document.createElement("a");
+      a.href = CV_URL;
+      a.download = "asa-masterson-cv.pdf";
+      a.click();
+    } else {
+      // Desktop: open overlay modal
+      onOpen();
+    }
+  };
 
   const skillGroups = [
     {
@@ -535,6 +577,41 @@ export default function IndexPage() {
   return (
     <DefaultLayout>
       <style>{pageStyles}</style>
+
+      {/* ══════════════════════════════════════════ CV MODAL (desktop only) */}
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        size="5xl"
+        scrollBehavior="inside"
+      >
+        <ModalContent>
+          <ModalHeader>📄 Curriculum Vitae — Asa Masterson</ModalHeader>
+          <ModalBody>
+            <iframe
+              className="cv-iframe"
+              src={CV_URL}
+              title="Asa Masterson CV"
+            />
+          </ModalBody>
+          <ModalFooter>
+            <Link
+              as="a"
+              className={buttonStyles({ color: "success", radius: "full", variant: "shadow", size: "sm" })}
+              href={CV_URL}
+              download
+            >
+              ⬇ Download PDF
+            </Link>
+            <button
+              className={buttonStyles({ variant: "light", radius: "full", size: "sm" })}
+              onClick={onClose}
+            >
+              Close
+            </button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
       {/* ══════════════════════════════════════════ HERO */}
       <section className="hero-root">
@@ -575,13 +652,12 @@ export default function IndexPage() {
             >
               <LinkedInIcon size={18} /> LinkedIn
             </Link>
-            <Link
-              isExternal
+            <button
               className={buttonStyles({ color: "success", radius: "full", variant: "shadow", size: "md" })}
-              href="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-masterson-cv.pdf"
+              onClick={handleCvClick}
             >
-              📄 Download CV
-            </Link>
+              📄 CV
+            </button>
           </div>
         </div>
         <img alt="Pig mascot" className="hero-pig" src={PinkLogoUrl} />
