@@ -24,7 +24,7 @@ export function useTrackPageReadBottom(page: string) {
 
       if (scrollTop + viewportHeight >= pageHeight - 24) {
         tracked = true;
-        trackCustomEvent("page_read_bottom", { page });
+        void Swetrix.track({ ev: `${page}_funnel_bottom` });
         window.removeEventListener("scroll", onScroll);
       }
     };
