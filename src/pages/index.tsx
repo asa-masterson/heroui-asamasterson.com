@@ -575,7 +575,7 @@ export default function IndexPage() {
                 size: "md",
               })}
               href="https://pigsare.pink/"
-              onClick={() => {
+              onPress={() => {
                 trackCustomEvent("pigsarepink_link_click", { location: "hero_button" });
               }}
             >
@@ -612,7 +612,7 @@ export default function IndexPage() {
                 size: "md",
               })}
               href="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-masterson-cv.pdf"
-              onClick={() => {
+              onPress={() => {
                 trackCustomEvent("download_cv_link_click", { location: "hero_button" });
               }}
             >

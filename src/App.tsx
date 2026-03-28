@@ -1,13 +1,26 @@
 import type { RouteRecord } from "vite-react-ssg";
-import { Navigate, Outlet, useRoutes } from "react-router-dom";
+import { useEffect } from "react";
+import { Navigate, Outlet, useLocation, useRoutes } from "react-router-dom";
 
 import IndexPage from "@/pages/index";
 import AboutPage from "@/pages/about";
 import { Provider } from "@/provider";
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) return;
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
+  return null;
+}
+
 function AppShell() {
   return (
     <Provider>
+      <ScrollToTop />
       <Outlet />
     </Provider>
   );

@@ -10,6 +10,7 @@ import {
 } from "@heroui/navbar";
 import { link as linkStyles } from "@heroui/theme";
 import clsx from "clsx";
+import { ClientOnly } from "vite-react-ssg";
 
 import PigSvg from "../images/nathan-pig.svg";
 
@@ -27,6 +28,8 @@ const navbarStyles = `
   }
   .nav-brand-last { color: #ff54ff; }
 `;
+
+const ThemeSwitchFallback = () => <div className="w-6 h-6" />;
 
 // All icons accept className so currentColor / text-default-500 flows through
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -132,7 +135,7 @@ export const Navbar = () => {
                   )}
                   color="foreground"
                   href={item.href}
-                  onClick={() => {
+                  onPress={() => {
                     if (item.href === "/about/") {
                       trackCustomEvent("about_link_click", { location: "header_desktop" });
                     }
@@ -171,7 +174,7 @@ export const Navbar = () => {
             >
               <InstagramIcon className="text-default-500 hover:text-default-800 transition-colors" />
             </Link>
-            <ThemeSwitch />
+            <ClientOnly fallback={<ThemeSwitchFallback />}>{() => <ThemeSwitch />}</ClientOnly>
           </NavbarItem>
         </NavbarContent>
 
@@ -180,7 +183,7 @@ export const Navbar = () => {
           <Link isExternal href={siteConfig.links.github}>
             <GithubIcon className="text-default-500" />
           </Link>
-          <ThemeSwitch />
+          <ClientOnly fallback={<ThemeSwitchFallback />}>{() => <ThemeSwitch />}</ClientOnly>
           <NavbarMenuToggle />
         </NavbarContent>
 
@@ -192,8 +195,8 @@ export const Navbar = () => {
                   color="foreground"
                   href={item.href}
                   size="lg"
-                  onClick={() => {
-                    if (item.href === "/about") {
+                  onPress={() => {
+                    if (item.href === "/about/") {
                       trackCustomEvent("about_link_click", { location: "header_mobile" });
                     }
                   }}
