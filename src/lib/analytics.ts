@@ -6,7 +6,11 @@ type EventMeta = {
 };
 
 export function trackCustomEvent(ev: string, meta?: EventMeta) {
-  void Swetrix.track({ ev, meta });
+  try {
+    void Swetrix.track({ ev, meta });
+  } catch (err) {
+    console.warn("[analytics] Failed to track event:", err);
+  }
 }
 
 export function useTrackPageReadBottom(page: string) {
@@ -24,7 +28,11 @@ export function useTrackPageReadBottom(page: string) {
 
       if (scrollTop + viewportHeight >= pageHeight - 24) {
         tracked = true;
-        void Swetrix.track({ ev: `${page}_funnel_bottom` });
+        try {
+          void Swetrix.track({ ev: `${page}_funnel_bottom` });
+        } catch (err) {
+          console.warn("[analytics] Failed to track funnel event:", err);
+        }
         window.removeEventListener("scroll", onScroll);
       }
     };

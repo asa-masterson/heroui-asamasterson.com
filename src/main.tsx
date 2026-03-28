@@ -11,18 +11,26 @@ export const createRoot = ViteReactSSG(
   async ({ isClient }) => {
     if (!isClient) return;
 
-    const [Sentry, Swetrix] = await Promise.all([
-      import("@sentry/browser"),
-      import("swetrix"),
-    ]);
+    try {
+      const [Sentry, Swetrix] = await Promise.all([
+        import("@sentry/browser"),
+        import("swetrix"),
+      ]);
 
-    Sentry.init({
-      dsn: import.meta.env.VITE_GLITCHTIP_DSN,
-    });
+      Sentry.init({
+        dsn: import.meta.env.VITE_GLITCHTIP_DSN,
+      });
 
-    Swetrix.init("sjFU3ryURYdB", {
-      apiURL: "https://swetrix.bigfluffy.monster/backend/v1/log",
-    });
-    Swetrix.trackViews();
+      try {
+        Swetrix.init("sjFU3ryURYdB", {
+          apiURL: "https://swetrix.bigfluffy.monster/backend/v1/log",
+        });
+        Swetrix.trackViews();
+      } catch (err) {
+        console.warn("[swetrix] Failed to initialize analytics:", err);
+      }
+    } catch (err) {
+      console.error("[init] Failed to load analytics modules:", err);
+    }
   },
 );
