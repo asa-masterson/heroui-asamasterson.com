@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 
-import DefaultLayout from "@/layouts/default";
 import ToruLogoUrl from "../images/toru_digital_logo.jpg";
+
+import DefaultLayout from "@/layouts/default";
 
 // ─── Page-specific styles only.
 //     Design tokens, .section-*, .section-divider live in globals.css
@@ -337,7 +338,6 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════ INTRO */}
       <div className="about-page-wrap">
         <div className="about-hero">
-
           {/* Left: text */}
           <div>
             <p className="about-hero-eyebrow">About me</p>
@@ -347,39 +347,58 @@ export default function AboutPage() {
             </h1>
 
             <p className="about-body">
-              I'm a <strong>BSc Business Computing student</strong> at the University of
-              Northampton and a developer with a particular interest in{" "}
-              <strong>self-hosted infrastructure</strong>, writing Python, and building
-              things that are actually useful.
+              I'm a <strong>BSc Business Computing student</strong> at the
+              University of Northampton and a developer with a particular
+              interest in <strong>self-hosted infrastructure</strong>, writing
+              Python, and building things that are actually useful.
             </p>
             <p className="about-body">
-              I grew up in Oxford and started messing around with Python and Linux in
-              secondary school — that's when I built my first website, asamasterson.com,
-              off a Raspberry Pi. I went on to study a{" "}
-              <strong>T-Level in Digital Production, Design and Development</strong> at
-              City of Oxford College (Merit), completing an industry placement at{" "}
-              <strong>Oxfordshire County Council</strong> as a Customer Support Engineer.
+              I grew up in Oxford and started messing around with Python and
+              Linux in secondary school — that's when I built my first website,
+              asamasterson.com, off a Raspberry Pi. I went on to study a{" "}
+              <strong>
+                T-Level in Digital Production, Design and Development
+              </strong>{" "}
+              at City of Oxford College (Merit), completing an industry
+              placement at <strong>Oxfordshire County Council</strong> as a
+              Customer Support Engineer.
             </p>
             <p className="about-body">
               Outside of university I run my own server stack on{" "}
-              <strong>bigfluffy.monster</strong> — Coolify, MinIO S3, databases — and
-              I'm active in the <strong>NN1 Dev community</strong> in Northampton.
+              <strong>bigfluffy.monster</strong> — Coolify, MinIO S3, databases
+              — and I'm active in the <strong>NN1 Dev community</strong> in
+              Northampton.
             </p>
 
             <div className="pull-quote">
               <p className="pull-quote-text">
-                "I think T Levels are good for anyone who likes to be more interactive
-                and hands-on with work-based learning and group work."
+                "I think T Levels are good for anyone who likes to be more
+                interactive and hands-on with work-based learning and group
+                work."
               </p>
               <span className="pull-quote-source">
-                — Asa Masterson · Activate Learning T Levels Celebration Week 2023
+                — Asa Masterson · Activate Learning T Levels Celebration Week
+                2023
               </span>
             </div>
 
             <div className="about-tags">
-              {["Python", "Django", "React", "TypeScript", "Rust", "Docker",
-                "Coolify", "FastAPI", "SQL", "Tailwind CSS", "Self-hosted"].map((t) => (
-                <span key={t} className="about-tag">{t}</span>
+              {[
+                "Python",
+                "Django",
+                "React",
+                "TypeScript",
+                "Rust",
+                "Docker",
+                "Coolify",
+                "FastAPI",
+                "SQL",
+                "Tailwind CSS",
+                "Self-hosted",
+              ].map((t) => (
+                <span key={t} className="about-tag">
+                  {t}
+                </span>
               ))}
             </div>
           </div>
@@ -391,7 +410,9 @@ export default function AboutPage() {
               className="about-hero-img"
               src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-flannel-college.webp"
             />
-            <p className="about-hero-img-caption">City of Oxford College · 2023</p>
+            <p className="about-hero-img-caption">
+              City of Oxford College · 2023
+            </p>
           </div>
         </div>
       </div>
@@ -405,27 +426,35 @@ export default function AboutPage() {
             <span className="section-title-outline">Hackathons </span>
             <span className="section-title-solid">&amp; Events.</span>
           </h2>
-          <p className="section-sub">Competing, building, and meeting people — in and out of university.</p>
+          <p className="section-sub">
+            Competing, building, and meeting people — in and out of university.
+          </p>
         </div>
 
         <div className="hack-grid">
-
           {/* Toru */}
           <div className="hack-card">
             <div className="hack-card-header">
-              <img alt="Toru logo" className="hack-card-logo" src={ToruLogoUrl} />
-              <span className="hack-card-badge">Toru Digital · Northampton</span>
+              <img
+                alt="Toru logo"
+                className="hack-card-logo"
+                src={ToruLogoUrl}
+              />
+              <span className="hack-card-badge">
+                Toru Digital · Northampton
+              </span>
             </div>
             <div>
               <p className="hack-card-org">Toru Digital</p>
               <p className="hack-card-title">Toru Challenge Hackathon</p>
             </div>
             <p className="hack-card-desc">
-              Whilst at university, I took part in a two-day industry challenge at the University of Northampton
-              set by Toru Digital, tasked with designing and developing an e-commerce
-              solution for a high-end jewellery company with a focus on improving the
-              online customer journey. I built the FastAPI backend, handling product
-              reviews and e-commerce queries, containerised with Docker and running a
+              Whilst at university, I took part in a two-day industry challenge
+              at the University of Northampton set by Toru Digital, tasked with
+              designing and developing an e-commerce solution for a high-end
+              jewellery company with a focus on improving the online customer
+              journey. I built the FastAPI backend, handling product reviews and
+              e-commerce queries, containerised with Docker and running a
               self-hosted MySQL database.
             </p>
             <div className="hack-card-tags">
@@ -447,12 +476,13 @@ export default function AboutPage() {
               <p className="hack-card-title">Triad Hackathon</p>
             </div>
             <p className="hack-card-desc">
-              Whilst at university, I took part in a two-day industry challenge event at Triad's offices in Milton
-              Keynes, tasked with designing and prototyping an AI-powered Discovery Plan
-              tool aligned to Government digital standards. Working under real industry
-              expectations, teams integrated OpenAI models, considered security, governance
-              and ethical AI constraints, and delivered commercially focused presentations
-              to Triad's senior leadership.
+              Whilst at university, I took part in a two-day industry challenge
+              event at Triad's offices in Milton Keynes, tasked with designing
+              and prototyping an AI-powered Discovery Plan tool aligned to
+              Government digital standards. Working under real industry
+              expectations, teams integrated OpenAI models, considered security,
+              governance and ethical AI constraints, and delivered commercially
+              focused presentations to Triad's senior leadership.
             </p>
             <div className="hack-card-tags">
               <span className="hack-card-tag">AI</span>
@@ -466,24 +496,44 @@ export default function AboutPage() {
           <div className="hack-card hack-card-wide">
             <div className="hack-card-header">
               <div style={{ display: "flex", gap: "0.6rem" }}>
-                <div className="hack-card-logo-placeholder" title="Metropolitan Police">🚔</div>
-                <div className="hack-card-logo-placeholder" title="Amazon Web Services">☁️</div>
+                <div
+                  className="hack-card-logo-placeholder"
+                  title="Metropolitan Police"
+                >
+                  🚔
+                </div>
+                <div
+                  className="hack-card-logo-placeholder"
+                  title="Amazon Web Services"
+                >
+                  ☁️
+                </div>
               </div>
               <span className="hack-card-badge">Experience Haus · London</span>
             </div>
             <div className="hack-card-inner">
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.9rem" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.9rem",
+                }}
+              >
                 <div>
                   <p className="hack-card-org">Metropolitan Police &amp; AWS</p>
-                  <p className="hack-card-title">Met Police × AWS Innovation Challenge</p>
+                  <p className="hack-card-title">
+                    Met Police × AWS Innovation Challenge
+                  </p>
                 </div>
                 <p className="hack-card-desc">
-                  Whilst at college, I took part in a workshop event at Experience Haus in London bringing
-                  together young people, designers, and police officers for an honest open
-                  discussion on improving public-police relationships. Rather than a coding
-                  challenge, the day was about co-designing real solutions — working with
-                  designers and mentors from employers, charities, and government to tackle
-                  difficult societal problems. Sponsored by Amazon Web Services.
+                  Whilst at college, I took part in a workshop event at
+                  Experience Haus in London bringing together young people,
+                  designers, and police officers for an honest open discussion
+                  on improving public-police relationships. Rather than a coding
+                  challenge, the day was about co-designing real solutions —
+                  working with designers and mentors from employers, charities,
+                  and government to tackle difficult societal problems.
+                  Sponsored by Amazon Web Services.
                 </p>
                 <div className="hack-card-tags">
                   <span className="hack-card-tag">Design thinking</span>
@@ -491,19 +541,28 @@ export default function AboutPage() {
                   <span className="hack-card-tag">Problem solving</span>
                 </div>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.75rem",
+                }}
+              >
                 <div className="hack-info-panel">
                   <p className="hack-info-panel-label">Venue</p>
-                  <p className="hack-info-panel-value">Experience Haus, Shoreditch, London</p>
+                  <p className="hack-info-panel-value">
+                    Experience Haus, Shoreditch, London
+                  </p>
                 </div>
                 <div className="hack-info-panel">
                   <p className="hack-info-panel-label">Hosts</p>
-                  <p className="hack-info-panel-value">Metropolitan Police · Amazon Web Services</p>
+                  <p className="hack-info-panel-value">
+                    Metropolitan Police · Amazon Web Services
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -524,26 +583,27 @@ export default function AboutPage() {
             <span className="value-icon">🏗️</span>
             <p className="value-title">Build to learn</p>
             <p className="value-desc">
-              I learn fastest by shipping something real. Side projects — from a view
-              counter to a full Django e-commerce site — teach me more than any tutorial.
+              I learn fastest by shipping something real. Side projects — from a
+              view counter to a full Django e-commerce site — teach me more than
+              any tutorial.
             </p>
           </div>
           <div className="value-card">
             <span className="value-icon">🐷</span>
             <p className="value-title">Own your stack</p>
             <p className="value-desc">
-              I self-host my websites, APIs, and databases on my own VPS using Coolify,
-              with MinIO handling object storage — including assets for this site.
-              Running it all means I understand every layer.
+              I self-host my websites, APIs, and databases on my own VPS using
+              Coolify, with MinIO handling object storage — including assets for
+              this site. Running it all means I understand every layer.
             </p>
           </div>
           <div className="value-card">
             <span className="value-icon">🤝</span>
             <p className="value-title">Community first</p>
             <p className="value-desc">
-              I'm a regular at NN1 Dev Club in Northampton — monthly talks covering
-              everything from compiler internals to async workflows, followed by drinks
-              where the best conversations happen.
+              I'm a regular at NN1 Dev Club in Northampton — monthly talks
+              covering everything from compiler internals to async workflows,
+              followed by drinks where the best conversations happen.
             </p>
           </div>
         </div>

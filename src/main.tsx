@@ -9,8 +9,8 @@ import { Provider } from "./provider.tsx";
 import "@/styles/globals.css";
 
 // Initialize Sentry as early as possible
-Sentry.init({ 
-  dsn: import.meta.env.VITE_GLITCHTIP_DSN
+Sentry.init({
+  dsn: import.meta.env.VITE_GLITCHTIP_DSN,
 });
 
 Swetrix.init("sjFU3ryURYdB", {

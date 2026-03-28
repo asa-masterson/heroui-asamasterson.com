@@ -496,7 +496,10 @@ const pageStyles = `
 
 const LinkedInIcon = ({ size = 18 }: { size?: number }) => (
   <svg fill="none" height={size} viewBox="0 0 24 24" width={size}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" fill="currentColor" />
+    <path
+      d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+      fill="currentColor"
+    />
     <rect fill="currentColor" height="12" width="4" x="2" y="9" />
     <circle cx="4" cy="4" fill="currentColor" r="2" />
   </svg>
@@ -506,7 +509,9 @@ export default function IndexPage() {
   const [viewCount, setViewCount] = useState<string | null>(null);
 
   const fetchViewCount = () => {
-    fetch("https://a.bigfluffy.monster/counter/id/asamastersoncom-button?ttl=3600")
+    fetch(
+      "https://a.bigfluffy.monster/counter/id/asamastersoncom-button?ttl=3600",
+    )
       .then((r) => r.json())
       .then((d) => setViewCount("" + d.Users))
       .catch(() => setViewCount(null));
@@ -539,7 +544,6 @@ export default function IndexPage() {
       {/* ══════════════════════════════════════════ HERO */}
       <section className="hero-root">
         <div className="hero-inner">
-
           <p className="hero-eyebrow">Portfolio · asamasterson.com</p>
           <h1 className="hero-name">
             <span className="hero-name-line1">Asa</span>
@@ -556,28 +560,46 @@ export default function IndexPage() {
           <div className="hero-actions">
             <Link
               isExternal
-              className={buttonStyles({ color: "primary", radius: "full", variant: "shadow", size: "md" })}
+              className={buttonStyles({
+                color: "primary",
+                radius: "full",
+                variant: "shadow",
+                size: "md",
+              })}
               href="https://pigsare.pink"
             >
               🐷 pigsare.pink
             </Link>
             <Link
               isExternal
-              className={buttonStyles({ variant: "bordered", radius: "full", size: "md" })}
+              className={buttonStyles({
+                variant: "bordered",
+                radius: "full",
+                size: "md",
+              })}
               href="https://github.com/asa-masterson"
             >
               <GithubIcon size={18} /> GitHub
             </Link>
             <Link
               isExternal
-              className={buttonStyles({ variant: "flat", radius: "full", size: "md" })}
+              className={buttonStyles({
+                variant: "flat",
+                radius: "full",
+                size: "md",
+              })}
               href="https://www.linkedin.com/in/asa-masterson/"
             >
               <LinkedInIcon size={18} /> LinkedIn
             </Link>
             <Link
               isExternal
-              className={buttonStyles({ color: "success", radius: "full", variant: "shadow", size: "md" })}
+              className={buttonStyles({
+                color: "success",
+                radius: "full",
+                variant: "shadow",
+                size: "md",
+              })}
               href="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-masterson-cv.pdf"
             >
               📄 Download CV
@@ -597,7 +619,9 @@ export default function IndexPage() {
             <span className="section-title-outline">About </span>
             <span className="section-title-solid">Me.</span>
           </h2>
-          <p className="section-sub">A few things I've written — check one out.</p>
+          <p className="section-sub">
+            A few things I've written — check one out.
+          </p>
         </div>
 
         <div className="about-grid">
@@ -605,14 +629,25 @@ export default function IndexPage() {
             className="about-card"
             role="button"
             tabIndex={0}
-            onClick={() => window.open("https://nn1.dev/spotlight/asa-masterson/", "_blank")}
-            onKeyDown={(e) => e.key === "Enter" && window.open("https://nn1.dev/spotlight/asa-masterson/", "_blank")}
+            onClick={() =>
+              window.open("https://nn1.dev/spotlight/asa-masterson/", "_blank")
+            }
+            onKeyDown={(e) =>
+              e.key === "Enter" &&
+              window.open("https://nn1.dev/spotlight/asa-masterson/", "_blank")
+            }
           >
-            <img alt="Asa Masterson" className="about-card-img" src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/mobileasaturkey.jpg" />
+            <img
+              alt="Asa Masterson"
+              className="about-card-img"
+              src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/mobileasaturkey.jpg"
+            />
             <div className="about-card-footer">
               <div>
                 <p className="about-card-label">NN1.dev · Spotlight</p>
-                <p className="about-card-text">A short interview about me &amp; tech.</p>
+                <p className="about-card-text">
+                  A short interview about me &amp; tech.
+                </p>
               </div>
               <button className="about-card-btn">Read →</button>
             </div>
@@ -622,14 +657,31 @@ export default function IndexPage() {
             className="about-card"
             role="button"
             tabIndex={0}
-            onClick={() => window.open("https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee", "_blank")}
-            onKeyDown={(e) => e.key === "Enter" && window.open("https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee", "_blank")}
+            onClick={() =>
+              window.open(
+                "https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee",
+                "_blank",
+              )
+            }
+            onKeyDown={(e) =>
+              e.key === "Enter" &&
+              window.open(
+                "https://medium.com/@asa.masterson/what-are-t-levels-from-a-student-6beed40b95ee",
+                "_blank",
+              )
+            }
           >
-            <img alt="Asa Masterson outside college" className="about-card-img" src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-flannel-college.webp" />
+            <img
+              alt="Asa Masterson outside college"
+              className="about-card-img"
+              src="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-flannel-college.webp"
+            />
             <div className="about-card-footer">
               <div>
                 <p className="about-card-label">Medium.com</p>
-                <p className="about-card-text">What are T-Levels? From a student.</p>
+                <p className="about-card-text">
+                  What are T-Levels? From a student.
+                </p>
               </div>
               <button className="about-card-btn">Read →</button>
             </div>
@@ -644,7 +696,8 @@ export default function IndexPage() {
               <span className="about-cta-heading-solid">Asa.</span>
             </p>
             <p className="about-cta-sub">
-              Hackathons, work philosophy, the Met Police × AWS challenge in London, and more.
+              Hackathons, work philosophy, the Met Police × AWS challenge in
+              London, and more.
             </p>
           </div>
           <span className="about-cta-arrow">Read about me →</span>
@@ -660,17 +713,31 @@ export default function IndexPage() {
             <span className="section-title-solid">My </span>
             <span className="section-title-outline">Projects.</span>
           </h2>
-          <p className="section-sub">A small overview of what I've been working on.</p>
+          <p className="section-sub">
+            A small overview of what I've been working on.
+          </p>
         </div>
         <div className="projects-grid">
-          <div className="proj-card" role="button" tabIndex={0}
+          <div
+            className="proj-card"
+            role="button"
+            tabIndex={0}
             onClick={() => window.open("https://pigsare.pink", "_blank")}
-            onKeyDown={(e) => e.key === "Enter" && window.open("https://pigsare.pink", "_blank")}
+            onKeyDown={(e) =>
+              e.key === "Enter" && window.open("https://pigsare.pink", "_blank")
+            }
           >
-            <img alt="pigsare.pink" className="proj-card-img" src={PinkScreenshotUrl} />
+            <img
+              alt="pigsare.pink"
+              className="proj-card-img"
+              src={PinkScreenshotUrl}
+            />
             <div className="proj-card-body">
               <p className="proj-card-title">pigsare.pink</p>
-              <p className="proj-card-desc">Personality-first portfolio built with vanilla HTML, CSS &amp; JS — self-hosted on Coolify.</p>
+              <p className="proj-card-desc">
+                Personality-first portfolio built with vanilla HTML, CSS &amp;
+                JS — self-hosted on Coolify.
+              </p>
             </div>
             <div className="proj-card-footer">
               <span className="proj-card-tag">HTML</span>
@@ -679,20 +746,43 @@ export default function IndexPage() {
             </div>
           </div>
 
-          <div className="proj-card" role="button" tabIndex={0}
-            onClick={() => window.open("https://github.com/asa-masterson/fastapi-redis-counter/tree/master", "_blank")}
-            onKeyDown={(e) => e.key === "Enter" && window.open("https://github.com/asa-masterson/fastapi-redis-counter/tree/master", "_blank")}
+          <div
+            className="proj-card"
+            role="button"
+            tabIndex={0}
+            onClick={() =>
+              window.open(
+                "https://github.com/asa-masterson/fastapi-redis-counter/tree/master",
+                "_blank",
+              )
+            }
+            onKeyDown={(e) =>
+              e.key === "Enter" &&
+              window.open(
+                "https://github.com/asa-masterson/fastapi-redis-counter/tree/master",
+                "_blank",
+              )
+            }
           >
             <div className="proj-card-counter">
               <span className="proj-card-counter-num">{viewCount ?? "—"}</span>
               <span className="proj-card-counter-label">page views</span>
-              <button className="proj-card-counter-btn" onClick={(e) => { e.stopPropagation(); fetchViewCount(); }}>
+              <button
+                className="proj-card-counter-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  fetchViewCount();
+                }}
+              >
                 + Increment
               </button>
             </div>
             <div className="proj-card-body">
               <p className="proj-card-title">PageViews Counter</p>
-              <p className="proj-card-desc">FastAPI + Python with a Redis backend tracking views across any project.</p>
+              <p className="proj-card-desc">
+                FastAPI + Python with a Redis backend tracking views across any
+                project.
+              </p>
             </div>
             <div className="proj-card-footer">
               <span className="proj-card-tag">Python</span>
@@ -701,14 +791,35 @@ export default function IndexPage() {
             </div>
           </div>
 
-          <div className="proj-card" role="button" tabIndex={0}
-            onClick={() => window.open("https://github.com/asa-masterson/toru-backend", "_blank")}
-            onKeyDown={(e) => e.key === "Enter" && window.open("https://github.com/asa-masterson/toru-backend", "_blank")}
+          <div
+            className="proj-card"
+            role="button"
+            tabIndex={0}
+            onClick={() =>
+              window.open(
+                "https://github.com/asa-masterson/toru-backend",
+                "_blank",
+              )
+            }
+            onKeyDown={(e) =>
+              e.key === "Enter" &&
+              window.open(
+                "https://github.com/asa-masterson/toru-backend",
+                "_blank",
+              )
+            }
           >
-            <img alt="Toru Challenge" className="proj-card-img" src={ToruLogoUrl} />
+            <img
+              alt="Toru Challenge"
+              className="proj-card-img"
+              src={ToruLogoUrl}
+            />
             <div className="proj-card-body">
               <p className="proj-card-title">Toru Challenge</p>
-              <p className="proj-card-desc">Hackathon FastAPI backend for reviews &amp; e-commerce queries, containerised with Docker + MySQL.</p>
+              <p className="proj-card-desc">
+                Hackathon FastAPI backend for reviews &amp; e-commerce queries,
+                containerised with Docker + MySQL.
+              </p>
             </div>
             <div className="proj-card-footer">
               <span className="proj-card-tag">FastAPI</span>
@@ -736,7 +847,9 @@ export default function IndexPage() {
               <p className="skills-cat-label">{label}</p>
               <div className="skills-chip-row">
                 {skills.map((s) => (
-                  <span key={s} className="skills-chip">{s}</span>
+                  <span key={s} className="skills-chip">
+                    {s}
+                  </span>
                 ))}
               </div>
             </div>
@@ -757,7 +870,9 @@ export default function IndexPage() {
         </div>
         <div className="work-grid">
           <div className="work-card">
-            <img alt="Oxfordshire County Council" className="work-logo"
+            <img
+              alt="Oxfordshire County Council"
+              className="work-logo"
               src="https://imgproxy.bigfluffy.monster/YnX3ViM9fY-kT0p9Z9GKmWx0UBW8LAjnFCnPzKq05Wo/rs:fill:400:400/g:sm/q:85/f:webp/strip_metadata:1/aHR0cHM6Ly9taW5pby1zMy5iaWdmbHVmZnkubW9uc3Rlci9waWdzYXJlLXBpbmsvYXNzZXRzL09DQy53ZWJw"
             />
             <div>
@@ -767,12 +882,16 @@ export default function IndexPage() {
             </div>
           </div>
           <div className="work-card">
-            <img alt="Vue Cinemas" className="work-logo"
+            <img
+              alt="Vue Cinemas"
+              className="work-logo"
               src="https://imgproxy.bigfluffy.monster/nrbtdj0y7Ansq-H2N_bHCKtKw69hO1iDUr2nsiaKsY0/rs:fill:400:400/g:sm/q:85/f:webp/strip_metadata:1/aHR0cHM6Ly9taW5pby1zMy5iaWdmbHVmZnkubW9uc3Rlci9waWdzYXJlLXBpbmsvYXNzZXRzL1ZVRS53ZWJw"
             />
             <div>
               <p className="work-title">Vue Cinemas</p>
-              <p className="work-role">Customer Assistant · Oxford &amp; Northampton</p>
+              <p className="work-role">
+                Customer Assistant · Oxford &amp; Northampton
+              </p>
               <p className="work-period">Oct '21 – Present</p>
             </div>
           </div>
@@ -792,9 +911,22 @@ export default function IndexPage() {
         </div>
         <div className="edu-list">
           {[
-            { institution: "University of Northampton", detail: "BSc Business Computing · Current", period: "2023 – Present" },
-            { institution: "City of Oxford College (Activate Learning)", detail: "Merit · T-Level in Digital Production, Design and Development", period: "2021 – 2023" },
-            { institution: "Gosford Hill School", detail: "8 · GCSE Computer Science   ·   6 · GCSE Mathematics", period: "2016 – 2021" },
+            {
+              institution: "University of Northampton",
+              detail: "BSc Business Computing · Current",
+              period: "2023 – Present",
+            },
+            {
+              institution: "City of Oxford College (Activate Learning)",
+              detail:
+                "Merit · T-Level in Digital Production, Design and Development",
+              period: "2021 – 2023",
+            },
+            {
+              institution: "Gosford Hill School",
+              detail: "8 · GCSE Computer Science   ·   6 · GCSE Mathematics",
+              period: "2016 – 2021",
+            },
           ].map(({ institution, detail, period }) => (
             <div key={institution} className="edu-item">
               <div>
