@@ -3,10 +3,10 @@ FROM node:18-alpine AS build
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
-# Install deterministic dependencies from lockfile
-RUN npm ci
+# Prefer deterministic install when lockfile exists; fallback keeps build working.
+RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
 COPY . .
 
