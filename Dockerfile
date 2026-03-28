@@ -3,16 +3,16 @@ FROM node:18-alpine AS build
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package.json package-lock.json ./
 
-# Install ALL deps (including devDeps needed for build) but signal production intent
-RUN yarn install --frozen-lockfile
+# Install deterministic dependencies from lockfile
+RUN npm ci
 
 COPY . .
 
 # Build the app
 ENV NODE_ENV=production
-RUN NODE_OPTIONS="--max-old-space-size=2048" yarn build
+RUN NODE_OPTIONS="--max-old-space-size=2048" npm run build
 
 # Runtime stage
 FROM nginx:alpine AS runtime
