@@ -14,6 +14,7 @@ import clsx from "clsx";
 import PigSvg from "../images/nathan-pig.svg";
 
 import { siteConfig } from "@/config/site";
+import { trackCustomEvent } from "@/lib/analytics";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon } from "@/components/icons";
 
@@ -132,6 +133,11 @@ export const Navbar = () => {
                   )}
                   color="foreground"
                   href={item.href}
+                  onClick={() => {
+                    if (item.href === "/about") {
+                      trackCustomEvent("about_link_click", { location: "header_desktop" });
+                    }
+                  }}
                 >
                   {item.label}
                 </Link>
@@ -183,7 +189,16 @@ export const Navbar = () => {
           <div className="mx-4 mt-2 flex flex-col gap-2">
             {siteConfig.navMenuItems.map((item, index) => (
               <NavbarMenuItem key={`${item.label}-${index}`}>
-                <Link color="foreground" href={item.href} size="lg">
+                <Link
+                  color="foreground"
+                  href={item.href}
+                  size="lg"
+                  onClick={() => {
+                    if (item.href === "/about") {
+                      trackCustomEvent("about_link_click", { location: "header_mobile" });
+                    }
+                  }}
+                >
                   {item.label}
                 </Link>
               </NavbarMenuItem>

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import ToruLogoUrl from "../images/toru_digital_logo.jpg";
 
+import { useTrackPageReadBottom } from "@/lib/analytics";
 import DefaultLayout from "@/layouts/default";
 
 // ─── Page-specific styles only.
@@ -327,6 +328,8 @@ const pageStyles = `
 `;
 
 export default function AboutPage() {
+  useTrackPageReadBottom("about");
+
   useEffect(() => {
     document.title = "About — Asa Masterson";
   }, []);

@@ -7,6 +7,7 @@ import PinkScreenshotUrl from "../images/pink-screenshot.png";
 import ToruLogoUrl from "../images/toru_digital_logo.jpg";
 
 import { GithubIcon } from "@/components/icons";
+import { trackCustomEvent, useTrackPageReadBottom } from "@/lib/analytics";
 import DefaultLayout from "@/layouts/default";
 
 // ─── Page-specific styles only.
@@ -508,6 +509,8 @@ const LinkedInIcon = ({ size = 18 }: { size?: number }) => (
 export default function IndexPage() {
   const [viewCount, setViewCount] = useState<string | null>(null);
 
+  useTrackPageReadBottom("home");
+
   const fetchViewCount = () => {
     fetch(
       "https://a.bigfluffy.monster/counter/id/asamastersoncom-button?ttl=3600",
@@ -567,6 +570,9 @@ export default function IndexPage() {
                 size: "md",
               })}
               href="https://pigsare.pink"
+              onClick={() => {
+                trackCustomEvent("pigsarepink_link_click", { location: "hero_button" });
+              }}
             >
               🐷 pigsare.pink
             </Link>
@@ -601,6 +607,9 @@ export default function IndexPage() {
                 size: "md",
               })}
               href="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-masterson-cv.pdf"
+              onClick={() => {
+                trackCustomEvent("download_cv_link_click", { location: "hero_button" });
+              }}
             >
               📄 Download CV
             </Link>
@@ -688,7 +697,13 @@ export default function IndexPage() {
           </div>
         </div>
 
-        <a className="about-cta" href="/about">
+        <a
+          className="about-cta"
+          href="/about"
+          onClick={() => {
+            trackCustomEvent("about_cta_link_click", { location: "home_about_section" });
+          }}
+        >
           <div>
             <p className="about-cta-eyebrow">There's more ↓</p>
             <p className="about-cta-heading">
@@ -722,10 +737,16 @@ export default function IndexPage() {
             className="proj-card"
             role="button"
             tabIndex={0}
-            onClick={() => window.open("https://pigsare.pink", "_blank")}
-            onKeyDown={(e) =>
-              e.key === "Enter" && window.open("https://pigsare.pink", "_blank")
-            }
+            onClick={() => {
+              trackCustomEvent("pigsarepink_link_click", { location: "project_card" });
+              window.open("https://pigsare.pink", "_blank");
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                trackCustomEvent("pigsarepink_link_click", { location: "project_card" });
+                window.open("https://pigsare.pink", "_blank");
+              }
+            }}
           >
             <img
               alt="pigsare.pink"
