@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import * as Sentry from "@sentry/browser";
 import * as Swetrix from "swetrix";
 
@@ -20,10 +21,12 @@ Swetrix.trackViews();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider>
-        <App />
-      </Provider>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Provider>
+          <App />
+        </Provider>
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>,
 );
