@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" style="background-color: #000000;">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,8 +26,7 @@
             root.style.colorScheme = "dark";
           } else if (theme === "light") {
             root.classList.remove("dark");
-            // Keep dark-safe paint defaults to avoid a white flash before hydration.
-            root.style.colorScheme = "dark";
+            root.style.colorScheme = "light";
           }
         } catch (_) {
           // Ignore storage/matchMedia errors and keep default rendering.
