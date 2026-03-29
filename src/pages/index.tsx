@@ -520,7 +520,10 @@ export default function IndexPage() {
     fetch(
       "https://a.bigfluffy.monster/counter/id/asamastersoncom-button?ttl=3600",
     )
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error("counter fetch failed");
+        return r.json();
+      })
       .then((d) => setViewCount("" + d.Users))
       .catch(() => setViewCount(null));
   };

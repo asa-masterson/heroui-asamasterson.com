@@ -12,12 +12,15 @@ export default function DefaultLayout({
 
   useEffect(() => {
     fetch("https://a.bigfluffy.monster/counter/id/asamastersoncom")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) throw new Error("counter fetch failed");
+        return response.json();
+      })
       .then((data) => {
         setViewCount("Views — " + data.Users);
       })
       .catch(() => {
-        setViewCount(null);
+        setViewCount("Views — err");
       });
   }, []);
 
