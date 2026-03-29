@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="background-color: #000000;">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,10 +24,13 @@
           if (theme === "dark") {
             root.classList.add("dark");
             root.style.colorScheme = "dark";
+            root.style.backgroundColor = "#000000";
           } else if (theme === "light") {
             root.classList.remove("dark");
             root.style.colorScheme = "light";
+            root.style.backgroundColor = "#ffffff";
           }
+          
         } catch (_) {
           // Ignore storage/matchMedia errors and keep default rendering.
         }

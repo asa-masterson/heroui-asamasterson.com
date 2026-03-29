@@ -14,7 +14,6 @@
   --card-border:  rgba(0, 0, 0, 0.08);
   --card-bg:      #ffffff;
   --tag-bg:       rgba(255, 84, 255, 0.08);
-  --page-bg:      #ffffff;
 }
 .dark {
   --stroke-color: #f0f0f0;
@@ -22,7 +21,6 @@
   --card-border:  rgba(255, 255, 255, 0.08);
   --card-bg:      rgba(255, 255, 255, 0.03);
   --tag-bg:       rgba(255, 84, 255, 0.12);
-  --page-bg:      #000000;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -90,9 +88,9 @@
    ═══════════════════════════════════════════════════════════ */
 html {
   scroll-behavior: smooth;
-  background-color: var(--page-bg);
+  background-color: #000000;
 }
 
 body {
-  background-color: inherit;
+  background-color: var(--page-bg);
 }
