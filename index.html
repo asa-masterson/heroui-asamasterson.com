@@ -4,6 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <script>
+      (function () {
+        try {
+          var root = document.documentElement;
+          var stored =
+            localStorage.getItem("theme") ||
+            localStorage.getItem("heroui-theme") ||
+            localStorage.getItem("next-theme");
+          var prefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = stored || (prefersDark ? "dark" : "light");
+
+          if (theme === "dark") {
+            root.classList.add("dark");
+            root.style.colorScheme = "dark";
+          } else {
+            root.classList.remove("dark");
+            root.style.colorScheme = "light";
+          }
+        } catch (_) {
+          // Ignore storage/matchMedia errors and keep default rendering.
+        }
+      })();
+    </script>
+
     <!--
       Fallback only, react helmet should inject the correct titles and tags
     -->
