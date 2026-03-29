@@ -15,14 +15,19 @@
           var prefersDark =
             window.matchMedia &&
             window.matchMedia("(prefers-color-scheme: dark)").matches;
-          var theme = stored || (prefersDark ? "dark" : "light");
+          var theme = stored;
+
+          if (theme === "system" || !theme) {
+            theme = prefersDark ? "dark" : "light";
+          }
 
           if (theme === "dark") {
             root.classList.add("dark");
             root.style.colorScheme = "dark";
-          } else {
+          } else if (theme === "light") {
             root.classList.remove("dark");
-            root.style.colorScheme = "light";
+            // Keep dark-safe paint defaults to avoid a white flash before hydration.
+            root.style.colorScheme = "dark";
           }
         } catch (_) {
           // Ignore storage/matchMedia errors and keep default rendering.
