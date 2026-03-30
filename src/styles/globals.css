@@ -88,9 +88,9 @@
    ═══════════════════════════════════════════════════════════ */
 html {
   scroll-behavior: smooth;
-  background-color: #000000;
+  /* Background is owned by the inline theme script in index.html */
 }
 
 body {
-  background-color: #000000;
+  background-color: inherit; /* Pull from <html> which the script sets */
 }
