@@ -4,6 +4,7 @@ import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
 import { useTrackPageReadBottom } from "@/lib/analytics";
 import DefaultLayout from "@/layouts/default";
+import AboutTags from "@/components/AboutTags";
 
 // ─── Page-specific styles only.
 //     Design tokens, .section-*, .section-divider live in globals.css
@@ -77,24 +78,6 @@ const pageStyles = `
     color: var(--stroke-color);
   }
   .dark .about-body strong { color: #f0f0f0; }
-
-  .about-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.75rem;
-  }
-  .about-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--brand);
-    background: var(--tag-bg);
-    border: 1px solid rgba(255,84,255,0.2);
-    padding: 0.3rem 0.7rem;
-    border-radius: 4px;
-  }
 
   /* Photo */
   .about-hero-img-wrap { position: relative; }
@@ -381,25 +364,7 @@ export default function AboutPage() {
               </span>
             </div>
 
-            <div className="about-tags">
-              {[
-                "Python",
-                "Django",
-                "React",
-                "TypeScript",
-                "Rust",
-                "Docker",
-                "Coolify",
-                "FastAPI",
-                "SQL",
-                "Tailwind CSS",
-                "Self-hosted",
-              ].map((t) => (
-                <span key={t} className="about-tag">
-                  {t}
-                </span>
-              ))}
-            </div>
+            <AboutTags />
           </div>
 
           {/* Right: photo — sits below text on mobile (order: 1) */}
