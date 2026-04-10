@@ -577,7 +577,7 @@ export default function IndexPage() {
                 variant: "shadow",
                 size: "md",
               })}
-              href="https://pigsare.pink/"
+              href="https://pigsare.pink/?utm_source=asamasterson.com&utm_medium=referral&utm_campaign=hero"
               onPress={() => {
                 trackCustomEvent("pigsarepink_link_click", { location: "hero_button" });
               }}
@@ -592,6 +592,9 @@ export default function IndexPage() {
                 size: "md",
               })}
               href="https://github.com/asa-masterson"
+              onPress={() => {
+                trackCustomEvent("github_link_click", { location: "hero_button" });
+              }}
             >
               <GithubIcon size={18} /> GitHub
             </Link>
@@ -603,6 +606,9 @@ export default function IndexPage() {
                 size: "md",
               })}
               href="https://www.linkedin.com/in/asa-masterson/"
+              onPress={() => {
+                trackCustomEvent("linkedin_link_click", { location: "hero_button" });
+              }}
             >
               <LinkedInIcon size={18} /> LinkedIn
             </Link>
@@ -645,7 +651,7 @@ export default function IndexPage() {
           {/* Real <a href> — crawlable backlink to NN1 Dev spotlight */}
           <a
             className="about-card"
-            href="https://nn1.dev/spotlight/asa-masterson/"
+            href="https://nn1.dev/spotlight/asa-masterson/?utm_source=asamasterson.com&utm_medium=referral&utm_campaign=about_page"
             rel="noopener noreferrer"
             target="_blank"
             onClick={() =>

@@ -154,23 +154,43 @@ export const Navbar = () => {
           justify="end"
         >
           <NavbarItem className="hidden sm:flex gap-3 items-center">
-            <Link isExternal aria-label="Mail" href={siteConfig.links.email}>
+            <Link
+              isExternal
+              aria-label="Mail"
+              href={siteConfig.links.email}
+              onPress={() => {
+                trackCustomEvent("email_link_click", { location: "navbar_desktop" });
+              }}
+            >
               <MailIcon className="text-default-500 hover:text-default-800 transition-colors" />
             </Link>
             <Link
               isExternal
               aria-label="LinkedIn"
               href={siteConfig.links.linkedin}
+              onPress={() => {
+                trackCustomEvent("linkedin_link_click", { location: "navbar_desktop" });
+              }}
             >
               <LinkedInIcon className="text-default-500 hover:text-default-800 transition-colors" />
             </Link>
-            <Link isExternal aria-label="GitHub" href={siteConfig.links.github}>
+            <Link
+              isExternal
+              aria-label="GitHub"
+              href={siteConfig.links.github}
+              onPress={() => {
+                trackCustomEvent("github_link_click", { location: "navbar_desktop" });
+              }}
+            >
               <GithubIcon className="text-default-500 hover:text-default-800 transition-colors" />
             </Link>
             <Link
               isExternal
               aria-label="Instagram"
               href={siteConfig.links.instagram}
+              onPress={() => {
+                trackCustomEvent("instagram_link_click", { location: "navbar_desktop" });
+              }}
             >
               <InstagramIcon className="text-default-500 hover:text-default-800 transition-colors" />
             </Link>
@@ -180,7 +200,13 @@ export const Navbar = () => {
 
         {/* ── Mobile ── */}
         <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-          <Link isExternal href={siteConfig.links.github}>
+          <Link
+            isExternal
+            href={siteConfig.links.github}
+            onPress={() => {
+              trackCustomEvent("github_link_click", { location: "navbar_mobile" });
+            }}
+          >
             <GithubIcon className="text-default-500" />
           </Link>
           <ClientOnly fallback={<ThemeSwitchFallback />}>{() => <ThemeSwitch />}</ClientOnly>
