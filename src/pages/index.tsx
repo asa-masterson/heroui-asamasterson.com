@@ -770,6 +770,9 @@ export default function IndexPage() {
             href="https://github.com/asa-masterson/fastapi-redis-counter/tree/master"
             rel="noopener noreferrer"
             target="_blank"
+            onClick={() =>
+              trackCustomEvent("github_link_click", { location: "project_card_fastapi_redis_counter" })
+            }
           >
             <div className="proj-card-counter">
               <span className="proj-card-counter-num">{viewCount ?? "—"}</span>
@@ -804,6 +807,9 @@ export default function IndexPage() {
             href="https://github.com/asa-masterson/toru-backend"
             rel="noopener noreferrer"
             target="_blank"
+            onClick={() =>
+              trackCustomEvent("github_link_click", { location: "project_card_toru_backend" })
+            }
           >
             <img
               alt="Toru Challenge"
