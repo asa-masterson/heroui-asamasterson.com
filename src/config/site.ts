@@ -18,6 +18,7 @@ export const siteConfig = {
     twitter: "https://twitter.com/pigsarepinkk",
     linkedin: "https://www.linkedin.com/in/asa-masterson/",
     instagram: "https://www.instagram.com/asa_the_apricot/",
-    pigsarepink: "https://pigsare.pink/?utm_source=asamasterson.com&utm_medium=referral&utm_campaign=hero",
+    pigsarepink:
+      "https://pigsare.pink/?utm_source=asamasterson.com&utm_medium=referral&utm_campaign=hero",
   },
 };

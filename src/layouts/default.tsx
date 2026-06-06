@@ -14,6 +14,7 @@ export default function DefaultLayout({
     fetch("https://a.bigfluffy.monster/counter/id/asamastersoncom")
       .then((response) => {
         if (!response.ok) throw new Error("counter fetch failed");
+
         return response.json();
       })
       .then((data) => {

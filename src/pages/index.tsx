@@ -522,6 +522,7 @@ export default function IndexPage() {
     )
       .then((r) => {
         if (!r.ok) throw new Error("counter fetch failed");
+
         return r.json();
       })
       .then((d) => setViewCount("" + d.Users))
@@ -579,7 +580,9 @@ export default function IndexPage() {
               })}
               href="https://pigsare.pink/?utm_source=asamasterson.com&utm_medium=referral&utm_campaign=hero"
               onPress={() => {
-                trackCustomEvent("pigsarepink_link_click", { location: "hero_button" });
+                trackCustomEvent("pigsarepink_link_click", {
+                  location: "hero_button",
+                });
               }}
             >
               🐷 pigsare.pink
@@ -593,7 +596,9 @@ export default function IndexPage() {
               })}
               href="https://github.com/asa-masterson"
               onPress={() => {
-                trackCustomEvent("github_link_click", { location: "hero_button" });
+                trackCustomEvent("github_link_click", {
+                  location: "hero_button",
+                });
               }}
             >
               <GithubIcon size={18} /> GitHub
@@ -607,7 +612,9 @@ export default function IndexPage() {
               })}
               href="https://www.linkedin.com/in/asa-masterson/"
               onPress={() => {
-                trackCustomEvent("linkedin_link_click", { location: "hero_button" });
+                trackCustomEvent("linkedin_link_click", {
+                  location: "hero_button",
+                });
               }}
             >
               <LinkedInIcon size={18} /> LinkedIn
@@ -622,7 +629,9 @@ export default function IndexPage() {
               })}
               href="https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-masterson-cv.pdf"
               onPress={() => {
-                trackCustomEvent("download_cv_link_click", { location: "hero_button" });
+                trackCustomEvent("download_cv_link_click", {
+                  location: "hero_button",
+                });
               }}
             >
               📄 Download CV
@@ -705,7 +714,9 @@ export default function IndexPage() {
           className="about-cta"
           href="/about/"
           onClick={() => {
-            trackCustomEvent("about_cta_link_click", { location: "home_about_section" });
+            trackCustomEvent("about_cta_link_click", {
+              location: "home_about_section",
+            });
           }}
         >
           <div>
@@ -743,7 +754,9 @@ export default function IndexPage() {
             rel="noopener noreferrer"
             target="_blank"
             onClick={() =>
-              trackCustomEvent("pigsarepink_link_click", { location: "project_card" })
+              trackCustomEvent("pigsarepink_link_click", {
+                location: "project_card",
+              })
             }
           >
             <img
@@ -771,7 +784,9 @@ export default function IndexPage() {
             rel="noopener noreferrer"
             target="_blank"
             onClick={() =>
-              trackCustomEvent("github_link_click", { location: "project_card_fastapi_redis_counter" })
+              trackCustomEvent("github_link_click", {
+                location: "project_card_fastapi_redis_counter",
+              })
             }
           >
             <div className="proj-card-counter">
@@ -808,7 +823,9 @@ export default function IndexPage() {
             rel="noopener noreferrer"
             target="_blank"
             onClick={() =>
-              trackCustomEvent("github_link_click", { location: "project_card_toru_backend" })
+              trackCustomEvent("github_link_click", {
+                location: "project_card_toru_backend",
+              })
             }
           >
             <img

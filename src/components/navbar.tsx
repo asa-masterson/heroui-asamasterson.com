@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Link } from "@heroui/link";
 import {
   Navbar as HeroUINavbar,
@@ -11,6 +12,7 @@ import {
 import { link as linkStyles } from "@heroui/theme";
 import clsx from "clsx";
 import { ClientOnly } from "vite-react-ssg";
+import "@cloudflare/ai-search-snippet";
 
 import PigSvg from "../images/nathan-pig.svg";
 
@@ -18,6 +20,17 @@ import { siteConfig } from "@/config/site";
 import { trackCustomEvent } from "@/lib/analytics";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon } from "@/components/icons";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "search-modal-snippet": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
+  }
+}
 
 const navbarStyles = `
   .nav-brand-name {
@@ -101,7 +114,31 @@ const MailIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const SearchIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    height="20"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    width="20"
+  >
+    <circle cx="11" cy="11" r="8" />
+    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+  </svg>
+);
+
 export const Navbar = () => {
+  const searchRef = useRef<HTMLElement & { open?: () => void }>(null);
+
+  const openSearch = () => {
+    trackCustomEvent("search_open", { location: "navbar" });
+    searchRef.current?.open?.();
+  };
+
   return (
     <>
       <style>{navbarStyles}</style>
@@ -137,7 +174,9 @@ export const Navbar = () => {
                   href={item.href}
                   onPress={() => {
                     if (item.href === "/about/") {
-                      trackCustomEvent("about_link_click", { location: "header_desktop" });
+                      trackCustomEvent("about_link_click", {
+                        location: "header_desktop",
+                      });
                     }
                   }}
                 >
@@ -154,12 +193,22 @@ export const Navbar = () => {
           justify="end"
         >
           <NavbarItem className="hidden sm:flex gap-3 items-center">
+            <button
+              aria-label="Search"
+              className="cursor-pointer"
+              type="button"
+              onClick={openSearch}
+            >
+              <SearchIcon className="text-default-500 hover:text-default-800 transition-colors" />
+            </button>
             <Link
               isExternal
               aria-label="Mail"
               href={siteConfig.links.email}
               onPress={() => {
-                trackCustomEvent("email_link_click", { location: "navbar_desktop" });
+                trackCustomEvent("email_link_click", {
+                  location: "navbar_desktop",
+                });
               }}
             >
               <MailIcon className="text-default-500 hover:text-default-800 transition-colors" />
@@ -169,7 +218,9 @@ export const Navbar = () => {
               aria-label="LinkedIn"
               href={siteConfig.links.linkedin}
               onPress={() => {
-                trackCustomEvent("linkedin_link_click", { location: "navbar_desktop" });
+                trackCustomEvent("linkedin_link_click", {
+                  location: "navbar_desktop",
+                });
               }}
             >
               <LinkedInIcon className="text-default-500 hover:text-default-800 transition-colors" />
@@ -179,7 +230,9 @@ export const Navbar = () => {
               aria-label="GitHub"
               href={siteConfig.links.github}
               onPress={() => {
-                trackCustomEvent("github_link_click", { location: "navbar_desktop" });
+                trackCustomEvent("github_link_click", {
+                  location: "navbar_desktop",
+                });
               }}
             >
               <GithubIcon className="text-default-500 hover:text-default-800 transition-colors" />
@@ -189,27 +242,43 @@ export const Navbar = () => {
               aria-label="Instagram"
               href={siteConfig.links.instagram}
               onPress={() => {
-                trackCustomEvent("instagram_link_click", { location: "navbar_desktop" });
+                trackCustomEvent("instagram_link_click", {
+                  location: "navbar_desktop",
+                });
               }}
             >
               <InstagramIcon className="text-default-500 hover:text-default-800 transition-colors" />
             </Link>
-            <ClientOnly fallback={<ThemeSwitchFallback />}>{() => <ThemeSwitch />}</ClientOnly>
+            <ClientOnly fallback={<ThemeSwitchFallback />}>
+              {() => <ThemeSwitch />}
+            </ClientOnly>
           </NavbarItem>
         </NavbarContent>
 
         {/* ── Mobile ── */}
         <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+          <button
+            aria-label="Search"
+            className="cursor-pointer"
+            type="button"
+            onClick={openSearch}
+          >
+            <SearchIcon className="text-default-500" />
+          </button>
           <Link
             isExternal
             href={siteConfig.links.github}
             onPress={() => {
-              trackCustomEvent("github_link_click", { location: "navbar_mobile" });
+              trackCustomEvent("github_link_click", {
+                location: "navbar_mobile",
+              });
             }}
           >
             <GithubIcon className="text-default-500" />
           </Link>
-          <ClientOnly fallback={<ThemeSwitchFallback />}>{() => <ThemeSwitch />}</ClientOnly>
+          <ClientOnly fallback={<ThemeSwitchFallback />}>
+            {() => <ThemeSwitch />}
+          </ClientOnly>
           <NavbarMenuToggle />
         </NavbarContent>
 
@@ -223,7 +292,9 @@ export const Navbar = () => {
                   size="lg"
                   onPress={() => {
                     if (item.href === "/about/") {
-                      trackCustomEvent("about_link_click", { location: "header_mobile" });
+                      trackCustomEvent("about_link_click", {
+                        location: "header_mobile",
+                      });
                     }
                   }}
                 >
@@ -234,6 +305,10 @@ export const Navbar = () => {
           </div>
         </NavbarMenu>
       </HeroUINavbar>
+      <search-modal-snippet
+        api-url="https://78636862-e958-468c-815a-f63b06d7d2b1.search.ai.cloudflare.com"
+        ref={searchRef}
+      />
     </>
   );
 };

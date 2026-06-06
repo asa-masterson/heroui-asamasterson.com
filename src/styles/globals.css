@@ -94,3 +94,35 @@ html {
 body {
   background-color: inherit; /* Pull from <html> which the script sets */
 }
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--stroke-color);
+  color: #ffffff;
+  z-index: 9999;
+  padding: 0 1rem;
+}
+
+.loader-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.5rem, 10vw, 6rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0;
+  animation: flashFade 1.4s ease-in-out infinite;
+}
+
+@keyframes flashFade {
+  0%, 100% { opacity: 0.05; transform: scale(0.95); filter: blur(0.2rem); }
+  40% { opacity: 1; transform: scale(1); filter: blur(0); }
+  60% { opacity: 0.8; transform: scale(1.02); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-text { animation: none; opacity: 1; }
+}

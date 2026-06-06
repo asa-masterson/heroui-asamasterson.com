@@ -1,5 +1,6 @@
-import { Head } from "vite-react-ssg";
 import type { PageMeta } from "@/seo/meta";
+
+import { Head } from "vite-react-ssg";
 
 type SEOHeadProps = {
   meta: PageMeta;

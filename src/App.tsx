@@ -1,5 +1,6 @@
 import type { RouteRecord } from "vite-react-ssg";
-import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation, useRoutes } from "react-router-dom";
 
 import IndexPage from "@/pages/index";
@@ -26,6 +27,14 @@ function AppShell() {
   );
 }
 
+function LoaderScreen() {
+  return (
+    <div aria-live="polite" className="loader-overlay" role="status">
+      <div className="loader-text">ASA MASTERSON</div>
+    </div>
+  );
+}
+
 export const routes: RouteRecord[] = [
   {
     path: "/",
@@ -39,7 +48,20 @@ export const routes: RouteRecord[] = [
 ];
 
 function App() {
-  return useRoutes(routes);
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    const loaderTimeout = window.setTimeout(() => setShowLoader(false), 900);
+
+    return () => window.clearTimeout(loaderTimeout);
+  }, []);
+
+  return (
+    <>
+      {showLoader && <LoaderScreen />}
+      {useRoutes(routes)}
+    </>
+  );
 }
 
 export default App;

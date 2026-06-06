@@ -8,25 +8,30 @@ interface Tag {
 }
 
 const ALL_TAGS: Tag[] = [
-  { label: "Python",       category: "Languages" },
-  { label: "TypeScript",   category: "Languages" },
-  { label: "JavaScript",   category: "Languages" },
-  { label: "Rust",         category: "Languages" },
-  { label: "SQL",          category: "Languages" },
-  { label: "PHP",          category: "Languages" },
-  { label: "Django",       category: "Frameworks" },
-  { label: "React",        category: "Frameworks" },
-  { label: "FastAPI",      category: "Frameworks" },
+  { label: "Python", category: "Languages" },
+  { label: "TypeScript", category: "Languages" },
+  { label: "JavaScript", category: "Languages" },
+  { label: "Rust", category: "Languages" },
+  { label: "SQL", category: "Languages" },
+  { label: "PHP", category: "Languages" },
+  { label: "Django", category: "Frameworks" },
+  { label: "React", category: "Frameworks" },
+  { label: "FastAPI", category: "Frameworks" },
   { label: "Tailwind CSS", category: "Frameworks" },
-  { label: "Flutter",      category: "Frameworks" },
-  { label: "Docker",       category: "Infrastructure" },
-  { label: "Coolify",      category: "Infrastructure" },
-  { label: "Linux",        category: "Infrastructure" },
-  { label: "MinIO S3",     category: "Infrastructure" },
-  { label: "Self-hosted",  category: "Infrastructure" },
+  { label: "Flutter", category: "Frameworks" },
+  { label: "Docker", category: "Infrastructure" },
+  { label: "Coolify", category: "Infrastructure" },
+  { label: "Linux", category: "Infrastructure" },
+  { label: "MinIO S3", category: "Infrastructure" },
+  { label: "Self-hosted", category: "Infrastructure" },
 ];
 
-const CATEGORIES: Category[] = ["All", "Languages", "Frameworks", "Infrastructure"];
+const CATEGORIES: Category[] = [
+  "All",
+  "Languages",
+  "Frameworks",
+  "Infrastructure",
+];
 
 const styles = `
   .abt-tags-root { margin-top: 1.75rem; }
@@ -135,8 +140,10 @@ export default function AboutTags() {
   function toggleChip(label: string) {
     setSelected((prev) => {
       const next = new Set(prev);
+
       if (next.has(label)) next.delete(label);
       else next.add(label);
+
       return next;
     });
   }
@@ -159,7 +166,7 @@ export default function AboutTags() {
       </div>
 
       {/* Chips - key forces re-mount -> re-runs stagger animation on filter change */}
-      <div className="abt-chips" key={animKey}>
+      <div key={animKey} className="abt-chips">
         {visible.map((tag, i) => (
           <span
             key={tag.label}
@@ -173,7 +180,7 @@ export default function AboutTags() {
       </div>
 
       {selected.size > 0 && (
-        <p className="abt-hint" key={selected.size}>
+        <p key={selected.size} className="abt-hint">
           {selected.size} selected - click again to deselect
         </p>
       )}
