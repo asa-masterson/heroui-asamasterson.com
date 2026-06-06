@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "@heroui/link";
 import {
   Navbar as HeroUINavbar,
@@ -12,8 +12,6 @@ import {
 import { link as linkStyles } from "@heroui/theme";
 import clsx from "clsx";
 import { ClientOnly } from "vite-react-ssg";
-import "@cloudflare/ai-search-snippet";
-
 import PigSvg from "../images/nathan-pig.svg";
 
 import { siteConfig } from "@/config/site";
@@ -133,6 +131,10 @@ const SearchIcon = ({ className }: { className?: string }) => (
 
 export const Navbar = () => {
   const searchRef = useRef<HTMLElement & { open?: () => void }>(null);
+
+  useEffect(() => {
+    import("@cloudflare/ai-search-snippet");
+  }, []);
 
   const openSearch = () => {
     trackCustomEvent("search_open", { location: "navbar" });
@@ -305,10 +307,14 @@ export const Navbar = () => {
           </div>
         </NavbarMenu>
       </HeroUINavbar>
-      <search-modal-snippet
-        api-url="https://78636862-e958-468c-815a-f63b06d7d2b1.search.ai.cloudflare.com"
-        ref={searchRef}
-      />
+      <ClientOnly fallback={null}>
+        {() => (
+          <search-modal-snippet
+            api-url="https://78636862-e958-468c-815a-f63b06d7d2b1.search.ai.cloudflare.com"
+            ref={searchRef}
+          />
+        )}
+      </ClientOnly>
     </>
   );
 };
