@@ -193,15 +193,6 @@ interface Project {
 
 const webProjects: Project[] = [
   {
-    name: "Lotto Number Picker",
-    desc: "Cross-platform lottery number generator — configure number range, generate picks, and view stats. Built with Flutter & C++, deployed on Vercel.",
-    tags: ["Flutter", "Dart", "C++"],
-    icon: "🎱",
-    href: "https://lotto-number-picker-hn4d-asa-mastersons-projects.vercel.app",
-    status: "live",
-    analyticsKey: "lotto_picker_link_click",
-  },
-  {
     name: "pigsare.pink",
     desc: "Personality-first portfolio built with vanilla HTML, CSS & JS — self-hosted on Coolify.",
     tags: ["HTML", "CSS", "JS", "Coolify"],
@@ -227,6 +218,15 @@ const webProjects: Project[] = [
     href: "https://github.com/asa-masterson/fastapi-redis-counter",
     status: "oss",
     analyticsKey: "github_link_click",
+  },
+  {
+    name: "Lotto Number Picker",
+    desc: "Cross-platform lottery number generator — configure number range, generate picks, and view stats. Built with Flutter & C++.",
+    tags: ["Flutter", "Dart", "C++"],
+    icon: "🎱",
+    href: "https://lotto.pigsare.pink",
+    status: "live",
+    analyticsKey: "lotto_picker_link_click",
   },
   {
     name: "Toru Challenge",

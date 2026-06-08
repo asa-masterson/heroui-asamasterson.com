@@ -18,7 +18,7 @@ export default defineConfig({
     }),
     sitemap({
       hostname: BASE_URL,
-      dynamicRoutes: ['/about', '/projects', '/pacman', '/pong', '/2048'],
+      dynamicRoutes: ['/about/', '/projects/', '/pacman/', '/pong/', '/2048/'],
       changefreq: 'monthly',
       priority: { '/': 1.0, '/about': 0.8, '/projects': 0.8, '/pacman': 0.6, '/pong': 0.6, '/2048': 0.6 },
       outDir: 'dist',
