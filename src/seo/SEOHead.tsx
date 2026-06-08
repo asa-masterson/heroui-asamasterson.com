@@ -4,9 +4,10 @@ import { Head } from "vite-react-ssg";
 
 type SEOHeadProps = {
   meta: PageMeta;
+  schema?: Record<string, unknown>;
 };
 
-export default function SEOHead({ meta }: SEOHeadProps) {
+export default function SEOHead({ meta, schema }: SEOHeadProps) {
   const {
     title,
     description,
@@ -15,7 +16,10 @@ export default function SEOHead({ meta }: SEOHeadProps) {
     ogDescription,
     ogImage,
     ogType = "website",
+    schema: metaSchema,
   } = meta;
+
+  const resolvedSchema = schema ?? metaSchema;
 
   return (
     <Head>
@@ -36,6 +40,13 @@ export default function SEOHead({ meta }: SEOHeadProps) {
       <meta content={ogTitle ?? title} name="twitter:title" />
       <meta content={ogDescription ?? description} name="twitter:description" />
       {ogImage ? <meta content={ogImage} name="twitter:image" /> : null}
+
+      {resolvedSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(resolvedSchema) }}
+        />
+      )}
     </Head>
   );
 }
