@@ -847,6 +847,28 @@ export default function IndexPage() {
             </div>
           </a>
         </div>
+
+        <a
+          className="about-cta"
+          href="/projects/"
+          onClick={() =>
+            trackCustomEvent("projects_view_more_click", {
+              location: "home_projects_section",
+            })
+          }
+        >
+          <div>
+            <p className="about-cta-eyebrow">There's more ↓</p>
+            <p className="about-cta-heading">
+              <span className="about-cta-heading-outline">All </span>
+              <span className="about-cta-heading-solid">Projects & Games.</span>
+            </p>
+            <p className="about-cta-sub">
+              Web apps, browser games, tools, and open-source experiments.
+            </p>
+          </div>
+          <span className="about-cta-arrow">View all →</span>
+        </a>
       </div>
 
       {/* ══════════════════════════════════════════ SKILLS */}

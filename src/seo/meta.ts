@@ -35,6 +35,44 @@ export const pageMeta: Record<string, PageMeta> = {
     ogImage: HOME_IMAGE,
     ogType: "website",
   },
+  game2048: {
+    title: "2048 — Asa Masterson",
+    description: "Play 2048! Slide tiles to reach the 2048 tile. Works on desktop (arrow keys / WASD) and mobile (swipe).",
+    canonical: `${BASE_URL}/2048/`,
+    ogTitle: "2048 — Play in your browser",
+    ogDescription: "2048 puzzle game. Arrow keys on desktop, swipe on mobile. Scores saved locally.",
+    ogImage: HOME_IMAGE,
+    ogType: "website",
+  },
+  pong: {
+    title: "Paddle Battle — Asa Masterson",
+    description: "Play Paddle Battle! 1-player vs AI or 2-player local mode. Works on desktop (keyboard) and mobile (touch).",
+    canonical: `${BASE_URL}/pong/`,
+    ogTitle: "Paddle Battle — Play in your browser",
+    ogDescription: "Paddle Battle with 1P AI and 2P modes. Desktop keyboard + mobile touch controls.",
+    ogImage: HOME_IMAGE,
+    ogType: "website",
+  },
+  pacman: {
+    title: "Dot Chomper — Asa Masterson",
+    description: "Play Dot Chomper! Eat all the dots, avoid ghosts, and grab power pellets to turn the tables. Arrow keys or WASD on desktop, d-pad on mobile.",
+    canonical: `${BASE_URL}/pacman/`,
+    ogTitle: "Dot Chomper — Play in your browser",
+    ogDescription: "Dot Chomper — dots, power pellets, and four ghosts. Desktop keyboard + mobile d-pad.",
+    ogImage: HOME_IMAGE,
+    ogType: "website",
+  },
+  projects: {
+    title: "Projects & Games — Asa Masterson",
+    description:
+      "A hub for everything Asa Masterson has shipped — web apps, browser games, tools, and experiments. Python, React, FastAPI, Docker, and more.",
+    canonical: `${BASE_URL}/projects/`,
+    ogTitle: "Projects & Games — Asa Masterson",
+    ogDescription:
+      "Web apps, browser games, tools, and experiments by Asa Masterson — full-stack developer and BSc Business Computing student.",
+    ogImage: HOME_IMAGE,
+    ogType: "website",
+  },
   about: {
     title: "About Asa Masterson — Background & Skills",
     description:

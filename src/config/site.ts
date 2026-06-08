@@ -7,10 +7,14 @@ export const siteConfig = {
   navItems: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about/" },
+    { label: "Projects", href: "/projects/#web" },
+    { label: "Games", href: "/projects/#games" },
   ],
   navMenuItems: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about/" },
+    { label: "Projects", href: "/projects/#web" },
+    { label: "Games", href: "/projects/#games" },
   ],
   links: {
     email: "mailto:contact@asamasterson.com",

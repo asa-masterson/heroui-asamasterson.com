@@ -5,13 +5,29 @@ import { Navigate, Outlet, useLocation, useRoutes } from "react-router-dom";
 
 import IndexPage from "@/pages/index";
 import AboutPage from "@/pages/about";
+import ProjectsPage from "@/pages/projects";
+import PongPage from "@/pages/pong";
+import Game2048Page from "@/pages/game2048";
+import PacmanPage from "@/pages/pacman";
 import { Provider } from "@/provider";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    if (hash) return;
+    if (hash) {
+      const id = hash.slice(1);
+      const tryScroll = (attempts: number) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else if (attempts > 0) {
+          setTimeout(() => tryScroll(attempts - 1), 80);
+        }
+      };
+      tryScroll(5);
+      return;
+    }
     window.scrollTo(0, 0);
   }, [pathname, hash]);
 
@@ -42,6 +58,10 @@ export const routes: RouteRecord[] = [
     children: [
       { index: true, element: <IndexPage /> },
       { path: "about", element: <AboutPage /> },
+      { path: "projects", element: <ProjectsPage /> },
+      { path: "pong", element: <PongPage /> },
+      { path: "2048", element: <Game2048Page /> },
+      { path: "pacman", element: <PacmanPage /> },
       { path: "*", element: <Navigate replace to="/" /> },
     ],
   },

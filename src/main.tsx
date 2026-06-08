@@ -1,4 +1,5 @@
 import { ViteReactSSG } from "vite-react-ssg";
+import * as Swetrix from "swetrix";
 
 import { routes } from "./App.tsx";
 import "@/styles/globals.css";
@@ -12,25 +13,19 @@ export const createRoot = ViteReactSSG(
     if (!isClient) return;
 
     try {
-      const [Sentry, Swetrix] = await Promise.all([
-        import("@sentry/browser"),
-        import("swetrix"),
-      ]);
-
-      Sentry.init({
-        dsn: import.meta.env.VITE_GLITCHTIP_DSN,
-      });
-
-      try {
-        Swetrix.init("sjFU3ryURYdB", {
-          apiURL: "https://swetrix.bigfluffy.monster/backend/v1/log",
-        });
-        Swetrix.trackViews();
-      } catch (err) {
-        console.warn("[swetrix] Failed to initialize analytics:", err);
-      }
+      const Sentry = await import("@sentry/browser");
+      Sentry.init({ dsn: import.meta.env.VITE_GLITCHTIP_DSN });
     } catch (err) {
-      console.error("[init] Failed to load analytics modules:", err);
+      console.error("[init] Failed to load Sentry:", err);
+    }
+
+    try {
+      Swetrix.init("sjFU3ryURYdB", {
+        apiURL: "https://swetrix.bigfluffy.monster/backend/v1/log",
+      });
+      Swetrix.trackViews();
+    } catch (err) {
+      console.warn("[swetrix] Failed to initialize analytics:", err);
     }
   },
 );
