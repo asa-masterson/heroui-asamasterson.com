@@ -17,6 +17,9 @@ export default function SEOHead({ meta, schema }: SEOHeadProps) {
     ogImage,
     ogType = "website",
     schema: metaSchema,
+    cfType,
+    cfSection,
+    cfSlug,
   } = meta;
 
   const resolvedSchema = schema ?? metaSchema;
@@ -40,6 +43,10 @@ export default function SEOHead({ meta, schema }: SEOHeadProps) {
       <meta content={ogTitle ?? title} name="twitter:title" />
       <meta content={ogDescription ?? description} name="twitter:description" />
       {ogImage ? <meta content={ogImage} name="twitter:image" /> : null}
+
+      {cfType && <meta content={cfType} name="type" />}
+      {cfSection && <meta content={cfSection} name="section" />}
+      {cfSlug && <meta content={cfSlug} name="slug" />}
 
       {resolvedSchema && (
         <script

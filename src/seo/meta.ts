@@ -12,6 +12,9 @@ export interface PageMeta {
   ogImage?: string;
   ogType?: string;
   schema?: Record<string, unknown>;
+  cfType?: string;
+  cfSection?: string;
+  cfSlug?: string;
 }
 
 const BASE_URL = "https://asamasterson.com";
@@ -47,6 +50,9 @@ export const pageMeta: Record<string, PageMeta> = {
       "BSc Business Computing student and full-stack developer. Python, React, Docker, self-hosted infrastructure.",
     ogImage: HOME_IMAGE,
     ogType: "website",
+    cfType: "portfolio",
+    cfSection: "home",
+    cfSlug: "home",
     schema: {
       "@context": "https://schema.org",
       "@type": "Person",
@@ -70,6 +76,9 @@ export const pageMeta: Record<string, PageMeta> = {
       "Education, work experience, and technical skills of Asa Masterson — full-stack developer and BSc Business Computing student.",
     ogImage: ABOUT_IMAGE,
     ogType: "profile",
+    cfType: "about",
+    cfSection: "about",
+    cfSlug: "about",
     schema: {
       "@context": "https://schema.org",
       "@type": "ProfilePage",
@@ -94,6 +103,9 @@ export const pageMeta: Record<string, PageMeta> = {
       "Web apps, browser games, tools, and experiments by Asa Masterson — full-stack developer and BSc Business Computing student.",
     ogImage: HOME_IMAGE,
     ogType: "website",
+    cfType: "projects",
+    cfSection: "projects",
+    cfSlug: "projects",
     schema: {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
@@ -124,6 +136,9 @@ export const pageMeta: Record<string, PageMeta> = {
       "Dot Chomper — dots, power pellets, and four ghosts. Desktop keyboard + mobile d-pad.",
     ogImage: HOME_IMAGE,
     ogType: "website",
+    cfType: "game",
+    cfSection: "games",
+    cfSlug: "pacman",
     schema: {
       "@context": "https://schema.org",
       "@type": "VideoGame",
@@ -149,6 +164,9 @@ export const pageMeta: Record<string, PageMeta> = {
       "Paddle Battle with 1P AI and 2P modes. Desktop keyboard + mobile touch controls.",
     ogImage: HOME_IMAGE,
     ogType: "website",
+    cfType: "game",
+    cfSection: "games",
+    cfSlug: "pong",
     schema: {
       "@context": "https://schema.org",
       "@type": "VideoGame",
@@ -174,6 +192,9 @@ export const pageMeta: Record<string, PageMeta> = {
     ogDescription: "2048 puzzle game. Arrow keys on desktop, swipe on mobile. Scores saved locally.",
     ogImage: HOME_IMAGE,
     ogType: "website",
+    cfType: "game",
+    cfSection: "games",
+    cfSlug: "2048",
     schema: {
       "@context": "https://schema.org",
       "@type": "VideoGame",
