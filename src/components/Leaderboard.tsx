@@ -230,7 +230,7 @@ export default function Leaderboard({ game, score, level }: Props) {
               >
                 <span className="lb-pos">#{e.rank}</span>
                 <span className="lb-name">{e.name}</span>
-                {e.level && <span className="lb-pts" style={{opacity:.55, marginRight:".15rem"}}>L{e.level}</span>}
+                {e.level && e.level > 1 && <span className="lb-pts" style={{opacity:.55, marginRight:".15rem"}}>L{e.level}</span>}
                 <span className="lb-pts">{e.score.toLocaleString()}</span>
               </div>
             ))}
@@ -275,7 +275,7 @@ export function LeaderboardSidebar({ game }: { game: "dotchomper" | "2048" | "bl
           >
             <span className="lb-side-pos">#{e.rank}</span>
             <span className="lb-side-name">{e.name}</span>
-            {e.level && <span className="lb-side-pts" style={{opacity:.5, marginRight:".1rem"}}>L{e.level}</span>}
+            {e.level && e.level > 1 && <span className="lb-side-pts" style={{opacity:.5, marginRight:".1rem"}}>L{e.level}</span>}
             <span className="lb-side-pts">{e.score.toLocaleString()}</span>
           </div>
         ))
