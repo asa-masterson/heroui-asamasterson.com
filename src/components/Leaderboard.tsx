@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { trackCustomEvent } from "@/lib/analytics";
 
 const API_BASE = (import.meta.env.VITE_LEADERBOARD_API_URL as string | undefined) ?? "";
-const CAPTCHA_PROJECT_ID = "sjFU3ryURYdB";
+const TURNSTILE_SITE_KEY = "0x4AAAAAADhDuGV_yepsTTRy";
 
 interface Entry { rank: number; name: string; score: number; }
 
@@ -12,7 +12,9 @@ interface Props {
 }
 
 declare global {
-  interface Window { swetrixCaptchaForceLoad?: () => void; }
+  interface Window {
+    turnstile?: { reset: (container?: HTMLElement | null) => void };
+  }
 }
 
 const lbCss = `
@@ -29,7 +31,7 @@ const lbCss = `
   }
   .lb-input:focus { border-color: #ff54ff; }
   .lb-input::placeholder { color: rgba(255,255,255,.3); }
-  .lb-captcha-wrap { transform: scale(0.88); transform-origin: center; }
+  .lb-captcha-wrap { transform: scale(0.82); transform-origin: center; }
   .lb-submit {
     font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
     background: #ff54ff; color: #fff; border: none; border-radius: 999px;
@@ -84,18 +86,13 @@ export default function Leaderboard({ game, score }: Props) {
 
   useEffect(() => { fetchBoard(); }, [fetchBoard]);
 
-  // Load CAPTCHA script and (re)init widget when overlay opens
+  // Load Turnstile script once
   useEffect(() => {
-    const existing = document.querySelector('script[src*="captcha-loader"]');
-    if (!existing) {
-      const s = document.createElement("script");
-      s.src = "https://cdn.swetrixcaptcha.com/captcha-loader.js";
-      s.defer = true;
-      document.head.appendChild(s);
-    }
-    // Give the script a tick to load, then force-init
-    const t = setTimeout(() => window.swetrixCaptchaForceLoad?.(), 400);
-    return () => clearTimeout(t);
+    if (document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) return;
+    const s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    s.async = true;
+    document.head.appendChild(s);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -104,7 +101,7 @@ export default function Leaderboard({ game, score }: Props) {
     if (!trimmed || !API_BASE) return;
 
     const token = captchaRef.current
-      ?.querySelector<HTMLInputElement>('input[name="swetrix-captcha-response"]')?.value;
+      ?.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]')?.value;
     if (!token) { setError("Please complete the CAPTCHA first"); return; }
 
     setLoading(true);
@@ -126,7 +123,7 @@ export default function Leaderboard({ game, score }: Props) {
       fetchBoard();
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Submission failed");
-      window.swetrixCaptchaForceLoad?.();
+      window.turnstile?.reset(captchaRef.current);
     } finally {
       setLoading(false);
     }
@@ -152,8 +149,8 @@ export default function Leaderboard({ game, score }: Props) {
           <div className="lb-captcha-wrap">
             <div
               ref={captchaRef}
-              className="swecaptcha"
-              data-project-id={CAPTCHA_PROJECT_ID}
+              className="cf-turnstile"
+              data-sitekey={TURNSTILE_SITE_KEY}
               data-theme="dark"
             />
           </div>
