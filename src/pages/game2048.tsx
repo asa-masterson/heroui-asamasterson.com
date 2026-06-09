@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
+import Leaderboard from "@/components/Leaderboard";
 
 // ── Constants ─────────────────────────────────────────────────────
 const BRAND = "#ff54ff";
@@ -471,7 +472,7 @@ export default function Game2048Page() {
 
               {/* Win overlay */}
               {won && !keepPlaying && (
-                <div className="g48-overlay">
+                <div className="g48-overlay" style={{ overflowY: "auto", paddingBottom: "1rem" }}>
                   <p className="g48-ov-eye">You reached it!</p>
                   <p className="g48-ov-head">2048!</p>
                   <div className="g48-ov-btns">
@@ -480,15 +481,17 @@ export default function Game2048Page() {
                     }}>Keep going</button>
                     <button className="g48-btn g48-btn-outline" onClick={startNew}>New game</button>
                   </div>
+                  <Leaderboard game="2048" score={score} />
                 </div>
               )}
 
               {/* Game over overlay */}
               {over && (
-                <div className="g48-overlay">
+                <div className="g48-overlay" style={{ overflowY: "auto", paddingBottom: "1rem" }}>
                   <p className="g48-ov-eye">No moves left</p>
                   <p className="g48-ov-head">Game over</p>
                   <button className="g48-btn g48-btn-solid" onClick={startNew}>Try again</button>
+                  <Leaderboard game="2048" score={score} />
                 </div>
               )}
             </div>

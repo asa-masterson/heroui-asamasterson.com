@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
+import Leaderboard from "@/components/Leaderboard";
 
 // ── Constants ──────────────────────────────────────────────────────
 const COLS = 21, ROWS = 21, CS = 20;
@@ -821,7 +822,7 @@ export default function PacmanPage() {
               <canvas ref={canvasRef} width={CW} height={CH} className="pm-canvas" />
 
               {(mode === "gameover" || mode === "won") && (
-                <div className="pm-overlay">
+                <div className="pm-overlay" style={{ overflowY: "auto", paddingBottom: "1rem" }}>
                   <p className="pm-ov-eye">{mode === "won" ? "All dots eaten!" : "No lives left"}</p>
                   <p className="pm-ov-head">{mode === "won" ? "You win!" : "Game over"}</p>
                   <div className="pm-ov-btns">
@@ -829,6 +830,7 @@ export default function PacmanPage() {
                       Play again
                     </button>
                   </div>
+                  <Leaderboard game="dotchomper" score={score} />
                 </div>
               )}
             </div>
