@@ -272,6 +272,15 @@ const browserGames: Project[] = [
     status: "live",
     analyticsKey: "game2048_link_click",
   },
+  {
+    name: "Battleships",
+    desc: "Classic naval strategy vs a hunt-and-target AI. Randomize your fleet and sink all five enemy ships before your fleet goes down.",
+    tags: ["React", "TypeScript", "Strategy"],
+    icon: "🚢",
+    href: "/battleships/",
+    status: "live",
+    analyticsKey: "battleships_link_click",
+  },
 ];
 
 // ─── sub-components ───────────────────────────────────────────────────────────
