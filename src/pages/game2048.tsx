@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
 import GameStaticPreview from "@/components/GameStaticPreview";
+import GameFooter from "@/components/GameFooter";
 import Leaderboard, { LeaderboardSidebar } from "@/components/Leaderboard";
 
 // ── Constants ─────────────────────────────────────────────────────
@@ -254,11 +255,6 @@ const css = `
   .g48-btn-solid   { background:${BRAND}; color:#fff; border:none; }
   .g48-btn-outline { background:transparent; color:${BRAND};
                      border:1px solid rgba(255,84,255,.5); }
-  .g48-back {
-    font-family:'DM Mono',monospace; font-size:.58rem;
-    letter-spacing:.1em; color:rgba(255,84,255,.4);
-    text-decoration:none; margin-top:2px;
-  }
 `;
 
 // ── Component ─────────────────────────────────────────────────────
@@ -519,11 +515,11 @@ export default function Game2048Page() {
               )}
             </div>
 
-            <a className="g48-back" href="/projects/">← Back to Projects</a>
           </div>
           <LeaderboardSidebar game="2048" />
           </div>
         </div>
+        <GameFooter />
       </div>
     </>
   );

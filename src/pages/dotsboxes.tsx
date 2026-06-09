@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
 import GameStaticPreview from "@/components/GameStaticPreview";
+import GameFooter from "@/components/GameFooter";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -150,7 +151,7 @@ function aiMove(hL: Owner[][], vL: Owner[][], bx: Owner[][]): Line {
 
 const css = `
   .db-page { min-height:100vh; background:#0d0d0d; color:#fff; display:flex; flex-direction:column; align-items:center; }
-  .db-center { width:100%; max-width:700px; padding:1.25rem 1rem 3rem; display:flex; flex-direction:column; align-items:center; gap:1.1rem; }
+  .db-center { width:100%; max-width:700px; padding:1.25rem 1rem 2rem; display:flex; flex-direction:column; align-items:center; gap:1.1rem; flex:1; }
 
   /* Mode select */
   .db-mode { display:flex; flex-direction:column; align-items:center; gap:1.5rem; padding:3rem 1rem; width:100%; }
@@ -194,8 +195,6 @@ const css = `
   .db-legend-item { display:flex; align-items:center; gap:.4rem; font-family:'DM Mono',monospace; font-size:.55rem; letter-spacing:.1em; color:rgba(255,255,255,.35); text-transform:uppercase; }
   .db-legend-dot { width:10px; height:10px; border-radius:50%; }
 
-  .db-back { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.1em; color:rgba(255,84,255,.35); text-decoration:none; text-transform:uppercase; transition:color .15s; margin-top:.75rem; }
-  .db-back:hover { color:rgba(255,84,255,.8); }
 `;
 
 // ── Component ──────────────────────────────────────────────────────────────────
@@ -272,9 +271,9 @@ export default function DotsBoxesPage() {
                   <span className="db-mode-desc">Same screen</span>
                 </button>
               </div>
-              <a className="db-back" href="/projects/">← Back to Projects</a>
             </div>
           </div>
+          <GameFooter />
         </div>
       </>
     );
@@ -466,8 +465,8 @@ export default function DotsBoxesPage() {
             </div>
           </div>
 
-          <a className="db-back" href="/projects/">← Back to Projects</a>
         </div>
+        <GameFooter />
       </div>
     </>
   );

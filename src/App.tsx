@@ -1,7 +1,7 @@
 import type { RouteRecord } from "vite-react-ssg";
 
 import { useEffect, useState } from "react";
-import { Navigate, Outlet, useLocation, useRoutes } from "react-router-dom";
+import { Outlet, useLocation, useRoutes } from "react-router-dom";
 
 import IndexPage from "@/pages/index";
 import AboutPage from "@/pages/about";
@@ -12,6 +12,7 @@ import PacmanPage from "@/pages/pacman";
 import BattleshipsPage from "@/pages/battleships";
 import DotsBoxesPage from "@/pages/dotsboxes";
 import BlockDashPage from "@/pages/blockdash";
+import NotFoundPage from "@/pages/not-found";
 import { Provider } from "@/provider";
 
 function ScrollToTop() {
@@ -68,7 +69,8 @@ export const routes: RouteRecord[] = [
       { path: "battleships", element: <BattleshipsPage /> },
       { path: "dots-and-boxes", element: <DotsBoxesPage /> },
       { path: "block-dash", element: <BlockDashPage /> },
-      { path: "*", element: <Navigate replace to="/" /> },
+      { path: "404", element: <NotFoundPage /> },
+      { path: "*", element: <NotFoundPage /> },
     ],
   },
 ];

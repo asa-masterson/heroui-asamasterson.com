@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
+import GameFooter from "@/components/GameFooter";
 
 // ── Logical canvas resolution (CSS scales it down) ───────────────
 const W = 800, H = 600;
@@ -386,7 +387,6 @@ export default function PongPage() {
                   Desktop — W / S  ·  Arrow keys<br />
                   Mobile — drag left or right side
                 </p>
-                <a href="/projects/" style={{ ...hintStyle, color: "rgba(255,84,255,0.5)", textDecoration: "none", marginTop: 4 }}>← Back to Projects</a>
               </div>
             )}
 
@@ -420,6 +420,7 @@ export default function PongPage() {
             )}
           </div>
         </div>
+        <GameFooter />
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
 import GameStaticPreview from "@/components/GameStaticPreview";
+import GameFooter from "@/components/GameFooter";
 import Leaderboard, { LeaderboardSidebar } from "@/components/Leaderboard";
 
 // ── Constants ──────────────────────────────────────────────────────
@@ -662,8 +663,6 @@ const css = `
   .pm-dpad-right { grid-area:right; }
   .pm-dpad-down  { grid-area:down; }
 
-  .pm-back { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.1em;
-             color:rgba(255,84,255,.4); text-decoration:none; margin-top:2px; }
 `;
 
 // ── Component ─────────────────────────────────────────────────────
@@ -900,11 +899,11 @@ export default function PacmanPage() {
               <button className="pm-dpad-btn pm-dpad-down"  onPointerDown={() => queueDir(D)}>▼</button>
             </div>
 
-            <a className="pm-back" href="/projects/">← Back to Projects</a>
           </div>
           <LeaderboardSidebar game="dotchomper" />
           </div>
         </div>
+        <GameFooter />
       </div>
     </>
   );

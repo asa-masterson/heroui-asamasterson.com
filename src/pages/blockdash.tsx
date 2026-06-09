@@ -4,6 +4,7 @@ import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
 import Leaderboard, { LeaderboardSidebar } from "@/components/Leaderboard";
 import GameStaticPreview from "@/components/GameStaticPreview";
+import GameFooter from "@/components/GameFooter";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -243,7 +244,7 @@ function draw(ctx: CanvasRenderingContext2D, gs: GS) {
 
 const css = `
   .bd-page  { min-height:100vh; background:#0d0d0d; color:#fff; display:flex; flex-direction:column; align-items:center; }
-  .bd-center{ width:100%; max-width:900px; padding:1.25rem 1rem 3rem; display:flex; flex-direction:column; align-items:center; gap:1rem; }
+  .bd-center{ width:100%; max-width:900px; padding:1.25rem 1rem 2rem; display:flex; flex-direction:column; align-items:center; gap:1rem; flex:1; }
 
   .bd-header { width:100%; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; }
   .bd-title  { font-family:'DM Serif Display',serif; font-size:1.6rem; color:${BRAND}; margin:0; text-shadow:0 0 24px rgba(255,84,255,.35); }
@@ -291,8 +292,6 @@ const css = `
   .bd-dp-right{ grid-column:3; grid-row:2; }
   .bd-dp-down { grid-column:2; grid-row:3; }
 
-  .bd-back { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.1em; color:rgba(255,84,255,.35); text-decoration:none; text-transform:uppercase; transition:color .15s; margin-top:.5rem; }
-  .bd-back:hover { color:rgba(255,84,255,.8); }
 `;
 
 // ── Component ──────────────────────────────────────────────────────────────────
@@ -543,8 +542,8 @@ export default function BlockDashPage() {
             <LeaderboardSidebar game="blockdash" />
           </div>
 
-          <a className="bd-back" href="/projects/">← Back to Projects</a>
         </div>
+        <GameFooter />
       </div>
     </>
   );

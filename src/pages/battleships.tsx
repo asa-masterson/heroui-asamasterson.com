@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
 import GameStaticPreview from "@/components/GameStaticPreview";
+import GameFooter from "@/components/GameFooter";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -96,6 +97,16 @@ function make1P(): GS {
     coverMsg: "", coverBtn: "", coverNext: "mode",
     shots: 0, hits: 0, winner: 0,
     message: "Randomize your fleet, then hit Start Battle!",
+  };
+}
+
+function makeMode(): GS {
+  return {
+    phase: "mode",
+    p1Board: Array(TOTAL).fill("water") as Cell[], p1Sight: Array(TOTAL).fill("water") as Cell[], p1Ships: [],
+    p2Board: Array(TOTAL).fill("water") as Cell[], p2Sight: Array(TOTAL).fill("water") as Cell[], p2Ships: [],
+    coverMsg: "", coverBtn: "", coverNext: "mode",
+    shots: 0, hits: 0, winner: 0, message: "",
   };
 }
 
@@ -242,7 +253,7 @@ function aiOnHit(cell: number, fired: Set<number>, queue: number[], run: number[
 
 const css = `
   .bs-page { min-height:100vh; background:#0d0d0d; color:#fff; display:flex; flex-direction:column; align-items:center; }
-  .bs-center { width:100%; max-width:940px; padding:1.25rem 1rem 3rem; display:flex; flex-direction:column; align-items:center; gap:1.1rem; }
+  .bs-center { width:100%; max-width:940px; padding:1.25rem 1rem 2rem; display:flex; flex-direction:column; align-items:center; gap:1.1rem; flex:1; }
 
   /* Mode select */
   .bs-mode { display:flex; flex-direction:column; align-items:center; gap:1.5rem; padding:3rem 1rem; width:100%; }
@@ -337,8 +348,6 @@ const css = `
   .bs-sq     { width:9px; height:9px; border-radius:1px; background:rgba(255,84,255,.3); border:1px solid rgba(255,84,255,.45); }
   .bs-sq-h   { background:rgba(200,50,50,.55); border-color:rgba(255,80,80,.6); }
   .bs-sq-k   { background:rgba(90,0,0,.55);   border-color:rgba(140,0,0,.65); }
-  .bs-back { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.1em; color:rgba(255,84,255,.35); text-decoration:none; text-transform:uppercase; transition:color .15s; margin-top:.75rem; }
-  .bs-back:hover { color:rgba(255,84,255,.8); }
 `;
 
 // ── Component ──────────────────────────────────────────────────────────────────
@@ -351,7 +360,7 @@ export default function BattleshipsPage() {
   const aiQueue   = useRef<number[]>([]);
   const aiRun     = useRef<number[]>([]);
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => { setMounted(true); setGs(makeMode()); }, []);
 
   // AI turn (1P only)
   useEffect(() => {
@@ -568,9 +577,9 @@ export default function BattleshipsPage() {
                   <span className="bs-mode-desc">Pass & play</span>
                 </button>
               </div>
-              <a className="bs-back" href="/projects/">← Back to Projects</a>
             </div>
           </div>
+          <GameFooter />
         </div>
       </>
     );
@@ -593,6 +602,7 @@ export default function BattleshipsPage() {
               </button>
             </div>
           </div>
+          <GameFooter />
         </div>
       </>
     );
@@ -666,8 +676,8 @@ export default function BattleshipsPage() {
             </div>
           </div>
 
-          <a className="bs-back" href="/projects/">← Back to Projects</a>
         </div>
+        <GameFooter />
       </div>
     </>
   );

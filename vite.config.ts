@@ -20,7 +20,7 @@ export default defineConfig({
       hostname: BASE_URL,
       dynamicRoutes: ['/about/', '/projects/', '/pacman/', '/pong/', '/2048/', '/battleships/', '/dots-and-boxes/', '/block-dash/'],
       changefreq: 'monthly',
-      priority: { '/': 1.0, '/about': 0.8, '/projects': 0.8, '/pacman': 0.6, '/pong': 0.6, '/2048': 0.6, '/battleships': 0.6, '/dots-and-boxes': 0.6, '/block-dash': 0.6 },
+      priority: { '/': 1.0, '/about': 0.8, '/projects': 0.8, '/pacman': 0.6, '/pong': 0.6, '/2048': 0.6, '/battleships': 0.6, '/dots-and-boxes': 0.6, '/block-dash': 0.6, '/404': 0.0 },
       outDir: 'dist',
       generateRobotsTxt: false,
     }),
