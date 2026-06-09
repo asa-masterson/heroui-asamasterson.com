@@ -144,6 +144,11 @@ const pageStyles = `
     background: rgba(255, 215, 0, 0.1);
     border: 1px solid rgba(255, 215, 0, 0.25);
   }
+  .sq-card-tag-players {
+    color: #aaffcc;
+    background: rgba(100, 255, 160, 0.08);
+    border: 1px solid rgba(100, 255, 160, 0.22);
+  }
 
   /* Status badge — top-right corner */
   .sq-card-badge {
@@ -248,7 +253,7 @@ const browserGames: Project[] = [
   {
     name: "Dot Chomper",
     desc: "Eat all the dots, grab power pellets to chase ghosts. Keyboard on desktop, d-pad on mobile. Submit your score to the global leaderboard.",
-    tags: ["React", "Canvas API", "Leaderboard"],
+    tags: ["1 Player", "React", "Canvas API", "Leaderboard"],
     icon: "👻",
     href: "/pacman/",
     status: "live",
@@ -257,7 +262,7 @@ const browserGames: Project[] = [
   {
     name: "Paddle Battle",
     desc: "1 player vs AI or 2 player local. Keyboard on desktop, touch on mobile.",
-    tags: ["React", "Canvas API"],
+    tags: ["1–2 Players", "React", "Canvas API"],
     icon: "🏓",
     href: "/pong/",
     status: "live",
@@ -266,7 +271,7 @@ const browserGames: Project[] = [
   {
     name: "2048",
     desc: "Slide tiles to reach 2048. Arrow keys or WASD on desktop, swipe on mobile. Submit your score to the global leaderboard.",
-    tags: ["React", "TypeScript", "Leaderboard"],
+    tags: ["1 Player", "React", "TypeScript", "Leaderboard"],
     icon: "🟪",
     href: "/2048/",
     status: "live",
@@ -274,12 +279,30 @@ const browserGames: Project[] = [
   },
   {
     name: "Battleships",
-    desc: "Classic naval strategy vs a hunt-and-target AI. Randomize your fleet and sink all five enemy ships before your fleet goes down.",
-    tags: ["React", "TypeScript", "Strategy"],
+    desc: "Classic naval strategy — 1 player vs hunt-and-target AI, or pass-and-play 2 player. Sink all five enemy ships before yours go down.",
+    tags: ["1–2 Players", "React", "TypeScript", "Strategy"],
     icon: "🚢",
     href: "/battleships/",
     status: "live",
     analyticsKey: "battleships_link_click",
+  },
+  {
+    name: "Block Dash",
+    desc: "Navigate a glowing block through endless neon pillars — speed and gap size get harder over time. The original game from my old site, now with a global leaderboard.",
+    tags: ["1 Player", "React", "Canvas API", "Leaderboard"],
+    icon: "🟪",
+    href: "/block-dash/",
+    status: "live",
+    analyticsKey: "blockdash_link_click",
+  },
+  {
+    name: "Dots & Boxes",
+    desc: "Draw lines between dots to complete boxes and claim them. 1 player vs greedy AI or 2 players on the same screen.",
+    tags: ["1–2 Players", "React", "TypeScript", "Strategy"],
+    icon: "⬛",
+    href: "/dots-and-boxes/",
+    status: "live",
+    analyticsKey: "dotsboxes_link_click",
   },
 ];
 
@@ -313,11 +336,18 @@ function ProjectCard({ p }: { p: Project }) {
       </div>
       {p.tags.length > 0 && (
         <div className="sq-card-footer">
-          {p.tags.map((t) => (
-            <span key={t} className={`sq-card-tag${t === "Leaderboard" ? " sq-card-tag-leaderboard" : ""}`}>
-              {t === "Leaderboard" ? "🏆 " : ""}{t}
-            </span>
-          ))}
+          {p.tags.map((t) => {
+            const isLB = t === "Leaderboard";
+            const isP  = t === "1 Player" || t === "1–2 Players";
+            return (
+              <span
+                key={t}
+                className={`sq-card-tag${isLB ? " sq-card-tag-leaderboard" : isP ? " sq-card-tag-players" : ""}`}
+              >
+                {isLB ? "🏆 " : isP ? "👤 " : ""}{t}
+              </span>
+            );
+          })}
         </div>
       )}
     </>

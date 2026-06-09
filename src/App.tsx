@@ -10,6 +10,8 @@ import PongPage from "@/pages/pong";
 import Game2048Page from "@/pages/game2048";
 import PacmanPage from "@/pages/pacman";
 import BattleshipsPage from "@/pages/battleships";
+import DotsBoxesPage from "@/pages/dotsboxes";
+import BlockDashPage from "@/pages/blockdash";
 import { Provider } from "@/provider";
 
 function ScrollToTop() {
@@ -64,6 +66,8 @@ export const routes: RouteRecord[] = [
       { path: "2048", element: <Game2048Page /> },
       { path: "pacman", element: <PacmanPage /> },
       { path: "battleships", element: <BattleshipsPage /> },
+      { path: "dots-and-boxes", element: <DotsBoxesPage /> },
+      { path: "block-dash", element: <BlockDashPage /> },
       { path: "*", element: <Navigate replace to="/" /> },
     ],
   },

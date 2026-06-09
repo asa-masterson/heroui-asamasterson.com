@@ -7,7 +7,7 @@ const TURNSTILE_SITE_KEY = "0x4AAAAAADhDuGV_yepsTTRy";
 interface Entry { rank: number; name: string; score: number; level?: number; }
 
 interface Props {
-  game: "dotchomper" | "2048";
+  game: "dotchomper" | "2048" | "blockdash";
   score: number;
   level?: number;
 }
@@ -241,7 +241,7 @@ export default function Leaderboard({ game, score, level }: Props) {
   );
 }
 
-export function LeaderboardSidebar({ game }: { game: "dotchomper" | "2048" }) {
+export function LeaderboardSidebar({ game }: { game: "dotchomper" | "2048" | "blockdash" }) {
   const [entries, setEntries] = useState<Entry[]>([]);
 
   useEffect(() => { injectCss(); }, []);
