@@ -784,7 +784,7 @@ export default function PacmanPage() {
       canvas.removeEventListener("touchstart", onTouchStart);
       canvas.removeEventListener("touchend",   onTouchEnd);
     };
-  }, []);
+  }, [mounted]);
 
   if (!mounted) {
     return <><SEOHead meta={pageMeta.pacman} /></>;

@@ -295,15 +295,16 @@ export default function Game2048Page() {
     });
     obs.observe(boardRef.current);
     return () => obs.disconnect();
-  }, []);
+  }, [mounted]);
 
-  // Client-only init (SSG safe)
+  // Client-only init
   useEffect(() => {
+    if (!mounted) return;
     const t = initTiles();
     tilesRef.current = t;
     setTiles(t);
     setBest(parseInt(localStorage.getItem("2048-best") || "0", 10));
-  }, []);
+  }, [mounted]);
 
   // Persist best
   useEffect(() => {
