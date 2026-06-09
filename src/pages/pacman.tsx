@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
-import Leaderboard from "@/components/Leaderboard";
+import Leaderboard, { LeaderboardSidebar } from "@/components/Leaderboard";
 
 // ── Constants ──────────────────────────────────────────────────────
 const COLS = 21, ROWS = 21, CS = 20;
@@ -579,8 +579,10 @@ function drawScene(ctx: CanvasRenderingContext2D, gs: GS): void {
 const css = `
   .pm-page   { display:flex; flex-direction:column; min-height:100svh; background:#0d0d0d; }
   .pm-center { flex:1; display:flex; align-items:center; justify-content:center; padding:.75rem; }
+  .pm-layout { display:flex; gap:1.25rem; align-items:flex-start; justify-content:center; }
   .pm-wrap   { display:flex; flex-direction:column; align-items:center; gap:.75rem;
                width:100%; max-width:460px; }
+  @media (max-width:680px) { .pm-layout { flex-direction:column; align-items:center; } }
 
   .pm-header { display:flex; width:100%; align-items:flex-end;
                justify-content:space-between; gap:.75rem; }
@@ -799,6 +801,7 @@ export default function PacmanPage() {
       <div className="pm-page">
         <Navbar />
         <div className="pm-center">
+          <div className="pm-layout">
           <div className="pm-wrap">
 
             <div className="pm-header">
@@ -852,6 +855,8 @@ export default function PacmanPage() {
             </div>
 
             <a className="pm-back" href="/projects/">← Back to Projects</a>
+          </div>
+          <LeaderboardSidebar game="dotchomper" />
           </div>
         </div>
       </div>

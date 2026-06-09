@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
-import Leaderboard from "@/components/Leaderboard";
+import Leaderboard, { LeaderboardSidebar } from "@/components/Leaderboard";
 
 // ── Constants ─────────────────────────────────────────────────────
 const BRAND = "#ff54ff";
@@ -153,8 +153,10 @@ function tileFontSize(v: number, cs: number): string {
 const css = `
   .g48-page  { display:flex; flex-direction:column; min-height:100svh; background:#0d0d0d; }
   .g48-center { flex:1; display:flex; align-items:center; justify-content:center; padding:.75rem; }
+  .g48-layout { display:flex; gap:1.25rem; align-items:flex-start; justify-content:center; }
   .g48-wrap  { display:flex; flex-direction:column; align-items:center; gap:1rem;
                width:100%; max-width:460px; }
+  @media (max-width:680px) { .g48-layout { flex-direction:column; align-items:center; } }
 
   /* Header */
   .g48-header { display:flex; width:100%; align-items:flex-end;
@@ -411,6 +413,7 @@ export default function Game2048Page() {
       <div className="g48-page">
         <Navbar />
         <div className="g48-center">
+          <div className="g48-layout">
           <div className="g48-wrap">
 
             {/* Header */}
@@ -509,6 +512,8 @@ export default function Game2048Page() {
             </div>
 
             <a className="g48-back" href="/projects/">← Back to Projects</a>
+          </div>
+          <LeaderboardSidebar game="2048" />
           </div>
         </div>
       </div>

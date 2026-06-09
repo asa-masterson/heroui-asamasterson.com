@@ -49,6 +49,15 @@ const lbCss = `
   .lb-pos { font-family:'DM Mono',monospace; font-size:.6rem; color:rgba(255,84,255,.6); width:1.8rem; flex-shrink:0; }
   .lb-name { font-size:.75rem; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .lb-pts { font-family:'DM Mono',monospace; font-size:.65rem; color:#ff54ff; flex-shrink:0; }
+
+  .lb-side { width:160px; flex-shrink:0; display:flex; flex-direction:column; gap:.35rem; padding:.75rem; background:rgba(255,84,255,.04); border:1px solid rgba(255,84,255,.12); border-radius:12px; align-self:flex-start; }
+  .lb-side-title { font-family:'DM Mono',monospace; font-size:.52rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,84,255,.6); margin-bottom:.15rem; }
+  .lb-side-entry { display:flex; align-items:center; gap:.4rem; padding:.2rem .3rem; border-radius:5px; }
+  .lb-side-entry:first-of-type { background:rgba(255,210,0,.08); }
+  .lb-side-pos { font-family:'DM Mono',monospace; font-size:.55rem; color:rgba(255,84,255,.5); width:1.4rem; flex-shrink:0; }
+  .lb-side-name { font-size:.7rem; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:rgba(255,255,255,.85); }
+  .lb-side-pts { font-family:'DM Mono',monospace; font-size:.6rem; color:#ff54ff; flex-shrink:0; }
+  .lb-side-empty { font-family:'DM Mono',monospace; font-size:.58rem; color:rgba(255,255,255,.2); text-align:center; padding:.5rem 0; }
 `;
 
 let cssInjected = false;
@@ -185,6 +194,43 @@ export default function Leaderboard({ game, score }: Props) {
             ))}
           </div>
         </div>
+      )}
+    </div>
+  );
+}
+
+export function LeaderboardSidebar({ game }: { game: "dotchomper" | "2048" }) {
+  const [entries, setEntries] = useState<Entry[]>([]);
+
+  const load = useCallback(() => {
+    if (!API_BASE) return;
+    fetch(`${API_BASE}/leaderboard/${game}`)
+      .then(r => r.json())
+      .then((data: Entry[]) => setEntries(data))
+      .catch(() => {});
+  }, [game]);
+
+  useEffect(() => {
+    load();
+    const t = setInterval(load, 30_000);
+    return () => clearInterval(t);
+  }, [load]);
+
+  if (!API_BASE) return null;
+
+  return (
+    <div className="lb-side">
+      <p className="lb-side-title">Top Players</p>
+      {entries.length === 0 ? (
+        <p className="lb-side-empty">No scores yet</p>
+      ) : (
+        entries.slice(0, 5).map(e => (
+          <div key={e.rank} className="lb-side-entry">
+            <span className="lb-side-pos">#{e.rank}</span>
+            <span className="lb-side-name">{e.name}</span>
+            <span className="lb-side-pts">{e.score.toLocaleString()}</span>
+          </div>
+        ))
       )}
     </div>
   );
