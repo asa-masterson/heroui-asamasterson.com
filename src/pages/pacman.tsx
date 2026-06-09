@@ -648,6 +648,7 @@ export default function PacmanPage() {
   const gsRef     = useRef<GS | null>(null);
   const rafRef    = useRef(0);
 
+  const [mounted, setMounted] = useState(false);
   const [score, setScore] = useState(0);
   const [best,  setBest]  = useState(0);
   const [lives, setLives] = useState(3);
@@ -677,6 +678,8 @@ export default function PacmanPage() {
     gs.pac.nextDir = d;
     if (!gs.pac.moving) gs.pac.moving = true;
   }
+
+  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -782,6 +785,10 @@ export default function PacmanPage() {
       canvas.removeEventListener("touchend",   onTouchEnd);
     };
   }, []);
+
+  if (!mounted) {
+    return <><SEOHead meta={pageMeta.pacman} /></>;
+  }
 
   return (
     <>

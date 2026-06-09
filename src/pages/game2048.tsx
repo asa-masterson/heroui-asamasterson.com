@@ -266,6 +266,7 @@ function initTiles(): Tile[] {
 }
 
 export default function Game2048Page() {
+  const [mounted, setMounted] = useState(false);
   const [tiles, setTiles] = useState<Tile[]>([]);
   const [score, setScore] = useState(0);
   const [best, setBest]   = useState(0);
@@ -283,6 +284,8 @@ export default function Game2048Page() {
   // Board measurement for tile positioning
   const boardRef  = useRef<HTMLDivElement>(null);
   const [cellSize, setCellSize] = useState(100);
+
+  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
     if (!boardRef.current) return;
@@ -391,6 +394,10 @@ export default function Game2048Page() {
   // ── Tile position helpers ─────────────────────────────────────
   const tileLeft = (c: number) => PAD + c * (cellSize + GAP);
   const tileTop  = (r: number) => PAD + r * (cellSize + GAP);
+
+  if (!mounted) {
+    return <><SEOHead meta={pageMeta.game2048} /></>;
+  }
 
   return (
     <>
