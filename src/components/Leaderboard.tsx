@@ -118,8 +118,12 @@ export default function Leaderboard({ game, score }: Props) {
   const [error, setError] = useState<string | null>(null);
   const captchaRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => { setMounted(true); }, []);
-  useEffect(() => { injectCss(); }, []);
+  useEffect(() => {
+    injectCss();
+    setMounted(true);
+    const saved = localStorage.getItem("lb-player-name");
+    if (saved) setName(saved);
+  }, []);
 
   const fetchBoard = useCallback(() => {
     if (!API_BASE) return;
@@ -163,6 +167,7 @@ export default function Leaderboard({ game, score }: Props) {
       setMyRank(data.rank);
       setMyName(trimmed);
       setSubmitted(true);
+      localStorage.setItem("lb-player-name", trimmed);
       trackCustomEvent(`${game}_leaderboard_submit`, { score, rank: data.rank });
       fetchBoard();
     } catch (err: unknown) {
