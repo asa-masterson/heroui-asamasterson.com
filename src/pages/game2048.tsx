@@ -372,7 +372,11 @@ export default function Game2048Page() {
       a:"left", d:"right", w:"up", s:"down",
       A:"left", D:"right", W:"up", S:"down",
     };
-    const fn = (e: KeyboardEvent) => { if (MAP[e.key]) { e.preventDefault(); doMove(MAP[e.key]); } };
+    const fn = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement).tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      if (MAP[e.key]) { e.preventDefault(); doMove(MAP[e.key]); }
+    };
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
   }, [doMove]);

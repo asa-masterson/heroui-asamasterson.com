@@ -755,6 +755,8 @@ export default function PacmanPage() {
 
     // Keyboard
     const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement).tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
       const MAP: Record<string, number> = {
         ArrowLeft:L, ArrowRight:R, ArrowUp:U, ArrowDown:D,
         a:L, d:R, w:U, s:D, A:L, D:R, W:U, S:D,
