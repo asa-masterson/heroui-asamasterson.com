@@ -139,6 +139,11 @@ const pageStyles = `
     padding: 0.15rem 0.45rem;
     border-radius: 3px;
   }
+  .sq-card-tag-leaderboard {
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.25);
+  }
 
   /* Status badge — top-right corner */
   .sq-card-badge {
@@ -242,8 +247,8 @@ const webProjects: Project[] = [
 const browserGames: Project[] = [
   {
     name: "Dot Chomper",
-    desc: "Eat all the dots, grab power pellets to chase ghosts. Keyboard on desktop, d-pad on mobile.",
-    tags: ["React", "Canvas API"],
+    desc: "Eat all the dots, grab power pellets to chase ghosts. Keyboard on desktop, d-pad on mobile. Submit your score to the global leaderboard.",
+    tags: ["React", "Canvas API", "Leaderboard"],
     icon: "👻",
     href: "/pacman/",
     status: "live",
@@ -260,8 +265,8 @@ const browserGames: Project[] = [
   },
   {
     name: "2048",
-    desc: "Slide tiles to reach 2048. Arrow keys or WASD on desktop, swipe on mobile. Best score saved locally.",
-    tags: ["React", "TypeScript"],
+    desc: "Slide tiles to reach 2048. Arrow keys or WASD on desktop, swipe on mobile. Submit your score to the global leaderboard.",
+    tags: ["React", "TypeScript", "Leaderboard"],
     icon: "🟪",
     href: "/2048/",
     status: "live",
@@ -300,8 +305,8 @@ function ProjectCard({ p }: { p: Project }) {
       {p.tags.length > 0 && (
         <div className="sq-card-footer">
           {p.tags.map((t) => (
-            <span key={t} className="sq-card-tag">
-              {t}
+            <span key={t} className={`sq-card-tag${t === "Leaderboard" ? " sq-card-tag-leaderboard" : ""}`}>
+              {t === "Leaderboard" ? "🏆 " : ""}{t}
             </span>
           ))}
         </div>

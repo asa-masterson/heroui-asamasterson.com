@@ -54,45 +54,45 @@ const lbCss = `
 
   /* ── always-visible sidebar ────────────────────────────────────── */
   .lb-side {
-    width: 156px; flex-shrink: 0;
-    display: flex; flex-direction: column; gap: .3rem;
-    padding: .85rem .75rem;
-    background: rgba(0,0,0,.35);
-    border: 1px solid rgba(255,84,255,.18);
-    border-radius: 12px;
+    width: 210px; flex-shrink: 0;
+    display: flex; flex-direction: column; gap: .45rem;
+    padding: 1.1rem 1rem;
+    background: rgba(0,0,0,.4);
+    border: 1px solid rgba(255,84,255,.22);
+    border-radius: 14px;
     align-self: flex-start;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
   }
   .lb-side-heading {
     font-family: 'DM Mono', monospace;
-    font-size: .5rem; letter-spacing: .16em; text-transform: uppercase;
-    color: #ff54ff; margin-bottom: .4rem;
-    padding-bottom: .4rem;
-    border-bottom: 1px solid rgba(255,84,255,.15);
+    font-size: .6rem; letter-spacing: .16em; text-transform: uppercase;
+    color: #ff54ff; margin-bottom: .5rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid rgba(255,84,255,.18);
   }
   .lb-side-row {
-    display: flex; align-items: center; gap: .4rem;
-    padding: .25rem .3rem; border-radius: 6px;
+    display: flex; align-items: center; gap: .55rem;
+    padding: .35rem .45rem; border-radius: 7px;
     transition: background .15s;
   }
-  .lb-side-row:hover { background: rgba(255,84,255,.06); }
-  .lb-side-row-gold { background: rgba(255,200,0,.08); }
+  .lb-side-row:hover { background: rgba(255,84,255,.07); }
+  .lb-side-row-gold { background: rgba(255,200,0,.1); }
   .lb-side-pos {
-    font-family: 'DM Mono', monospace; font-size: .52rem;
-    color: rgba(255,84,255,.55); width: 1.3rem; flex-shrink: 0;
+    font-family: 'DM Mono', monospace; font-size: .65rem;
+    color: rgba(255,84,255,.6); width: 1.6rem; flex-shrink: 0;
   }
   .lb-side-name {
-    font-size: .68rem; flex: 1;
+    font-size: .8rem; flex: 1;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    color: rgba(255,255,255,.82);
+    color: rgba(255,255,255,.88);
   }
   .lb-side-pts {
-    font-family: 'DM Mono', monospace; font-size: .58rem;
+    font-family: 'DM Mono', monospace; font-size: .7rem;
     color: #ff54ff; flex-shrink: 0;
   }
   .lb-side-empty {
-    font-family: 'DM Mono', monospace; font-size: .55rem;
-    color: rgba(255,255,255,.18); text-align: center; padding: .6rem 0;
+    font-family: 'DM Mono', monospace; font-size: .65rem;
+    color: rgba(255,255,255,.2); text-align: center; padding: .75rem 0;
     font-style: italic;
   }
 `;
@@ -266,7 +266,7 @@ export function LeaderboardSidebar({ game }: { game: "dotchomper" | "2048" }) {
       {entries.length === 0 ? (
         <p className="lb-side-empty">No scores yet</p>
       ) : (
-        entries.slice(0, 5).map(e => (
+        entries.slice(0, 7).map(e => (
           <div
             key={e.rank}
             className={`lb-side-row${e.rank === 1 ? " lb-side-row-gold" : ""}`}

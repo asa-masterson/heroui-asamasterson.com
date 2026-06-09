@@ -156,7 +156,7 @@ const css = `
   .g48-layout { display:flex; gap:1.25rem; align-items:flex-start; justify-content:center; }
   .g48-wrap  { display:flex; flex-direction:column; align-items:center; gap:1rem;
                width:100%; max-width:460px; }
-  @media (max-width:680px) { .g48-layout { flex-direction:column; align-items:center; } }
+  @media (max-width:760px) { .g48-layout { flex-direction:column; align-items:center; } .lb-side { width:100%; max-width:460px; } }
 
   /* Header */
   .g48-header { display:flex; width:100%; align-items:flex-end;

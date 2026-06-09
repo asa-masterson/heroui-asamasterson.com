@@ -582,7 +582,7 @@ const css = `
   .pm-layout { display:flex; gap:1.25rem; align-items:flex-start; justify-content:center; }
   .pm-wrap   { display:flex; flex-direction:column; align-items:center; gap:.75rem;
                width:100%; max-width:460px; }
-  @media (max-width:680px) { .pm-layout { flex-direction:column; align-items:center; } }
+  @media (max-width:760px) { .pm-layout { flex-direction:column; align-items:center; } .lb-side { width:100%; max-width:420px; } }
 
   .pm-header { display:flex; width:100%; align-items:flex-end;
                justify-content:space-between; gap:.75rem; }
