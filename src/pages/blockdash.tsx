@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
 import Leaderboard, { LeaderboardSidebar } from "@/components/Leaderboard";
+import GameStaticPreview from "@/components/GameStaticPreview";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -455,7 +456,14 @@ export default function BlockDashPage() {
     }
   }
 
-  if (!mounted) return <><SEOHead meta={pageMeta.blockdash} /></>;
+  if (!mounted) return (
+    <GameStaticPreview
+      meta={pageMeta.blockdash}
+      title="Block Dash"
+      description="Navigate a glowing neon block through an endless corridor of obstacles. Speed increases and gaps narrow as you progress. Cyan laser bolts appear in the later stages for extra challenge. Beat your high score and climb the global leaderboard."
+      tags={["1 Player", "Arcade", "Leaderboard", "Canvas"]}
+    />
+  );
 
   const isOver = gameMode === "over";
 

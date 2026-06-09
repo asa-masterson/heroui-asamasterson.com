@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
+import GameStaticPreview from "@/components/GameStaticPreview";
 import Leaderboard, { LeaderboardSidebar } from "@/components/Leaderboard";
 
 // ── Constants ──────────────────────────────────────────────────────
@@ -826,7 +827,14 @@ export default function PacmanPage() {
   }, [mounted]);
 
   if (!mounted) {
-    return <><SEOHead meta={pageMeta.pacman} /></>;
+    return (
+      <GameStaticPreview
+        meta={pageMeta.pacman}
+        title="Dot Chomper"
+        description="Eat all the dots and grab power pellets to chase the ghosts. Four ghost personalities — Blinky, Pinky, Inky, and Clyde — each move differently to corner you. Keyboard and WASD on desktop, d-pad on mobile. Beat your score and submit it to the global leaderboard."
+        tags={["1 Player", "Arcade", "Leaderboard", "Canvas"]}
+      />
+    );
   }
 
   return (

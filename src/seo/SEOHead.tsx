@@ -49,10 +49,9 @@ export default function SEOHead({ meta, schema }: SEOHeadProps) {
       {cfSlug && <meta content={cfSlug} name="slug" />}
 
       {resolvedSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(resolvedSchema) }}
-        />
+        <script type="application/ld+json">
+          {JSON.stringify(resolvedSchema)}
+        </script>
       )}
     </Head>
   );

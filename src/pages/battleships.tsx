@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
+import GameStaticPreview from "@/components/GameStaticPreview";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -483,7 +484,14 @@ export default function BattleshipsPage() {
   }, [resetAi]);
 
   // ── SSR guard ──────────────────────────────────────────────────────────────────
-  if (!mounted) return <><SEOHead meta={pageMeta.battleships} /></>;
+  if (!mounted) return (
+    <GameStaticPreview
+      meta={pageMeta.battleships}
+      title="Battleships"
+      description="Classic 10×10 naval combat. Place your fleet of five ships, then take turns firing at the enemy grid. Choose 1 player vs the hunt-and-target AI, or pass-and-play with a friend — a cover screen keeps both fleets hidden between turns. Sink all five enemy ships before yours go down."
+      tags={["1–2 Players", "Strategy", "Pass and Play"]}
+    />
+  );
   if (!gs) return null;
 
   // ── Derived state ──────────────────────────────────────────────────────────────

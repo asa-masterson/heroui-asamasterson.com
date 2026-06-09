@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
+import GameStaticPreview from "@/components/GameStaticPreview";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -238,7 +239,14 @@ export default function DotsBoxesPage() {
     });
   }, []);
 
-  if (!mounted) return <><SEOHead meta={pageMeta.dotsboxes} /></>;
+  if (!mounted) return (
+    <GameStaticPreview
+      meta={pageMeta.dotsboxes}
+      title="Dots & Boxes"
+      description="Draw lines between dots to complete squares and claim them as your own. The player who owns the most boxes when the grid is full wins. Play 1 player against a greedy AI opponent, or challenge a friend on the same screen. A classic pen-and-paper strategy game, now in your browser."
+      tags={["1–2 Players", "Strategy", "Same Screen"]}
+    />
+  );
 
   // Mode selection
   if (mode === "select" || !gs) {

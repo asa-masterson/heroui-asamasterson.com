@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Navbar } from "@/components/navbar";
 import SEOHead from "@/seo/SEOHead";
 import { pageMeta } from "@/seo/meta";
+import GameStaticPreview from "@/components/GameStaticPreview";
 import Leaderboard, { LeaderboardSidebar } from "@/components/Leaderboard";
 
 // ── Constants ─────────────────────────────────────────────────────
@@ -403,7 +404,14 @@ export default function Game2048Page() {
   const tileTop  = (r: number) => PAD + r * (cellSize + GAP);
 
   if (!mounted) {
-    return <><SEOHead meta={pageMeta.game2048} /></>;
+    return (
+      <GameStaticPreview
+        meta={pageMeta.game2048}
+        title="2048"
+        description="Slide tiles on a 4×4 grid to merge matching numbers and reach the 2048 tile. Arrow keys or WASD on desktop, swipe on mobile. Your best score is saved locally and you can submit it to the global leaderboard to compete against other players."
+        tags={["1 Player", "Puzzle", "Leaderboard"]}
+      />
+    );
   }
 
   return (
