@@ -52,6 +52,7 @@ const lbCss = `
 let cssInjected = false;
 
 export default function Leaderboard({ game, score }: Props) {
+  const [mounted, setMounted] = useState(false);
   const [name, setName] = useState("");
   const [entries, setEntries] = useState<Entry[]>([]);
   const [submitted, setSubmitted] = useState(false);
@@ -60,6 +61,8 @@ export default function Leaderboard({ game, score }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const captchaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => { setMounted(true); }, []);
 
   // Inject styles once
   useEffect(() => {
@@ -129,7 +132,7 @@ export default function Leaderboard({ game, score }: Props) {
     }
   };
 
-  if (!API_BASE) return null;
+  if (!mounted || !API_BASE) return null;
 
   return (
     <div className="lb-wrap">
