@@ -116,11 +116,13 @@ interface GS {
   food: number;
   totalFood: number;
   lives: number;
+  level: number;
   mode: "ready" | "playing" | "dying" | "won" | "gameover";
   modeTimer: number;
   scatter: boolean;
   frame: number;
   dyingTimer: number;
+  wonTimer: number;
   fruit: Fruit;
   fruitSpawnIdx: number;
 }
@@ -153,9 +155,24 @@ function freshGame(best: number): GS {
   const food = countFood(maze);
   return {
     maze, pac: makePac(), ghosts: makeGhosts(),
-    score: 0, best, food, totalFood: food, lives: 3,
+    score: 0, best, food, totalFood: food, lives: 3, level: 1,
     mode: "ready", modeTimer: 0, scatter: true,
-    frame: 0, dyingTimer: 0,
+    frame: 0, dyingTimer: 0, wonTimer: 0,
+    fruit: { active: false, timer: 0, type: 0, alpha: 0 },
+    fruitSpawnIdx: 0,
+  };
+}
+
+function nextLevel(gs: GS): GS {
+  const maze = parseMaze();
+  const food = countFood(maze);
+  return {
+    ...gs,
+    maze, pac: makePac(), ghosts: makeGhosts(),
+    food, totalFood: food,
+    level: gs.level + 1,
+    mode: "ready", modeTimer: 0, scatter: true,
+    frame: 0, dyingTimer: 0, wonTimer: 0,
     fruit: { active: false, timer: 0, type: 0, alpha: 0 },
     fruitSpawnIdx: 0,
   };
@@ -229,13 +246,14 @@ function randomDir(row: number, col: number, curDir: number, maze: number[][]): 
   return opts.length ? opts[Math.floor(Math.random() * opts.length)] : OPP[curDir];
 }
 
-function ghostSpd(g: Ghost): number {
+function ghostSpd(g: Ghost, level = 1): number {
+  const boost = Math.min(level - 1, 4); // cap at level 5
   switch (g.state) {
     case "dead":       return DEAD_SPD;
-    case "frightened": return FRIGHT_SPD;
+    case "frightened": return Math.max(7, FRIGHT_SPD - boost);
     case "house":      return HOUSE_SPD;
     case "exiting":    return EXIT_SPD;
-    default:           return NORM_SPD;
+    default:           return Math.max(5, NORM_SPD - boost);
   }
 }
 
@@ -250,7 +268,7 @@ function updateGhost(g: Ghost, gs: GS): void {
 
   // Advance move-progress at per-state speed — this is what was causing flicker:
   // house/exiting previously moved every frame; now gated by mp like all states
-  g.mp += 1 / ghostSpd(g);
+  g.mp += 1 / ghostSpd(g, gs.level);
   if (g.mp < 1) return;
   g.mp = 0;
 
@@ -329,7 +347,7 @@ function updateFruit(gs: GS): void {
 
 function updatePac(gs: GS): void {
   const p = gs.pac;
-  p.mp += 1 / PAC_SPD;
+  p.mp += 1 / Math.max(4, PAC_SPD - Math.min(gs.level - 1, 3));
   if (p.mp < 1) return;
   p.mp = 0;
 
@@ -558,12 +576,15 @@ function drawScene(ctx: CanvasRenderingContext2D, gs: GS): void {
     ctx.fillText("GET READY!", CW / 2, CH / 2 + 8);
   }
   if (mode === "won") {
-    ctx.fillStyle = "rgba(0,0,0,0.5)";
-    ctx.fillRect(0, CH / 2 - 30, CW, 60);
+    ctx.fillStyle = "rgba(0,0,0,0.55)";
+    ctx.fillRect(0, CH / 2 - 36, CW, 72);
     ctx.fillStyle = "#ffee00";
     ctx.font = `bold 20px 'DM Mono', monospace`;
     ctx.textAlign = "center";
-    ctx.fillText("LEVEL CLEAR!", CW / 2, CH / 2 + 7);
+    ctx.fillText(`LEVEL ${gs.level} CLEAR!`, CW / 2, CH / 2 - 4);
+    ctx.fillStyle = "rgba(255,238,0,0.6)";
+    ctx.font = `13px 'DM Mono', monospace`;
+    ctx.fillText(`GET READY FOR LEVEL ${gs.level + 1}`, CW / 2, CH / 2 + 18);
   }
   if (mode === "gameover") {
     ctx.fillStyle = "rgba(0,0,0,0.6)";
@@ -654,15 +675,18 @@ export default function PacmanPage() {
   const [score, setScore] = useState(0);
   const [best,  setBest]  = useState(0);
   const [lives, setLives] = useState(3);
+  const [level, setLevel] = useState(1);
   const [mode,  setMode]  = useState<GS["mode"]>("ready");
 
   const lastScore = useRef(0);
   const lastLives = useRef(3);
+  const lastLevel = useRef(1);
   const lastMode  = useRef<GS["mode"]>("ready");
 
   function syncUI(gs: GS) {
     if (gs.score !== lastScore.current) { setScore(gs.score); lastScore.current = gs.score; }
     if (gs.lives !== lastLives.current) { setLives(gs.lives); lastLives.current = gs.lives; }
+    if (gs.level !== lastLevel.current) { setLevel(gs.level); lastLevel.current = gs.level; }
     if (gs.mode  !== lastMode.current)  { setMode(gs.mode);   lastMode.current  = gs.mode; }
   }
 
@@ -670,8 +694,8 @@ export default function PacmanPage() {
     const b = keepBest ? (gsRef.current?.best ?? 0) : 0;
     const gs = freshGame(b);
     gsRef.current = gs;
-    lastScore.current = 0; lastLives.current = 3; lastMode.current = "ready";
-    setScore(0); setLives(3); setMode("ready"); setBest(b);
+    lastScore.current = 0; lastLives.current = 3; lastLevel.current = 1; lastMode.current = "ready";
+    setScore(0); setLives(3); setLevel(1); setMode("ready"); setBest(b);
   }
 
   function queueDir(d: number) {
@@ -736,6 +760,17 @@ export default function PacmanPage() {
           gs.best = gs.score;
           localStorage.setItem("pacman-best", String(gs.best));
           setBest(gs.best);
+        }
+
+      } else if (m === "won") {
+        gs.wonTimer++;
+        if (gs.wonTimer >= 150) {
+          const next = nextLevel(gs);
+          gsRef.current = next;
+          syncUI(next);
+          drawScene(ctx, next);
+          rafRef.current = requestAnimationFrame(loop);
+          return;
         }
 
       } else if (m === "dying") {
@@ -805,7 +840,10 @@ export default function PacmanPage() {
           <div className="pm-wrap">
 
             <div className="pm-header">
-              <h1 className="pm-title">DOT CHOMPER</h1>
+              <div style={{display:"flex", flexDirection:"column", gap:"4px"}}>
+                <h1 className="pm-title">DOT CHOMPER</h1>
+                <span className="pm-slabel" style={{fontSize:".55rem", letterSpacing:".12em"}}>LEVEL {level}</span>
+              </div>
               <div style={{display:"flex", flexDirection:"column", alignItems:"flex-end", gap:"6px"}}>
                 <div className="pm-scores">
                   <div className="pm-sbox">
@@ -833,16 +871,16 @@ export default function PacmanPage() {
             <div className="pm-canvas-wrap">
               <canvas ref={canvasRef} width={CW} height={CH} className="pm-canvas" />
 
-              {(mode === "gameover" || mode === "won") && (
+              {mode === "gameover" && (
                 <div className="pm-overlay" style={{ overflowY: "auto", paddingBottom: "1rem" }}>
-                  <p className="pm-ov-eye">{mode === "won" ? "All dots eaten!" : "No lives left"}</p>
-                  <p className="pm-ov-head">{mode === "won" ? "You win!" : "Game over"}</p>
+                  <p className="pm-ov-eye">No lives left — reached level {level}</p>
+                  <p className="pm-ov-head">Game over</p>
                   <div className="pm-ov-btns">
                     <button className="pm-btn pm-btn-solid" onClick={() => startGame(true)}>
                       Play again
                     </button>
                   </div>
-                  <Leaderboard game="dotchomper" score={score} />
+                  <Leaderboard game="dotchomper" score={score} level={level} />
                 </div>
               )}
             </div>

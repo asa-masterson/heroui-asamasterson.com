@@ -4,11 +4,12 @@ import { trackCustomEvent } from "@/lib/analytics";
 const API_BASE = (import.meta.env.VITE_LEADERBOARD_API_URL as string | undefined) ?? "";
 const TURNSTILE_SITE_KEY = "0x4AAAAAADhDuGV_yepsTTRy";
 
-interface Entry { rank: number; name: string; score: number; }
+interface Entry { rank: number; name: string; score: number; level?: number; }
 
 interface Props {
   game: "dotchomper" | "2048";
   score: number;
+  level?: number;
 }
 
 declare global {
@@ -107,7 +108,7 @@ function injectCss() {
   cssInjected = true;
 }
 
-export default function Leaderboard({ game, score }: Props) {
+export default function Leaderboard({ game, score, level }: Props) {
   const [mounted, setMounted] = useState(false);
   const [name, setName] = useState("");
   const [entries, setEntries] = useState<Entry[]>([]);
@@ -159,7 +160,7 @@ export default function Leaderboard({ game, score }: Props) {
       const res = await fetch(`${API_BASE}/leaderboard/${game}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: trimmed, score, captcha_token: token }),
+        body: JSON.stringify({ name: trimmed, score, level: level ?? 1, captcha_token: token }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail ?? "Submission failed");
@@ -229,6 +230,7 @@ export default function Leaderboard({ game, score }: Props) {
               >
                 <span className="lb-pos">#{e.rank}</span>
                 <span className="lb-name">{e.name}</span>
+                {e.level && <span className="lb-pts" style={{opacity:.55, marginRight:".15rem"}}>L{e.level}</span>}
                 <span className="lb-pts">{e.score.toLocaleString()}</span>
               </div>
             ))}
@@ -273,6 +275,7 @@ export function LeaderboardSidebar({ game }: { game: "dotchomper" | "2048" }) {
           >
             <span className="lb-side-pos">#{e.rank}</span>
             <span className="lb-side-name">{e.name}</span>
+            {e.level && <span className="lb-side-pts" style={{opacity:.5, marginRight:".1rem"}}>L{e.level}</span>}
             <span className="lb-side-pts">{e.score.toLocaleString()}</span>
           </div>
         ))
