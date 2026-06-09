@@ -19,13 +19,16 @@ export interface PageMeta {
 
 const BASE_URL = "https://asamasterson.com";
 
+const S3 = "https://minio-s3.bigfluffy.monster/pigsare-pink/assets";
+
 // Home page — pig OG image (brand-forward, memorable share card)
-const HOME_IMAGE =
-  "https://minio-s3.bigfluffy.monster/pigsare-pink/assets/og-image.png";
+const HOME_IMAGE = `${S3}/og-image.png`;
 
 // About page — college photo (personal, context-relevant share card)
-const ABOUT_IMAGE =
-  "https://minio-s3.bigfluffy.monster/pigsare-pink/assets/asa-about-og.png";
+const ABOUT_IMAGE = `${S3}/asa-about-og.png`;
+
+// Game-specific OG images — add screenshot URLs here once captured
+// const OG_GAME_NAME = `${S3}/og-game-name.png`;
 
 const AUTHOR = {
   "@type": "Person",
