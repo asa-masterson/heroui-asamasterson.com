@@ -27,8 +27,13 @@ const HOME_IMAGE = `${S3}/og-image.png`;
 // About page — college photo (personal, context-relevant share card)
 const ABOUT_IMAGE = `${S3}/asa-about-og.png`;
 
-// Game-specific OG images — add screenshot URLs here once captured
-// const OG_GAME_NAME = `${S3}/og-game-name.png`;
+const OG_PROJECTS    = `${S3}/project-og.png`;
+const OG_PONG        = `${S3}/pong-og.png`;
+const OG_PACMAN      = `${S3}/pacman-og.png`;
+const OG_2048        = `${S3}/2048-og.png`;
+const OG_DOTS        = `${S3}/dots-og.png`;
+const OG_BLOCKDASH   = `${S3}/blockdash-og.png`;
+const OG_BATTLESHIPS = `${S3}/battleships-og.png`;
 
 const AUTHOR = {
   "@type": "Person",
@@ -143,7 +148,7 @@ export const pageMeta: Record<string, PageMeta> = {
     ogTitle: "Projects & Games — Asa Masterson",
     ogDescription:
       "Web apps, browser games, tools, and experiments by Asa Masterson — full-stack developer and BSc Business Computing student.",
-    ogImage: HOME_IMAGE,
+    ogImage: OG_PROJECTS,
     ogType: "website",
     cfType: "projects",
     cfSection: "projects",
@@ -179,7 +184,7 @@ export const pageMeta: Record<string, PageMeta> = {
     ogTitle: "Dot Chomper — Play in your browser",
     ogDescription:
       "Dot Chomper — dots, power pellets, and four ghosts. Desktop keyboard + mobile d-pad.",
-    ogImage: HOME_IMAGE,
+    ogImage: OG_PACMAN,
     ogType: "website",
     cfType: "game",
     cfSection: "games",
@@ -207,7 +212,7 @@ export const pageMeta: Record<string, PageMeta> = {
     ogTitle: "Paddle Battle — Play in your browser",
     ogDescription:
       "Paddle Battle with 1P AI and 2P modes. Desktop keyboard + mobile touch controls.",
-    ogImage: HOME_IMAGE,
+    ogImage: OG_PONG,
     ogType: "website",
     cfType: "game",
     cfSection: "games",
@@ -236,7 +241,7 @@ export const pageMeta: Record<string, PageMeta> = {
     ogTitle: "Block Dash — Play in your browser",
     ogDescription:
       "Dodge endless neon pillars — how long can you survive? Keyboard on desktop, d-pad on mobile. Global leaderboard.",
-    ogImage: HOME_IMAGE,
+    ogImage: OG_BLOCKDASH,
     ogType: "website",
     cfType: "game",
     cfSection: "games",
@@ -264,7 +269,7 @@ export const pageMeta: Record<string, PageMeta> = {
     ogTitle: "Dots & Boxes — Play in your browser",
     ogDescription:
       "Classic Dots & Boxes — 1P vs AI or 2P local. Draw lines, complete squares, score the most boxes.",
-    ogImage: HOME_IMAGE,
+    ogImage: OG_DOTS,
     ogType: "website",
     cfType: "game",
     cfSection: "games",
@@ -293,7 +298,7 @@ export const pageMeta: Record<string, PageMeta> = {
     ogTitle: "Battleships — Play in your browser",
     ogDescription:
       "Classic Battleships vs AI — sink the enemy fleet before yours goes under. No download needed.",
-    ogImage: HOME_IMAGE,
+    ogImage: OG_BATTLESHIPS,
     ogType: "website",
     cfType: "game",
     cfSection: "games",
@@ -320,7 +325,7 @@ export const pageMeta: Record<string, PageMeta> = {
     canonical: `${BASE_URL}/2048/`,
     ogTitle: "2048 — Play in your browser",
     ogDescription: "2048 puzzle game. Arrow keys on desktop, swipe on mobile. Scores saved locally.",
-    ogImage: HOME_IMAGE,
+    ogImage: OG_2048,
     ogType: "website",
     cfType: "game",
     cfSection: "games",
