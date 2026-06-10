@@ -167,12 +167,12 @@ export const pageMeta: Record<string, PageMeta> = {
         { "@type": "SoftwareApplication", name: "PageViews Counter", url: "https://github.com/asa-masterson/fastapi-redis-counter", applicationCategory: "DeveloperApplication" },
         { "@type": "SoftwareApplication", name: "Lotto Number Picker", url: "https://lotto.pigsare.pink", applicationCategory: "UtilitiesApplication" },
         { "@type": "SoftwareApplication", name: "Toru Challenge", url: "https://github.com/asa-masterson/toru-backend", applicationCategory: "DeveloperApplication" },
-        { "@type": "VideoGame", name: "Dot Chomper",  url: `${BASE_URL}/pacman/` },
-        { "@type": "VideoGame", name: "Paddle Battle", url: `${BASE_URL}/pong/` },
-        { "@type": "VideoGame", name: "2048",          url: `${BASE_URL}/2048/` },
-        { "@type": "VideoGame", name: "Battleships",   url: `${BASE_URL}/battleships/` },
-        { "@type": "VideoGame", name: "Dots & Boxes",  url: `${BASE_URL}/dots-and-boxes/` },
-        { "@type": "VideoGame", name: "Block Dash",    url: `${BASE_URL}/block-dash/` },
+        { "@type": "VideoGame", name: "Dot Chomper",  url: `${BASE_URL}/projects/pacman/` },
+        { "@type": "VideoGame", name: "Paddle Battle", url: `${BASE_URL}/projects/pong/` },
+        { "@type": "VideoGame", name: "2048",          url: `${BASE_URL}/projects/2048/` },
+        { "@type": "VideoGame", name: "Battleships",   url: `${BASE_URL}/projects/battleships/` },
+        { "@type": "VideoGame", name: "Dots & Boxes",  url: `${BASE_URL}/projects/dots-and-boxes/` },
+        { "@type": "VideoGame", name: "Block Dash",    url: `${BASE_URL}/projects/block-dash/` },
       ],
     },
   },
@@ -180,7 +180,7 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "Dot Chomper — Asa Masterson",
     description:
       "Play Dot Chomper! Eat all the dots, avoid ghosts, and grab power pellets to turn the tables. Arrow keys or WASD on desktop, d-pad on mobile.",
-    canonical: `${BASE_URL}/pacman/`,
+    canonical: `${BASE_URL}/projects/pacman/`,
     ogTitle: "Dot Chomper — Play in your browser",
     ogDescription:
       "Dot Chomper — dots, power pellets, and four ghosts. Desktop keyboard + mobile d-pad.",
@@ -193,7 +193,7 @@ export const pageMeta: Record<string, PageMeta> = {
       "@context": "https://schema.org",
       "@type": "VideoGame",
       name: "Dot Chomper",
-      url: `${BASE_URL}/pacman/`,
+      url: `${BASE_URL}/projects/pacman/`,
       description:
         "Browser-based maze game — eat all the dots, grab power pellets to chase ghosts. Playable on desktop (keyboard/WASD) and mobile (d-pad).",
       applicationCategory: "GameApplication",
@@ -208,7 +208,7 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "Paddle Battle — Asa Masterson",
     description:
       "Play Paddle Battle! 1-player vs AI or 2-player local mode. Works on desktop (keyboard) and mobile (touch).",
-    canonical: `${BASE_URL}/pong/`,
+    canonical: `${BASE_URL}/projects/pong/`,
     ogTitle: "Paddle Battle — Play in your browser",
     ogDescription:
       "Paddle Battle with 1P AI and 2P modes. Desktop keyboard + mobile touch controls.",
@@ -221,7 +221,7 @@ export const pageMeta: Record<string, PageMeta> = {
       "@context": "https://schema.org",
       "@type": "VideoGame",
       name: "Paddle Battle",
-      url: `${BASE_URL}/pong/`,
+      url: `${BASE_URL}/projects/pong/`,
       description:
         "Browser-based paddle game — 1 player vs AI or 2-player local. Desktop keyboard and mobile touch controls.",
       applicationCategory: "GameApplication",
@@ -237,7 +237,7 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "Block Dash — Asa Masterson",
     description:
       "Play Block Dash! Dodge the neon pillars for as long as you can. Arrow keys or WASD on desktop, d-pad on mobile. Submit your score to the global leaderboard.",
-    canonical: `${BASE_URL}/block-dash/`,
+    canonical: `${BASE_URL}/projects/block-dash/`,
     ogTitle: "Block Dash — Play in your browser",
     ogDescription:
       "Dodge endless neon pillars — how long can you survive? Keyboard on desktop, d-pad on mobile. Global leaderboard.",
@@ -250,7 +250,7 @@ export const pageMeta: Record<string, PageMeta> = {
       "@context": "https://schema.org",
       "@type": "VideoGame",
       name: "Block Dash",
-      url: `${BASE_URL}/block-dash/`,
+      url: `${BASE_URL}/projects/block-dash/`,
       description:
         "Browser-based obstacle dodge game — navigate a glowing block through endless neon pillars. Speed and difficulty increase over time. Submit your score to the global leaderboard.",
       applicationCategory: "GameApplication",
@@ -265,7 +265,7 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "Dots & Boxes — Asa Masterson",
     description:
       "Play Dots & Boxes! Draw lines to complete boxes and claim them before your opponent. 1 player vs AI or 2 player local.",
-    canonical: `${BASE_URL}/dots-and-boxes/`,
+    canonical: `${BASE_URL}/projects/dots-and-boxes/`,
     ogTitle: "Dots & Boxes — Play in your browser",
     ogDescription:
       "Classic Dots & Boxes — 1P vs AI or 2P local. Draw lines, complete squares, score the most boxes.",
@@ -278,7 +278,7 @@ export const pageMeta: Record<string, PageMeta> = {
       "@context": "https://schema.org",
       "@type": "VideoGame",
       name: "Dots & Boxes",
-      url: `${BASE_URL}/dots-and-boxes/`,
+      url: `${BASE_URL}/projects/dots-and-boxes/`,
       description:
         "Browser-based Dots and Boxes game on a 5×5 grid. Draw lines to complete boxes and outscore your opponent. 1 player vs greedy AI, or 2 players on the same screen.",
       applicationCategory: "GameApplication",
@@ -294,7 +294,7 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "Battleships — Asa Masterson",
     description:
       "Play Battleships! Sink all five enemy ships before the AI destroys your fleet. Strategic naval combat in your browser.",
-    canonical: `${BASE_URL}/battleships/`,
+    canonical: `${BASE_URL}/projects/battleships/`,
     ogTitle: "Battleships — Play in your browser",
     ogDescription:
       "Classic Battleships vs AI — sink the enemy fleet before yours goes under. No download needed.",
@@ -307,7 +307,7 @@ export const pageMeta: Record<string, PageMeta> = {
       "@context": "https://schema.org",
       "@type": "VideoGame",
       name: "Battleships",
-      url: `${BASE_URL}/battleships/`,
+      url: `${BASE_URL}/projects/battleships/`,
       description:
         "Browser-based Battleships game — place your fleet, then take turns firing at the enemy grid. Hunt-and-target AI opponent.",
       applicationCategory: "GameApplication",
@@ -322,7 +322,7 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "2048 — Asa Masterson",
     description:
       "Play 2048! Slide tiles to reach the 2048 tile. Works on desktop (arrow keys / WASD) and mobile (swipe).",
-    canonical: `${BASE_URL}/2048/`,
+    canonical: `${BASE_URL}/projects/2048/`,
     ogTitle: "2048 — Play in your browser",
     ogDescription: "2048 puzzle game. Arrow keys on desktop, swipe on mobile. Scores saved locally.",
     ogImage: OG_2048,
@@ -334,7 +334,7 @@ export const pageMeta: Record<string, PageMeta> = {
       "@context": "https://schema.org",
       "@type": "VideoGame",
       name: "2048",
-      url: `${BASE_URL}/2048/`,
+      url: `${BASE_URL}/projects/2048/`,
       description:
         "Browser-based tile puzzle game — slide tiles to combine them and reach 2048. Arrow keys or WASD on desktop, swipe on mobile. Best score saved locally.",
       applicationCategory: "GameApplication",
