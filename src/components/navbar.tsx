@@ -1,4 +1,14 @@
 import { useEffect, useRef } from "react";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "search-modal-snippet": React.ClassAttributes<HTMLElement> & React.HTMLAttributes<HTMLElement> & {
+        "api-url"?: string; placeholder?: string; "max-results"?: string; "show-url"?: string; "request-options"?: string;
+      };
+    }
+  }
+}
 import { Link } from "@heroui/link";
 import {
   Navbar as HeroUINavbar,
@@ -19,16 +29,6 @@ import { trackCustomEvent } from "@/lib/analytics";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon } from "@/components/icons";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "search-modal-snippet": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >;
-    }
-  }
-}
 
 const navbarStyles = `
   .nav-brand-name {
@@ -311,6 +311,9 @@ export const Navbar = () => {
         {() => (
           <search-modal-snippet
             api-url="https://78636862-e958-468c-815a-f63b06d7d2b1.search.ai.cloudflare.com"
+            placeholder="Search Asa's site..."
+            max-results="8"
+            show-url=""
             ref={searchRef}
           />
         )}

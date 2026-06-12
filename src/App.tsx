@@ -13,6 +13,8 @@ import BattleshipsPage from "@/pages/battleships";
 import DotsBoxesPage from "@/pages/dotsboxes";
 import BlockDashPage from "@/pages/blockdash";
 import NotFoundPage from "@/pages/not-found";
+import PrivacyPage from "@/pages/privacy";
+import TermsPage from "@/pages/terms";
 import { Provider } from "@/provider";
 
 function ScrollToTop() {
@@ -69,6 +71,8 @@ export const routes: RouteRecord[] = [
       { path: "projects/battleships", element: <BattleshipsPage /> },
       { path: "projects/dots-and-boxes", element: <DotsBoxesPage /> },
       { path: "projects/block-dash", element: <BlockDashPage /> },
+      { path: "privacy", element: <PrivacyPage /> },
+      { path: "terms", element: <TermsPage /> },
       { path: "404", element: <NotFoundPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],

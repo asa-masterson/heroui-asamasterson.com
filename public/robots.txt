@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /ping
 
 Sitemap: https://asamasterson.com/sitemap.xml

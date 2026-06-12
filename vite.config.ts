@@ -18,9 +18,9 @@ export default defineConfig({
     }),
     sitemap({
       hostname: BASE_URL,
-      dynamicRoutes: ['/about/', '/projects/', '/projects/pacman/', '/projects/pong/', '/projects/2048/', '/projects/battleships/', '/projects/dots-and-boxes/', '/projects/block-dash/'],
+      dynamicRoutes: ['/about/', '/projects/', '/projects/pacman/', '/projects/pong/', '/projects/2048/', '/projects/battleships/', '/projects/dots-and-boxes/', '/projects/block-dash/', '/privacy/', '/terms/'],
       changefreq: 'monthly',
-      priority: { '/': 1.0, '/about': 0.8, '/projects': 0.8, '/projects/pacman': 0.6, '/projects/pong': 0.6, '/projects/2048': 0.6, '/projects/battleships': 0.6, '/projects/dots-and-boxes': 0.6, '/projects/block-dash': 0.6, '/404': 0.0 },
+      priority: { '/': 1.0, '/about': 0.8, '/projects': 0.8, '/projects/pacman': 0.6, '/projects/pong': 0.6, '/projects/2048': 0.6, '/projects/battleships': 0.6, '/projects/dots-and-boxes': 0.6, '/projects/block-dash': 0.6, '/privacy': 0.2, '/terms': 0.2, '/404': 0.0 },
       outDir: 'dist',
       generateRobotsTxt: false,
     }),
