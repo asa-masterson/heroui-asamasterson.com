@@ -173,12 +173,23 @@ export default function DefaultLayout({
   const [viewCount, setViewCount] = useState<string | null>(null);
   const [statusOpen, setStatusOpen] = useState(false);
   const [badgeKey, setBadgeKey] = useState(0);
+  const [isDark, setIsDark] = useState(false);
 
   const openStatus = () => setStatusOpen(true);
   const closeStatus = () => {
     setStatusOpen(false);
     setBadgeKey((k) => k + 1);
   };
+
+  useEffect(() => {
+    const html = document.documentElement;
+    setIsDark(html.classList.contains("dark"));
+    const observer = new MutationObserver(() => {
+      setIsDark(html.classList.contains("dark"));
+    });
+    observer.observe(html, { attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     fetch("https://a.bigfluffy.monster/counter/id/asamastersoncom")
@@ -249,9 +260,9 @@ export default function DefaultLayout({
               onClick={openStatus}
             >
               <iframe
-                key={badgeKey}
+                key={`${badgeKey}-${isDark}`}
                 height="30"
-                src="https://status.asamasterson.com/badge?theme=dark"
+                src={`https://status.asamasterson.com/badge?theme=${isDark ? "dark" : "light"}`}
                 style={{ colorScheme: "normal", border: 0, overflow: "hidden", display: "block", pointerEvents: "none" }}
                 title="Site status"
                 width="250"
