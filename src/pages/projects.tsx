@@ -140,11 +140,21 @@ const pageStyles = `
     border-radius: 3px;
   }
   .sq-card-tag-leaderboard {
+    color: #8a6800;
+    background: rgba(180, 140, 0, 0.1);
+    border: 1px solid rgba(180, 140, 0, 0.3);
+  }
+  .sq-card-tag-players {
+    color: #1a7a4a;
+    background: rgba(26, 122, 74, 0.08);
+    border: 1px solid rgba(26, 122, 74, 0.22);
+  }
+  .dark .sq-card-tag-leaderboard {
     color: #ffd700;
     background: rgba(255, 215, 0, 0.1);
     border: 1px solid rgba(255, 215, 0, 0.25);
   }
-  .sq-card-tag-players {
+  .dark .sq-card-tag-players {
     color: #aaffcc;
     background: rgba(100, 255, 160, 0.08);
     border: 1px solid rgba(100, 255, 160, 0.22);
@@ -165,6 +175,11 @@ const pageStyles = `
     z-index: 2;
   }
   .sq-card-badge-wip {
+    background: rgba(0,0,0,0.12);
+    color: #444;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+  .dark .sq-card-badge-wip {
     background: rgba(0,0,0,0.5);
     color: rgba(255,255,255,0.75);
     border: 1px solid rgba(255,255,255,0.1);

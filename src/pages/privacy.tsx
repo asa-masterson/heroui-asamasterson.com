@@ -26,7 +26,7 @@ const pageStyles = `
     font-family: 'DM Mono', monospace;
     font-size: 0.68rem;
     letter-spacing: 0.06em;
-    color: rgba(255,255,255,0.35);
+    color: var(--muted);
     margin-bottom: 3rem;
   }
   .legal-section { margin-bottom: 2.5rem; }
@@ -40,7 +40,7 @@ const pageStyles = `
     font-size: 0.78rem;
     letter-spacing: 0.02em;
     line-height: 1.8;
-    color: rgba(255,255,255,0.6);
+    color: var(--muted);
   }
   .legal-section ul { padding-left: 1.25rem; margin: 0.5rem 0; }
   .legal-section a { color: #ff54ff; text-decoration: none; }

@@ -46,7 +46,7 @@ const footerStyles = `
     font-family: 'DM Serif Display', serif;
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--foreground, #f8fafc);
+    color: var(--foreground);
     margin-bottom: 0.625rem;
     text-decoration: none;
     display: block;
@@ -59,7 +59,7 @@ const footerStyles = `
     font-family: 'DM Mono', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.06em;
-    color: rgba(255,255,255,0.45);
+    color: var(--muted);
     text-decoration: none;
     transition: color 0.15s;
   }
@@ -79,20 +79,20 @@ const footerStyles = `
     font-family: 'DM Mono', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.04em;
-    color: rgba(255,255,255,0.45);
+    color: var(--muted);
     line-height: 1.6;
     max-width: 240px;
   }
 
   .ft-socials { display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem; }
-  .ft-social-icon { color: rgba(255,255,255,0.45); transition: color 0.15s; display: flex; }
+  .ft-social-icon { color: var(--muted); transition: color 0.15s; display: flex; }
   .ft-social-icon:hover { color: #ff54ff; }
 
   .ft-meta {
     font-family: 'DM Mono', monospace;
     font-size: 0.62rem;
     letter-spacing: 0.08em;
-    color: rgba(255,255,255,0.3);
+    color: var(--muted);
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;

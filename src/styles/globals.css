@@ -9,6 +9,7 @@
    ═══════════════════════════════════════════════════════════ */
 :root {
   --brand:        #ff54ff;
+  --foreground:   #111827;
   --stroke-color: #111111;
   --muted:        #6b7280;
   --card-border:  rgba(0, 0, 0, 0.08);
@@ -16,6 +17,7 @@
   --tag-bg:       rgba(255, 84, 255, 0.08);
 }
 .dark {
+  --foreground:   #f8fafc;
   --stroke-color: #f0f0f0;
   --muted:        #9ca3af;
   --card-border:  rgba(255, 255, 255, 0.08);
